@@ -8,7 +8,7 @@ const routes = {
     policy: '/policy',
     takecare: '/takecare',
     blog: '/blog',
-    product: '/product'
+    course: '/course'
 };
 
 export default routes;

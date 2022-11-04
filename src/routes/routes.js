@@ -7,7 +7,7 @@ import { HeaderOnly } from '~/layouts';
 import Home from '~/pages/client/Home';
 import Category from '~/pages/client/Category';
 import { Forget, SignIn, SignUp } from '~/pages/client/Auth';
-import Products from '~/pages/client/Products';
+import Course from '~/pages/client/Course';
 
 const publicRoutes = [
     {
@@ -34,8 +34,8 @@ const publicRoutes = [
         layout: HeaderOnly,
     },
     {
-        path: config.routes.product,
-        component: Products,
+        path: config.routes.course,
+        component: Course,
     },
 ];
 
