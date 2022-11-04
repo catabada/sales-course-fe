@@ -4,6 +4,11 @@ const routes = {
     signIn: '/auth/signin',
     signUp: '/auth/signup',
     forget: '/auth/forget',
+    terms: '/terms',
+    policy: '/policy',
+    takecare: '/takecare',
+    blog: '/blog',
+    product: '/product'
 };
 
 export default routes;

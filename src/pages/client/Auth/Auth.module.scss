@@ -1,0 +1,149 @@
+.wrapper {
+    padding: 30px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .content {
+        width: 380px;
+
+        .form-label {
+            letter-spacing: 0;
+            font-weight: 600;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        .title {
+            font-size: 30px;
+            color: #000;
+            font-weight: 600;
+        }
+
+        .content-social {
+            .social-list {
+                .social-item {
+                    width: 100%;
+                    background-color: #fff;
+                    & {
+                        margin-top: 10px;
+                    }
+                    &.fb-background {
+                        background-color: #3a5c98;
+                        border: 1px solid #3a5c98;
+                    }
+                    border: 1px solid #000;
+                    border-radius: 20px;
+                    padding: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    .social-lable {
+                        &.fb-color {
+                            color: #fff;
+                        }
+                        color: #000;
+                        font-size: 16px;
+                        margin-left: 1rem;
+                    }
+                }
+            }
+
+            .divider {
+                position: relative;
+                text-align: center;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                font-weight: 600;
+                &:before {
+                    content: '';
+                    position: absolute;
+                    height: 1px;
+                    width: 30%;
+                    top: 50%;
+                    left: 0;
+                    transform: translateY(50%);
+                    background-color: #000;
+                }
+                &::after {
+                    content: '';
+                    position: absolute;
+                    height: 1px;
+                    width: 30%;
+                    top: 50%;
+                    right: 0;
+                    transform: translateY(50%);
+                    background-color: #000;
+                }
+            }
+        }
+
+        .btn-show {
+            border-radius: 100%;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-40%);
+            display: flex;
+            padding: 8px 8px;
+            outline: none;
+            border: none;
+            background-color: #fff;
+            .icon-von {
+                font-size: 20px;
+            }
+
+            &:hover {
+                background-color: rgb(237, 237, 237);
+            }
+        }
+        .custom-link {
+            text-decoration: none;
+            margin: 20px 0;
+            text-align: center;
+            color: #393f4d;
+            font-size: 12px;
+            letter-spacing: 0;
+        }
+        .btn {
+            font-size: 16px;
+            letter-spacing: 0;
+            font-weight: 600;
+            text-transform: none;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .btn-second {
+            background-color: #c89f65;
+            margin-top: 1rem;
+            color: #fff;
+        }
+        .flex {
+            display: flex;
+            margin-top: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+        .check-wrapper {
+            margin-top: 3rem;
+            display: flex;
+            .check-content {
+                margin-right: 1rem;
+                position: relative;
+                .check-btn {
+                    position: relative;
+                    padding: 1.4rem;
+                    outline: none;
+                    border: 1px solid #ccc;
+                    background-color: #fff;
+                    border-radius: 100%;
+                }
+                .check-icon {
+                    position: absolute;
+                    top: 3px;
+                    left: 0;
+                }
+            }
+        }
+    }
+}

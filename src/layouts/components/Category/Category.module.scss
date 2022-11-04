@@ -1,0 +1,25 @@
+.wrapper {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .inner {
+        color: white;
+        border: 0px;
+        cursor: pointer;
+        margin-right: 2.7%;
+        display: inherit;
+        align-items: inherit;
+        .icon {
+            font-size: 1.6rem;
+        }
+        .title {
+            font-size: 1.6rem;
+            margin-left: 0.5rem;
+        }
+
+        .icon-arrow {
+            font-size: 2rem;
+        }
+    }
+}
