@@ -1,7 +1,7 @@
 .wrapper {
     height: var(--layout-height-header);
     background-color: #212121 !important;
-
+    margin: 0 1rem;
     .inner {
         display: flex;
         align-items: center;
@@ -83,7 +83,7 @@
             .btn-active {
                 color: var(--primary-color);
                 border: 1px solid var(--primary-color);
-                margin-left: 0.5rem;
+                margin: 3rem;
                 border-radius: 6px;
                 font-size: 1.2rem;
                 &:hover {
@@ -107,6 +107,11 @@
             .wrapper-link {
                 text-decoration: none;
                 padding: 0 1rem;
+                button {
+                    font-size: 1.4rem;
+                    text-transform: none;
+                    font-weight: 400;
+                }
             }
         }
     }

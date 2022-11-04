@@ -7,7 +7,6 @@ import styles from './Auth.module.scss';
 import { FacebookIcon, GoogleIcon, AppleIcon, EyeUnshowIcon, EyeShowIcon } from '~/components/Icons';
 
 const cx = classNames.bind(styles);
-
 function SignUp() {
     return (
         <div className={cx('wrapper')}>
@@ -36,11 +35,12 @@ function SignUp() {
                 </div>
 
                 <form id="form">
-                    <label className={cx('form-label')}>Địa chỉ email</label>
                     <TextField
+                        label = "Địa chỉ email"
                         InputProps={{
-                            style: { fontSize: '1.2rem' },
+                            style: { fontSize: '1.5rem' },
                         }}
+                        InputLabelProps={{style: {fontSize: 14}}}
                         variant="outlined"
                         fullWidth
                         placeholder="mail@example.com"
@@ -51,13 +51,13 @@ function SignUp() {
                     Tiếp theo
                 </Button>
                 <div className={cx('flex')}>
-                    <Typography sx={{ color: '#00459F', fontSize: '13px' }}>
+                    <Typography sx={{ color: '#00459F', fontSize: '1.5rem' }}>
                         Đã có tài khoản?
                         <Typography
                             component={Link}
                             to={config.routes.signIn}
                             className={cx('custom-link')}
-                            sx={{ marginLeft: '10px!important' }}
+                            sx={{ marginLeft: '10px!important', fontWeight:'bold' }}
                         >
                             Đăng nhập
                         </Typography>

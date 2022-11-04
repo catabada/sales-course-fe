@@ -41,7 +41,7 @@ export const LogoIcon = ({ width = '10rem', height = '10rem', className }) => (
     </svg>
 );
 
-export const FacebookIcon = ({ width = '1.6rem', height = '1.6rem', className }) => (
+export const FacebookIcon = ({ width = '2rem', height = '2rem', className }) => (
     <svg
         className={className}
         width={width}
@@ -57,7 +57,7 @@ export const FacebookIcon = ({ width = '1.6rem', height = '1.6rem', className })
     </svg>
 );
 
-export const GoogleIcon = ({ width = '1.6rem', height = '1.6rem', className }) => (
+export const GoogleIcon = ({ width = '2rem', height = '2rem', className }) => (
     <svg
         className={className}
         width={width}
@@ -85,7 +85,7 @@ export const GoogleIcon = ({ width = '1.6rem', height = '1.6rem', className }) =
     </svg>
 );
 
-export const AppleIcon = ({ width = '1.6rem', height = '1.6rem', className }) => (
+export const AppleIcon = ({ width = '2rem', height = '2rem', className }) => (
     <svg
         className={className}
         width={width}
