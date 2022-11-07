@@ -1,7 +1,5 @@
 import styles from './Category.module.scss';
 import classNames from 'classnames/bind';
-import config from '~/config';
-import Breadcrumb from '~/components/Breadcrumb';
 import { Box, Grid, Paper, Typography } from '@mui/material';
 import CardCategory from '~/components/CardCategory';
 const cx = classNames.bind(styles);

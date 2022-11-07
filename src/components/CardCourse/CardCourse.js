@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 function CardCourse({ data }) {
     return <Card
         className={cx('card')}
-        sx={{ maxWidth: '25%', marginTop: '10px', marginRight: '15px', marginLeft: '15px', borderRadius: '10px' }}>
+        sx={{ maxWidth: '100%', marginTop: '10px', marginRight: '15px', marginLeft: '15px', borderRadius: '10px' }}>
         <CardActionArea component={Link} to={config.routes.category}>
             <CardMedia
                 component='img'
@@ -25,7 +25,7 @@ function CardCourse({ data }) {
                     {data.category}
                 </Typography>
                 <Typography
-                    variant='h5'
+                    variant='h4'
                     className={cx('card-title')}>
                     {data.title}
                 </Typography>
