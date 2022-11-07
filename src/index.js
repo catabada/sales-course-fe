@@ -4,13 +4,18 @@ import App from '~/App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import reportWebVitals from '~/reportWebVitals';
 import GlobalStyles from '~/components/GlobalStyles';
-import {createMuiTheme, ThemeProvider, useTheme} from "@mui/material";
+import { createTheme, ThemeProvider} from "@mui/material";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const theme = createMuiTheme({
+const theme = createTheme({
     typography: {
-        fontFamily: 'Segoe UI'
+        fontFamily: 'Inter, sans-serif',
     },
+    palette: {
+        primary: {
+            main: '#fccf00',
+        }
+    }
 })
 root.render(
     <React.StrictMode>

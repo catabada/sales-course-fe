@@ -1,16 +1,17 @@
 .card {
+    width: 100%;
     .card-content {
         padding: 8px 10px 8px 8px;
         .card-category {
             color: #fccf00;
             text-transform: uppercase;
             font-weight: 700;
-            font-size: 16px;
+            font-size: 1.3rem;
             margin-bottom: 0;
         }
         .card-title {
             color: #000;
-            font-size: 18px;
+            font-size: 1.9rem;
             text-transform: capitalize;
             font-weight: 800;
             min-height: 50px;
@@ -21,10 +22,10 @@
         }
         .card-author {
             color: #000;
-            font-size: 14px;
+            font-size: 1.5rem;
             text-transform: capitalize;
             padding: 10px 0;
-            font-weight: 600;
+            font-weight: 400;
         }
         .card-course-price {
             display: flex;
@@ -55,10 +56,10 @@
             }
         }
         .card-sales-price {
-            font-size: 22px;
+            font-size: 2rem;
             color: #e11800;
             letter-spacing: 0;
-            font-weight: 800;
+            font-weight: 700;
         }
         .card-price {
             font-size: 14px;
