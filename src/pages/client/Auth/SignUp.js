@@ -36,11 +36,11 @@ function SignUp() {
 
                 <form id="form">
                     <TextField
-                        label = "Địa chỉ email"
+                        label="Địa chỉ email"
                         InputProps={{
                             style: { fontSize: '1.5rem' },
                         }}
-                        InputLabelProps={{style: {fontSize: 14}}}
+                        InputLabelProps={{ style: { fontSize: 14 } }}
                         variant="outlined"
                         fullWidth
                         placeholder="mail@example.com"
@@ -57,7 +57,7 @@ function SignUp() {
                             component={Link}
                             to={config.routes.signIn}
                             className={cx('custom-link')}
-                            sx={{ marginLeft: '10px!important', fontWeight:'bold' }}
+                            sx={{ marginLeft: '10px!important', fontWeight: 'bold' }}
                         >
                             Đăng nhập
                         </Typography>

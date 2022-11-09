@@ -10,7 +10,7 @@ function CardCategory() {
 		<Box
 			className={cx('card-category')}
 			component={Link}
-			to={config.routes.product}>
+			to={config.routes.course}>
 			<Paper
 				className={cx('image-bg')}
 				elevation={4}

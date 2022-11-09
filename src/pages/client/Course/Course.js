@@ -5,13 +5,10 @@ import {Box, Container, Grid, Paper} from "@mui/material";
 import Filter from "~/components/Filter";
 import ListCourse from "~/components/ListCourse";
 
+
 const cx = classNames.bind(styles);
 
-function Course() {
-    const data = {
-        url: 'https://cdn2.topica.vn/5f990e55cb5acb5e85ce27a9/product/619bceca6d05dc00250104d9',
-
-    }
+function Course() {  
     return <Box className={cx('wrapper')}>
         <Box sx={{width: '100%'}}>
             <Breadcrumb data={data}/>
@@ -34,3 +31,4 @@ function Course() {
 };
 
 export default Course;
+

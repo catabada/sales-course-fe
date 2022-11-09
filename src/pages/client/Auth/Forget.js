@@ -1,7 +1,7 @@
-import {Button, Radio, TextField} from '@mui/material';
+import { Button, Radio, TextField } from '@mui/material';
 import classNames from 'classnames/bind';
 import styles from './Auth.module.scss';
-import { CheckIcon } from '~/components/Icons'
+import { CheckIcon } from '~/components/Icons';
 const cx = classNames.bind(styles);
 
 function Forget() {
@@ -14,7 +14,7 @@ function Forget() {
                         InputProps={{
                             style: { fontSize: '1.5rem' },
                         }}
-                        InputLabelProps={{style: {fontSize: 14}}}
+                        InputLabelProps={{ style: { fontSize: 14 } }}
                         variant="outlined"
                         fullWidth
                         placeholder="mail@example.com"

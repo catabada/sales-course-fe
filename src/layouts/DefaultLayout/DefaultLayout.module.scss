@@ -6,6 +6,8 @@
         align-items: center;
         margin-top: var(--layout-height-header);
         .content {
+            position: relative;
+            width: 100%;
         }
     }
 }

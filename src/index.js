@@ -4,11 +4,14 @@ import App from '~/App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import reportWebVitals from '~/reportWebVitals';
 import GlobalStyles from '~/components/GlobalStyles';
+
 import { createTheme, ThemeProvider} from "@mui/material";
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const theme = createTheme({
     typography: {
+
         fontFamily: 'Inter, sans-serif',
     },
     palette: {
@@ -21,7 +24,7 @@ root.render(
     <React.StrictMode>
         <GlobalStyles>
             <ThemeProvider theme={theme}>
-                <App/>
+                <App />
             </ThemeProvider>
         </GlobalStyles>
     </React.StrictMode>,

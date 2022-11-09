@@ -123,12 +123,25 @@ export const EyeShowIcon = ({width = '1.6rem', height = '1.6rem', className}) =>
     </svg>
 );
 
+
+
+export const StarIcon = ({width = '2.4rem', height = '2.4rem', className}) => (
+    <svg
+        className={className}
+        width={width}
+        height={height}
+        focusable="false"
+        viewBox="0 0 15 15"
+        aria-hidden="true"
+        fill="#FFC043"
+    >
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+
 export const CheckIcon = ({width = '3rem', height = '3rem', className}) => (
     <svg className={className} width={width} height={height} focusable="false" viewBox="0 0 20 21" aria-hidden="true">
-        <svg width="20" height="21" viewBox="0 0 20 21" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
-                d="M10 20.9102C15.4492 20.9102 19.9609 16.3887 19.9609 10.9492C19.9609 5.5 15.4395 0.988281 9.99023 0.988281C4.55078 0.988281 0.0390625 5.5 0.0390625 10.9492C0.0390625 16.3887 4.56055 20.9102 10 20.9102ZM8.89648 15.7246C8.56445 15.7246 8.29102 15.5879 8.03711 15.2461L5.58594 12.2383C5.43945 12.043 5.35156 11.8281 5.35156 11.6035C5.35156 11.1641 5.69336 10.8027 6.13281 10.8027C6.41602 10.8027 6.63086 10.8906 6.875 11.2129L8.85742 13.7715L13.0273 7.07227C13.2129 6.7793 13.4668 6.62305 13.7207 6.62305C14.1504 6.62305 14.5508 6.91602 14.5508 7.375C14.5508 7.58984 14.4238 7.81445 14.3066 8.01953L9.7168 15.2461C9.51172 15.5684 9.22852 15.7246 8.89648 15.7246Z"
-                fill="#C89F65"
+                d="M7.50001 1.60742L9.32091 5.3101L13.3929 5.9075L10.4464 8.78802L11.1418 12.8574L7.50001 10.9351L3.85823 12.8574L4.55358 8.78802L1.60715 5.9075L5.67912 5.3101L7.50001 1.60742Z"
+                fill="#FFC043"
             ></path>
         </svg>
     </svg>
@@ -145,4 +158,21 @@ export const RightArrow = ({width = '20px', height = '20px'}) => (
         <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path>
     </svg>
 );
+
+export const HalfStarIcon = ({width = '2.4rem', height = '2.4rem', className}) => (
+    <svg
+        className={className}
+        width={width}
+        height={height}
+        focusable="false"
+        viewBox="0 0 24 24"
+        fill="#FFC043"
+        aria-hidden="true"
+    >
+        <path
+            d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4V6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"></path>
+    </svg>
+);
+
+//
 

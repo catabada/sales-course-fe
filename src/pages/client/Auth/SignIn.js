@@ -1,4 +1,4 @@
-import {Box, Button, Container, TextField, Typography} from '@mui/material';
+import { Box, Button, Container, TextField, Typography } from '@mui/material';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import config from '~/config';
@@ -20,13 +20,17 @@ function SignIn() {
         <Container maxWidth={false}>
             <div className={cx('wrapper')}>
                 <div className={cx('content')}>
-                    <Typography sx={{marginBottom: '3rem'}} className={cx('title')}>Đăng nhập</Typography>
+                    <Typography sx={{ marginBottom: '3rem' }} className={cx('title')}>
+                        Đăng nhập
+                    </Typography>
 
                     <div className={cx('content-social')}>
                         <div className={cx('social-list')}>
                             <button className={cx('social-item', 'fb-background')}>
                                 <FacebookIcon />
-                                <Typography className={cx('social-lable', 'fb-color')}>Continue with Facebook</Typography>
+                                <Typography className={cx('social-lable', 'fb-color')}>
+                                    Continue with Facebook
+                                </Typography>
                             </button>
 
                             <button className={cx('social-item')}>
@@ -46,7 +50,7 @@ function SignIn() {
                     <form id="form">
                         <Box sx={{ position: 'relative' }}>
                             <TextField
-                                label = "Địa chỉ email"
+                                label="Địa chỉ email"
                                 InputProps={{
                                     style: { fontSize: '1.5rem' },
                                 }}
@@ -54,36 +58,34 @@ function SignIn() {
                                 variant="outlined"
                                 fullWidth
                                 placeholder="mail@example.com"
-                                InputLabelProps={{style: {fontSize: 14}}}
+                                InputLabelProps={{ style: { fontSize: '1.6rem' } }}
                             />
                         </Box>
-
 
                         <Box sx={{ position: 'relative' }}>
                             <TextField
                                 sx={{
-                                    position: "relative"
+                                    position: 'relative',
+                                    marginTop: '3rem',
                                 }}
-                                label = "Mật khẩu"
+                                label="Mật khẩu"
                                 variant="outlined"
-                                placeholder={"*******"}
+                                placeholder={'*******'}
                                 fullWidth
-                                type={show ? "text" : "password"}
-                                sx={{ marginTop: '3rem' }}
+                                type={show ? 'text' : 'password'}
                                 size="medium"
                                 InputProps={{
                                     style: { fontSize: '1.5rem' },
                                 }}
-                                InputLabelProps={{style: {fontSize: 14}}}
+                                InputLabelProps={{ style: { fontSize: '1.6rem' } }}
                             />
-                            <button  className={cx('btn-show')} onClick={handleClick}>
+                            <button className={cx('btn-show')} onClick={handleClick}>
                                 {show ? (
                                     <EyeUnshowIcon className={cx('icon-von')} />
                                 ) : (
                                     <EyeShowIcon className={cx('icon-von')} />
                                 )}
                             </button>
-
                         </Box>
                     </form>
 
@@ -106,7 +108,7 @@ function SignIn() {
                                 component={Link}
                                 to={config.routes.signUp}
                                 className={cx('custom-link')}
-                                sx={{ marginLeft: '10px!important', fontWeight:'bold' }}
+                                sx={{ marginLeft: '10px!important', fontWeight: 'bold' }}
                             >
                                 Đăng ký
                             </Typography>
@@ -115,7 +117,6 @@ function SignIn() {
                 </div>
             </div>
         </Container>
-
     );
 }
 
