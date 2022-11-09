@@ -124,6 +124,7 @@ export const EyeShowIcon = ({width = '1.6rem', height = '1.6rem', className}) =>
 );
 
 
+
 export const StarIcon = ({width = '2.4rem', height = '2.4rem', className}) => (
     <svg
         className={className}
@@ -135,11 +136,26 @@ export const StarIcon = ({width = '2.4rem', height = '2.4rem', className}) => (
         fill="#FFC043"
     >
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+export const CheckIcon = ({width = '3rem', height = '3rem', className}) => (
+    <svg className={className} width={width} height={height} focusable="false" viewBox="0 0 20 21" aria-hidden="true">
             <path
                 d="M7.50001 1.60742L9.32091 5.3101L13.3929 5.9075L10.4464 8.78802L11.1418 12.8574L7.50001 10.9351L3.85823 12.8574L4.55358 8.78802L1.60715 5.9075L5.67912 5.3101L7.50001 1.60742Z"
                 fill="#FFC043"
             ></path>
         </svg>
+    </svg>
+);
+export const LeftArrow = ({width = '20px', height = '20px'}) => (
+    <svg width={width} height={height} className="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24"
+         aria-hidden="true">
+        <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"></path>
+    </svg>
+);
+export const RightArrow = ({width = '20px', height = '20px'}) => (
+    <svg width={width} height={height} className="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24"
+         aria-hidden="true">
+        <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path>
     </svg>
 );
 

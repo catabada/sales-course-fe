@@ -7,8 +7,10 @@ import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 function CardCourse({ data }) {
+
     return <Card className={cx('card')}    >
         <CardActionArea component={Link} to={`${config.routes.course}/${data.slug}`}>
+
             <CardMedia
                 component='img'
                 height='160'
@@ -23,7 +25,7 @@ function CardCourse({ data }) {
                     {data.category}
                 </Typography>
                 <Typography
-                    variant='h5'
+                    variant='h4'
                     className={cx('card-title')}>
                     {data.title}
                 </Typography>
