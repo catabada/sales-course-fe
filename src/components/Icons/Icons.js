@@ -124,7 +124,6 @@ export const EyeShowIcon = ({width = '1.6rem', height = '1.6rem', className}) =>
 );
 
 
-
 export const StarIcon = ({width = '2.4rem', height = '2.4rem', className}) => (
     <svg
         className={className}
@@ -136,14 +135,19 @@ export const StarIcon = ({width = '2.4rem', height = '2.4rem', className}) => (
         fill="#FFC043"
     >
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-
-export const CheckIcon = ({width = '3rem', height = '3rem', className}) => (
-    <svg className={className} width={width} height={height} focusable="false" viewBox="0 0 20 21" aria-hidden="true">
             <path
                 d="M7.50001 1.60742L9.32091 5.3101L13.3929 5.9075L10.4464 8.78802L11.1418 12.8574L7.50001 10.9351L3.85823 12.8574L4.55358 8.78802L1.60715 5.9075L5.67912 5.3101L7.50001 1.60742Z"
-                fill="#FFC043"
-            ></path>
+                fill="#FFC043"></path>
         </svg>
+    </svg>
+);
+export const CheckIcon = ({width = '3rem', height = '3rem', className}) => (
+    <svg className={className} width={width} height={height} focusable="false" viewBox="0 0 20 21"
+         aria-hidden="true">
+        <path
+            d="M7.50001 1.60742L9.32091 5.3101L13.3929 5.9075L10.4464 8.78802L11.1418 12.8574L7.50001 10.9351L3.85823 12.8574L4.55358 8.78802L1.60715 5.9075L5.67912 5.3101L7.50001 1.60742Z"
+            fill="#FFC043"
+        ></path>
     </svg>
 );
 export const LeftArrow = ({width = '20px', height = '20px'}) => (
@@ -174,5 +178,4 @@ export const HalfStarIcon = ({width = '2.4rem', height = '2.4rem', className}) =
     </svg>
 );
 
-//
 
