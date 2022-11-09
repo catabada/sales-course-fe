@@ -8,6 +8,7 @@ import Home from '~/pages/client/Home';
 import Category from '~/pages/client/Category';
 import { Forget, SignIn, SignUp } from '~/pages/client/Auth';
 import Course from '~/pages/client/Course';
+import Detail from '~/pages/client/Detail';
 
 const publicRoutes = [
     {
@@ -36,6 +37,10 @@ const publicRoutes = [
     {
         path: config.routes.course,
         component: Course,
+    },
+    {
+        path: config.routes.detail,
+        component: Detail,
     },
 ];
 

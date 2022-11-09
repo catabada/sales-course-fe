@@ -1,15 +1,17 @@
 import styles from './Breadcrumb.module.scss';
 import classNames from 'classnames/bind';
-import {Box, Breadcrumbs, CardContent, Container, Grid, Link, Paper, Typography} from '@mui/material';
-import {NavigateNext} from "@mui/icons-material";
-
+import { Box, Breadcrumbs, CardContent, Container, Grid, Link, Paper, Typography } from '@mui/material';
+import { NavigateNext } from '@mui/icons-material';
 
 const cx = classNames.bind(styles);
 
-function Breadcrumb({data}) {
+function Breadcrumb({ data }) {
     const breadcrumbs = [
-        <Link key="1" color="inherit" href="/"
-            // onClick={handleClick}
+        <Link
+            key="1"
+            color="inherit"
+            href="/"
+        // onClick={handleClick}
         >
             Trang chủ
         </Link>,
@@ -17,7 +19,7 @@ function Breadcrumb({data}) {
             key="2"
             color="inherit"
             to="/"
-            // onClick={handleClick}
+        // onClick={handleClick}
         >
             Ngoại ngữ
         </Link>,
@@ -30,28 +32,28 @@ function Breadcrumb({data}) {
         <Box className={cx('breadcrumb')}>
             <Paper
                 className={cx('image-bg')}
-                style={{backgroundImage: `linear-gradient(0, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%), url(${data.url})`}}
+                style={{
+                    backgroundImage: `linear-gradient(0, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%), url(${data.url})`,
+                }}
             >
                 <Container maxWidth={false}>
                     <div className={cx('content')}>
-                        <Breadcrumbs
-                            separator={<NavigateNext fontSize="medium"/>}
-                            aria-label="breadcrumb"
-                        >
+                        <Breadcrumbs separator={<NavigateNext fontSize="medium" />} aria-label="breadcrumb">
                             {breadcrumbs}
                         </Breadcrumbs>
 
-                        <Typography variant="h2"
-                                    sx={{
-                                        fontWeight: 'bold',
-										color: '#fff',
-										margin: "10px 0 0 20px"
-                                    }}>
+                        <Typography
+                            variant="h2"
+                            sx={{
+                                fontWeight: 'bold',
+                                color: '#fff',
+                                margin: '10px 0 0 20px',
+                            }}
+                        >
                             Ngoại Ngữ
                         </Typography>
                     </div>
                 </Container>
-
             </Paper>
         </Box>
     );

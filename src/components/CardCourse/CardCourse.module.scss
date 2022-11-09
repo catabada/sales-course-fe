@@ -1,39 +1,55 @@
 .card {
+    height: 350px;
+    margin: 1rem 1.5rem 0;
+    border-radius: 1rem;
     .card-content {
-        padding: 8px 10px 8px 8px;
+        padding: 0.8rem 1rem 0.8rem 0.8rem;
         .card-category {
             color: #fccf00;
             text-transform: uppercase;
             font-weight: 700;
-            font-size: 16px;
+            font-size: 1.6rem;
             margin-bottom: 0;
         }
         .card-title {
-            color: #000;
-            font-size: 18px;
+            color: rgb(31, 31, 41);
+            font-size: 1.8rem;
             text-transform: capitalize;
-            font-weight: 800;
-            min-height: 50px;
+            font-weight: 700;
+            height: 5.2rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 2.5rem;
+            -webkit-line-clamp: 2;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
         }
         .card-description {
-            font-size: 12px;
+            font-size: 1.3rem;
             color: #757575;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 2rem;
+            -webkit-line-clamp: 2;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            height: 4rem;
         }
         .card-author {
             color: #000;
-            font-size: 14px;
+            font-size: 1.4rem;
             text-transform: capitalize;
-            padding: 10px 0;
+            padding: 0.5rem 0;
             font-weight: 600;
         }
         .card-course-price {
             display: flex;
             align-items: center;
             &.card-free {
-                margin-left: -8px;
+                margin-left: -0.8rem;
                 background-color: #addec9;
                 display: inline-block;
-                padding: 5px 0 5px 10px;
+                padding: 0.5rem 0 0.5rem 1rem;
                 width: 160px;
                 position: relative;
 
@@ -41,30 +57,30 @@
                     content: '';
                     position: absolute;
                     display: inline-block;
-                    right: -15px;
+                    right: -1.5rem;
                     bottom: 0;
-                    border-right: 15px solid transparent;
-                    border-top: 15px solid #addec9;
-                    border-bottom: 15px solid #addec9;
+                    border-right: 1.5rem solid transparent;
+                    border-top: 1.5rem solid #addec9;
+                    border-bottom: 1.5rem solid #addec9;
                 }
                 .card-free-title {
                     color: #03703c;
-                    font-size: 14px;
+                    font-size: 1.4rem;
                     font-weight: 600;
                 }
             }
         }
         .card-sales-price {
-            font-size: 22px;
+            font-size: 2.2rem;
             color: #e11800;
             letter-spacing: 0;
             font-weight: 800;
         }
         .card-price {
-            font-size: 14px;
+            font-size: 1.4rem;
             text-decoration: line-through;
             color: #757575;
-            margin-left: 5px;
+            margin-left: 0.5rem;
         }
     }
 }

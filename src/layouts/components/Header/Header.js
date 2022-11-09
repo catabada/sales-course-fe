@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 import Search from '../Search';
 import Category from '../Category';
-import {AppBar, Box, Button, Container, Toolbar} from '@mui/material';
+import { AppBar, Box, Button, Container, Toolbar } from '@mui/material';
 import ShoppingCart from '@mui/icons-material/ShoppingCartOutlined';
 import { LogoIcon } from '~/components/Icons';
 
 const cx = classNames.bind(styles);
 function Header() {
     return (
-        <AppBar position={"fixed"}>
+        <AppBar position={'fixed'}>
             <Container maxWidth={false} className={cx('wrapper')}>
                 <Toolbar className={cx('inner')}>
                     <div className={cx('header')}>
@@ -26,16 +26,12 @@ function Header() {
                             Kích hoạt khoá học
                         </Button>
 
-                        <Box className={cx('cart')} component={Link} to={config.routes.cart}    >
-                            <ShoppingCart
-                                className={cx('cart-icon')}
-                            />
+                        <Box className={cx('cart')} component={Link} to={config.routes.cart}>
+                            <ShoppingCart className={cx('cart-icon')} />
 
                             <span className={cx('cart-number')}>1</span>
 
-                            <div className={cx('cart-content')}>
-                                {/* cart item */}
-                            </div>
+                            <div className={cx('cart-content')}>{/* cart item */}</div>
                         </Box>
 
                         {/* chua dang nhap */}
@@ -53,7 +49,6 @@ function Header() {
                 </Toolbar>
             </Container>
         </AppBar>
-
     );
 }
 

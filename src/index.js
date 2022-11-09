@@ -4,19 +4,19 @@ import App from '~/App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import reportWebVitals from '~/reportWebVitals';
 import GlobalStyles from '~/components/GlobalStyles';
-import {createMuiTheme, ThemeProvider, useTheme} from "@mui/material";
+import { createMuiTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const theme = createMuiTheme({
     typography: {
-        fontFamily: 'Segoe UI'
+        fontFamily: 'Segoe UI',
     },
-})
+});
 root.render(
     <React.StrictMode>
         <GlobalStyles>
             <ThemeProvider theme={theme}>
-                <App/>
+                <App />
             </ThemeProvider>
         </GlobalStyles>
     </React.StrictMode>,
