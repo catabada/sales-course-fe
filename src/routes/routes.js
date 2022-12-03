@@ -1,46 +1,56 @@
-// config
-import config from '~/config';
 //Layouts
 import { HeaderOnly } from '~/layouts';
 
 // Pages
-import Home from '~/pages/client/Home';
-import Category from '~/pages/client/Category';
-import { Forget, SignIn, SignUp } from '~/pages/client/Auth';
-import Course from '~/pages/client/Course';
-import Detail from '~/pages/client/Detail';
+import Home from '~/pages/client/home';
+import Category from '~/pages/client/category';
+import { Forget, SignIn, SignUp } from '~/pages/client/auth';
+import Course from '~/pages/client/course';
+import Detail from '~/pages/client/detail';
 
 const publicRoutes = [
     {
-        path: config.routes.home,
+        path: '/',
         component: Home,
+        exact: true,
     },
     {
-        path: config.routes.category,
+        path: '/home',
+        component: Home,
+        exact: true,
+    },
+    {
+        path: '/category',
         component: Category,
+        exact: true,
     },
     {
-        path: config.routes.signIn,
+        path: '/auth/signin',
         component: SignIn,
         layout: HeaderOnly,
+        exact: true,
     },
     {
-        path: config.routes.signUp,
+        path: '/auth/signup',
         component: SignUp,
         layout: HeaderOnly,
+        exact: true,
     },
     {
-        path: config.routes.forget,
+        path: '/auth/forget',
         component: Forget,
         layout: HeaderOnly,
+        exact: true,
     },
     {
-        path: config.routes.course,
+        path: '/category/:codeCategory',
         component: Course,
+        exact: false,
     },
     {
-        path: config.routes.detail,
+        path: '/course/:code',
         component: Detail,
+        exact: true,
     },
 ];
 

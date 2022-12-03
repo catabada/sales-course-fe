@@ -1,8 +1,8 @@
 import classNames from 'classnames/bind';
-import {Link, useParams} from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import styles from './Detail.module.scss';
 import data from '~/services/fakeData';
-import {BreadcrumbDetail} from '~/components/Breadcrumb';
+import { BreadcrumbDetail } from '~/components/breadcrumb';
 import {
     AppBar, Avatar, Badge, Box, Button, Collapse,
     Grid,
@@ -16,8 +16,8 @@ import {
     Tabs, Typography,
 
 } from '@mui/material';
-import {useState} from 'react';
-import {Container} from '@mui/system';
+import { useState } from 'react';
+import { Container } from '@mui/system';
 import TaskIcon from '@mui/icons-material/TaskAltOutlined';
 import PlayIcon from '@mui/icons-material/PlayCircleOutlined';
 import ArrowDownIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
@@ -28,7 +28,7 @@ import StarOutlineIcon from '@mui/icons-material/StarOutlineOutlined';
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 import SmileIcon from '@mui/icons-material/SentimentSatisfiedOutlined';
 import DocumentIcon from '@mui/icons-material/TextSnippetOutlined';
-import {HalfStarIcon, StarIcon} from "~/components/Icons";
+import { HalfStarIcon, StarIcon } from "~/components/Icons";
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import CartIcon from '@mui/icons-material/ShoppingCartOutlined';
@@ -45,13 +45,13 @@ function Detail() {
         setValue(newValue);
     };
 
-    const {slug} = useParams();
+    const { slug } = useParams();
     const thisCourse = data.find((course) => course.slug === slug);
     thisCourse.url = 'https://res.cloudinary.com/dbrdml9bf/image/upload/v1638449082/topica/wave_iabqmr.png';
 
     const numberCustom = (props) => {
-        const {active, completed} = props;
-        return (<div ownerstate={{active, completed}}>
+        const { active, completed } = props;
+        return (<div ownerstate={{ active, completed }}>
             <div className={cx('lesson-number')}>1</div>
         </div>)
     }
@@ -61,7 +61,7 @@ function Detail() {
     };
     return (
         <div className={cx('wrapper')}>
-            <BreadcrumbDetail data={thisCourse}/>
+            <BreadcrumbDetail data={thisCourse} />
             <Grid container>
                 <Grid container justifyContent="center">
                     <Grid item md={8}>
@@ -81,23 +81,23 @@ function Detail() {
                                 <Tab label="Lợi ích" sx={{
                                     fontSize: '1.4rem',
                                     textTransform: 'initial'
-                                }}/>
+                                }} />
                                 <Tab label="Giáo trình" sx={{
                                     fontSize: '1.4rem',
                                     textTransform: 'initial'
-                                }}/>
+                                }} />
                                 <Tab label="Giảng viên" sx={{
                                     fontSize: '1.4rem',
                                     textTransform: 'initial'
-                                }}/>
+                                }} />
                                 <Tab label="Đánh giá" sx={{
                                     fontSize: '1.4rem',
                                     textTransform: 'initial'
-                                }}/>
+                                }} />
                                 <Tab label="Câu hỏi thường gặp" sx={{
                                     fontSize: '1.4rem',
                                     textTransform: 'initial'
-                                }}/>
+                                }} />
                             </Tabs>
                         </AppBar>
                         {/* content */}
@@ -107,7 +107,7 @@ function Detail() {
                                     <h2 className={cx('benefit-title')}>Lợi ích từ khoá học</h2>
                                     <div className={cx('benefit-content')}>
                                         <div className={cx('benefit-item')}>
-                                            <TaskIcon className={cx('benefit-icon')}/>
+                                            <TaskIcon className={cx('benefit-icon')} />
                                             <p className={cx('benefit-text')}>Khóa học hướng dẫn cách thiết lập các
                                                 chiến lược nhân sự dựa vào nhu cầu và quy mô của công ty, từ đó có những
                                                 bước triển khai kế hoạch một cách hợp lý nhất.</p>
@@ -137,25 +137,25 @@ function Detail() {
                                                         Các nhân tố trong doanh nghiệp
                                                     </div>
                                                     <div className={cx('video-overview')}>
-                                                        <PlayIcon className={cx('video-icon__play')}/>
+                                                        <PlayIcon className={cx('video-icon__play')} />
                                                         <span>4 videos</span>
-                                                        <ArrowDownIcon className={cx('video-icon__down')}/>
+                                                        <ArrowDownIcon className={cx('video-icon__down')} />
                                                     </div>
                                                     <List className={cx('video-list')}>
                                                         <ListItem key='1' className={cx('video-item')}>
-                                                            <PlayIcon className={cx('video-icon__play')}/>
+                                                            <PlayIcon className={cx('video-icon__play')} />
                                                             <p className={cx('video-title')}>Những nhân tố trong
                                                                 doanh nghiệp</p>
                                                             <p className={cx('video-duration')}>00:10:57</p>
                                                         </ListItem>
                                                         <ListItem key='2' className={cx('video-item')}>
-                                                            <PlayIcon className={cx('video-icon__play')}/>
+                                                            <PlayIcon className={cx('video-icon__play')} />
                                                             <p className={cx('video-title')}>Những nhân tố trong
                                                                 doanh nghiệp</p>
                                                             <p className={cx('video-duration')}>00:10:57</p>
                                                         </ListItem>
                                                         <ListItem key='3' className={cx('video-item')}>
-                                                            <PlayIcon className={cx('video-icon__play')}/>
+                                                            <PlayIcon className={cx('video-icon__play')} />
                                                             <p className={cx('video-title')}>Những nhân tố trong
                                                                 doanh nghiệp</p>
                                                             <p className={cx('video-duration')}>00:10:57</p>
@@ -179,25 +179,25 @@ function Detail() {
                                                         Các nhân tố trong doanh nghiệp
                                                     </div>
                                                     <div className={cx('video-overview')}>
-                                                        <PlayIcon className={cx('video-icon__play')}/>
+                                                        <PlayIcon className={cx('video-icon__play')} />
                                                         <span>4 videos</span>
-                                                        <ArrowDownIcon className={cx('video-icon__down')}/>
+                                                        <ArrowDownIcon className={cx('video-icon__down')} />
                                                     </div>
                                                     <List className={cx('video-list')}>
                                                         <ListItem key='1' className={cx('video-item')}>
-                                                            <PlayIcon className={cx('video-icon__play')}/>
+                                                            <PlayIcon className={cx('video-icon__play')} />
                                                             <p className={cx('video-title')}>Những nhân tố trong
                                                                 doanh nghiệp</p>
                                                             <p className={cx('video-duration')}>00:10:57</p>
                                                         </ListItem>
                                                         <ListItem key='2' className={cx('video-item')}>
-                                                            <PlayIcon className={cx('video-icon__play')}/>
+                                                            <PlayIcon className={cx('video-icon__play')} />
                                                             <p className={cx('video-title')}>Những nhân tố trong
                                                                 doanh nghiệp</p>
                                                             <p className={cx('video-duration')}>00:10:57</p>
                                                         </ListItem>
                                                         <ListItem key='3' className={cx('video-item')}>
-                                                            <PlayIcon className={cx('video-icon__play')}/>
+                                                            <PlayIcon className={cx('video-icon__play')} />
                                                             <p className={cx('video-title')}>Những nhân tố trong
                                                                 doanh nghiệp</p>
                                                             <p className={cx('video-duration')}>00:10:57</p>
@@ -224,7 +224,7 @@ function Detail() {
                                             <Avatar
                                                 src="https://cdn7.edumall.vn/uploads/images/instructors/le-tham-duong.png"
                                                 alt='author'
-                                                sx={{width: 120, height: 120}}/>
+                                                sx={{ width: 120, height: 120 }} />
                                         </Badge>
                                     </div>
                                     <div className={cx('author-info')}>
@@ -232,14 +232,14 @@ function Detail() {
                                             <div className={cx('author-profile')}>
                                                 <Box component={Link} to={'/'} className={cx('author-link')}>Lê Thẩm
                                                     Dương</Box>
-                                                <LinkedInIcon sx={{color: '#007bb6'}} className={cx('author-social')}/>
-                                                <WebsiteIcon className={cx('author-social')}/>
+                                                <LinkedInIcon sx={{ color: '#007bb6' }} className={cx('author-social')} />
+                                                <WebsiteIcon className={cx('author-social')} />
                                             </div>
                                             <div className={cx('author-evolution')}>
-                                                <StarOutlineIcon/>
+                                                <StarOutlineIcon />
                                                 <Typography variant='body1' className={cx('text')}>4.7/5</Typography>
                                                 <Typography variant='body1'>sao</Typography>
-                                                <GroupOutlinedIcon/>
+                                                <GroupOutlinedIcon />
                                                 <Typography variant='body1' className={cx('text')}>1091</Typography>
                                                 <Typography variant='body1'>Người theo dõi</Typography>
                                             </div>
@@ -269,11 +269,11 @@ function Detail() {
                                                     paddingBottom: '.5rem'
                                                 }}>4.6/5</Typography>
                                                 <div>
-                                                    <StarIcon/>
-                                                    <StarIcon/>
-                                                    <StarIcon/>
-                                                    <StarIcon/>
-                                                    <HalfStarIcon/>
+                                                    <StarIcon />
+                                                    <StarIcon />
+                                                    <StarIcon />
+                                                    <StarIcon />
+                                                    <HalfStarIcon />
                                                 </div>
                                                 <Typography variant='body1' sx={{
                                                     fontSize: '1.2rem',
@@ -283,12 +283,12 @@ function Detail() {
                                             </div>
                                             <div>
                                                 <div className={cx('evolution-item')}>
-                                                    <SmileIcon className={cx('evolution-icon')}/>
+                                                    <SmileIcon className={cx('evolution-icon')} />
                                                     <Typography variant='body1' className={cx('evolution-text')}>Giảng
                                                         viên thân thiện, nhiệt tình</Typography>
                                                 </div>
                                                 <div className={cx('evolution-item')}>
-                                                    <DocumentIcon className={cx('evolution-icon')}/>
+                                                    <DocumentIcon className={cx('evolution-icon')} />
                                                     <Typography variant='body1' className={cx('evolution-text')}>Tài
                                                         liệu chi tiết, dễ hiểu</Typography>
                                                 </div>
@@ -300,27 +300,27 @@ function Detail() {
                                                 <div className={cx('evolution-comment-item')}>
                                                     <div className={cx('evolution-student')}>
                                                         <Typography variant='body1'
-                                                                    className={cx('evolution-student-name')}>
+                                                            className={cx('evolution-student-name')}>
                                                             Lan Phuong
                                                         </Typography>
                                                         <div>
-                                                            <StarIcon/>
-                                                            <StarIcon/>
-                                                            <StarIcon/>
+                                                            <StarIcon />
+                                                            <StarIcon />
+                                                            <StarIcon />
                                                             <StarOutlineIcon sx={{
                                                                 color: '#FFC043',
                                                                 height: '2.4rem',
                                                                 width: '2.4rem'
-                                                            }}/>
+                                                            }} />
                                                             <StarOutlineIcon sx={{
                                                                 color: '#FFC043',
                                                                 height: '2.4rem',
                                                                 width: '2.4rem'
-                                                            }}/>
+                                                            }} />
                                                         </div>
                                                     </div>
                                                     <div className={cx('evolution-student-comment')}>
-                                                        <Typography variant='body1' sx={{fontSize: '1.6rem'}}>Giảng viên
+                                                        <Typography variant='body1' sx={{ fontSize: '1.6rem' }}>Giảng viên
                                                             nhiệt tình, chương trình
                                                             học đơn giản, dễ hiểu. Nội
                                                             dung rất đáng học</Typography>
@@ -332,27 +332,27 @@ function Detail() {
                                                 <div className={cx('evolution-comment-item')}>
                                                     <div className={cx('evolution-student')}>
                                                         <Typography variant='body1'
-                                                                    className={cx('evolution-student-name')}>
+                                                            className={cx('evolution-student-name')}>
                                                             Hong Mai
                                                         </Typography>
                                                         <div className={cx('evolution-rate')}>
-                                                            <StarIcon/>
-                                                            <StarIcon/>
-                                                            <StarIcon/>
+                                                            <StarIcon />
+                                                            <StarIcon />
+                                                            <StarIcon />
                                                             <StarOutlineIcon sx={{
                                                                 color: '#FFC043',
                                                                 height: '2.4rem',
                                                                 width: '2.4rem'
-                                                            }}/>
+                                                            }} />
                                                             <StarOutlineIcon sx={{
                                                                 color: '#FFC043',
                                                                 height: '2.4rem',
                                                                 width: '2.4rem'
-                                                            }}/>
+                                                            }} />
                                                         </div>
                                                     </div>
                                                     <div className={cx('evolution-student-comment')}>
-                                                        <Typography variant='body1' sx={{fontSize: '1.6rem'}}>Giáo trình
+                                                        <Typography variant='body1' sx={{ fontSize: '1.6rem' }}>Giáo trình
                                                             giảng dạy chi tiết, có hướng dẫn công cụ đi kèm. Tuy nhiên
                                                             cần thêm case study thực tế để dễ tham khảo</Typography>
                                                     </div>
@@ -362,27 +362,27 @@ function Detail() {
                                                 <div className={cx('evolution-comment-item')}>
                                                     <div className={cx('evolution-student')}>
                                                         <Typography variant='body1'
-                                                                    className={cx('evolution-student-name')}>
+                                                            className={cx('evolution-student-name')}>
                                                             Hong Mai
                                                         </Typography>
                                                         <div className={cx('evolution-rate')}>
-                                                            <StarIcon/>
-                                                            <StarIcon/>
-                                                            <StarIcon/>
+                                                            <StarIcon />
+                                                            <StarIcon />
+                                                            <StarIcon />
                                                             <StarOutlineIcon sx={{
                                                                 color: '#FFC043',
                                                                 height: '2.4rem',
                                                                 width: '2.4rem'
-                                                            }}/>
+                                                            }} />
                                                             <StarOutlineIcon sx={{
                                                                 color: '#FFC043',
                                                                 height: '2.4rem',
                                                                 width: '2.4rem'
-                                                            }}/>
+                                                            }} />
                                                         </div>
                                                     </div>
                                                     <div className={cx('evolution-student-comment')}>
-                                                        <Typography variant='body1' sx={{fontSize: '1.6rem'}}>Giáo trình
+                                                        <Typography variant='body1' sx={{ fontSize: '1.6rem' }}>Giáo trình
                                                             giảng dạy chi tiết, có hướng dẫn công cụ đi kèm. Tuy nhiên
                                                             cần thêm case study thực tế để dễ tham khảo</Typography>
                                                     </div>
@@ -398,56 +398,56 @@ function Detail() {
                                 <div className={cx('faq-wrapper')}>
                                     <List>
                                         <ListItemButton onClick={handleClick}
-                                                        sx={{
-                                                            border: '1px solid #082346',
-                                                            borderRadius: '1rem',
-                                                            marginBottom: '1rem'
-                                                        }}>
+                                            sx={{
+                                                border: '1px solid #082346',
+                                                borderRadius: '1rem',
+                                                marginBottom: '1rem'
+                                            }}>
                                             <ListItemText primary="Cách đăng thảo luận, thắc mắc về bài học"
-                                                          primaryTypographyProps={{fontSize: '1.6rem'}}/>
-                                            {open ? <ExpandLess/> : <ExpandMore/>}
+                                                primaryTypographyProps={{ fontSize: '1.6rem' }} />
+                                            {open ? <ExpandLess /> : <ExpandMore />}
                                         </ListItemButton>
                                         <Collapse in={open} timeout="auto" unmountOnExit>
                                             <List component="div" disablePadding>
-                                                <ListItemButton sx={{pl: 4}}>
+                                                <ListItemButton sx={{ pl: 4 }}>
                                                     <ListItemText
-                                                        primary="Bạn truy cập hướng dẫn tại: http://topi.ca/edumall_thaoluan"/>
+                                                        primary="Bạn truy cập hướng dẫn tại: http://topi.ca/edumall_thaoluan" />
                                                 </ListItemButton>
                                             </List>
                                         </Collapse>
                                         <ListItemButton onClick={handleClick}
-                                                        sx={{
-                                                            border: '1px solid #082346',
-                                                            borderRadius: '1rem',
-                                                            marginBottom: '1rem'
-                                                        }}>
+                                            sx={{
+                                                border: '1px solid #082346',
+                                                borderRadius: '1rem',
+                                                marginBottom: '1rem'
+                                            }}>
                                             <ListItemText secondary="Điều chỉnh chất lượng video"
-                                                          secondaryTypographyProps={{fontSize: '1.6rem'}}/>
-                                            {open ? <ExpandLess/> : <ExpandMore/>}
+                                                secondaryTypographyProps={{ fontSize: '1.6rem' }} />
+                                            {open ? <ExpandLess /> : <ExpandMore />}
                                         </ListItemButton>
                                         <Collapse in={open} timeout="auto" unmountOnExit>
                                             <List component="div" disablePadding>
-                                                <ListItemButton sx={{pl: 4}}>
+                                                <ListItemButton sx={{ pl: 4 }}>
                                                     <ListItemText
-                                                        secondary="Bạn truy cập hướng dẫn tại: http://topi.ca/edumall_dcvideo"/>
+                                                        secondary="Bạn truy cập hướng dẫn tại: http://topi.ca/edumall_dcvideo" />
                                                 </ListItemButton>
                                             </List>
                                         </Collapse>
                                         <ListItemButton onClick={handleClick}
-                                                        sx={{
-                                                            border: '1px solid #082346',
-                                                            borderRadius: '1rem',
-                                                            marginBottom: '1rem'
-                                                        }}>
+                                            sx={{
+                                                border: '1px solid #082346',
+                                                borderRadius: '1rem',
+                                                marginBottom: '1rem'
+                                            }}>
                                             <ListItemText primary="Cách sử dụng khuyến mãi"
-                                                          primaryTypographyProps={{fontSize: '1.6rem'}}/>
-                                            {open ? <ExpandLess/> : <ExpandMore/>}
+                                                primaryTypographyProps={{ fontSize: '1.6rem' }} />
+                                            {open ? <ExpandLess /> : <ExpandMore />}
                                         </ListItemButton>
                                         <Collapse in={open} timeout="auto" unmountOnExit>
                                             <List component="div" disablePadding>
-                                                <ListItemButton sx={{pl: 4}}>
+                                                <ListItemButton sx={{ pl: 4 }}>
                                                     <ListItemText
-                                                        primary="Bạn tham khảo hướng dẫn tại: http://topi.ca/edumall_makhuyenmai"/>
+                                                        primary="Bạn tham khảo hướng dẫn tại: http://topi.ca/edumall_makhuyenmai" />
                                                 </ListItemButton>
                                             </List>
                                         </Collapse>
@@ -476,7 +476,7 @@ function Detail() {
                                         <img
                                             src='https://d1nzpkv5wwh1xf.cloudfront.net/640/k-57ac2d8c047c990776574ffe/20170817-thayanh_linhnt19_17817/duonglt10.png'
                                             alt='text'
-                                            className={cx('sale-banner')}/>
+                                            className={cx('sale-banner')} />
                                     </div>
                                 </div>
                                 <div className={cx('sale-detail')}>
@@ -491,7 +491,7 @@ function Detail() {
                                     </div>
                                     <div className={cx('add-cart')}>
                                         <Button variant="outlined" className={cx('btn-add')}
-                                                startIcon={<CartIcon sx={{height: '2.4rem', width: '2.4rem'}}/>}> Thêm
+                                            startIcon={<CartIcon sx={{ height: '2.4rem', width: '2.4rem' }} />}> Thêm
                                             vào giỏ hàng</Button>
                                     </div>
                                     <div className={cx('buy-now')}>
@@ -499,11 +499,11 @@ function Detail() {
                                     </div>
                                     <div className={cx('tool')}>
                                         <div className={cx('wish-list')}>
-                                            <FavoriteIcon sx={{height: '2.4rem', width: '2.4rem'}}/>
+                                            <FavoriteIcon sx={{ height: '2.4rem', width: '2.4rem' }} />
                                             <span>Lưu vào Yêu thích</span>
                                         </div>
                                         <div className={cx('share')}>
-                                            <ShareIcon sx={{height: '2.4rem', width: '2.4rem'}}/>
+                                            <ShareIcon sx={{ height: '2.4rem', width: '2.4rem' }} />
                                             <span>Chia sẻ</span>
                                         </div>
                                     </div>

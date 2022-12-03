@@ -1,4 +1,4 @@
-import CardCourse from '~/components/CardCourse';
+import CardCourse from '~/components/card-course';
 import styles from './Home.module.scss';
 import classNames from 'classnames/bind';
 import data from '~/services/fakeData';

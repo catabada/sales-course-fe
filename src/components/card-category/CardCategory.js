@@ -2,15 +2,14 @@ import { Link } from 'react-router-dom';
 import { Box, Card, CardContent, Paper, Typography } from '@mui/material';
 import styles from './CardCategory.module.scss';
 import classNames from 'classnames/bind';
-import config from '~/config';
 
 const cx = classNames.bind(styles);
-function CardCategory() {
+function CardCategory({category}) {
 	return (
 		<Box
 			className={cx('card-category')}
 			component={Link}
-			to={config.routes.course}>
+			to={category.codeName}>
 			<Paper
 				className={cx('image-bg')}
 				elevation={4}
@@ -34,7 +33,7 @@ function CardCategory() {
 								fontWeight: 'bold',
 								color: '#fff',
 							}}>
-							Ngoại ngữ
+							{category.name}
 						</Typography>
 						<Typography
 							variant='body1'

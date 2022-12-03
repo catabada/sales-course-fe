@@ -3,9 +3,12 @@ import ReactDOM from 'react-dom/client';
 import App from '~/App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import reportWebVitals from '~/reportWebVitals';
-import GlobalStyles from '~/components/GlobalStyles';
+import GlobalStyles from '~/components/global-styles';
 
-import { createTheme, ThemeProvider} from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material";
+import { Provider } from 'react-redux/es';
+import { store } from './app/store.';
+import { BrowserRouter } from 'react-router-dom';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -22,11 +25,15 @@ const theme = createTheme({
 })
 root.render(
     <React.StrictMode>
-        <GlobalStyles>
-            <ThemeProvider theme={theme}>
-                <App />
-            </ThemeProvider>
-        </GlobalStyles>
+        <BrowserRouter>
+            <Provider store={store}>
+                <GlobalStyles>
+                    <ThemeProvider theme={theme}>
+                        <App />
+                    </ThemeProvider>
+                </GlobalStyles>
+            </Provider>
+        </BrowserRouter>
     </React.StrictMode>,
 );
 

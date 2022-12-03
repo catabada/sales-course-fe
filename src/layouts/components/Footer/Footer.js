@@ -1,7 +1,6 @@
 import { Box, Divider, Grid, SvgIcon, Typography } from '@mui/material';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
-import config from '~/config';
 import styles from './Footer.module.scss';
 
 const cx = classNames.bind(styles);
@@ -18,12 +17,12 @@ function Footer() {
                                 Về chúng tôi
                             </Typography>
 
-                            <Box component={Link} to={config.routes.terms}>
+                            <Box component={Link} to={'/term'}>
                                 <Typography variant="body1" className={cx('footer-paragraph')}>
                                     Điều khoản
                                 </Typography>
                             </Box>
-                            <Box component={Link} to={config.routes.policy}>
+                            <Box component={Link} to={'/policy'}>
                                 <Typography variant="body1" className={cx('footer-paragraph')}>
                                     Chính sách bảo mật
                                 </Typography>
@@ -41,17 +40,17 @@ function Footer() {
                             <Typography variant="body1" className={cx('footer-title')}>
                                 Cộng đồng
                             </Typography>
-                            <Box component={Link} to={config.routes.takecare}>
+                            <Box component={Link} to={'/take-care'}>
                                 <Typography variant="body1" className={cx('footer-paragraph')}>
                                     Chăm sóc khách hàng
                                 </Typography>
                             </Box>
-                            <Box component={Link} to={config.routes.blog}>
+                            <Box component={Link} to={'/blog'}>
                                 <Typography variant="body1" className={cx('footer-paragraph')}>
                                     Blog
                                 </Typography>
                             </Box>
-                            <Box component={Link} to={config.routes.category}>
+                            <Box component={Link} to={'/category'}>
                                 <Typography variant="body1" className={cx('footer-paragraph')}>
                                     Danh mục
                                 </Typography>

@@ -1,7 +1,6 @@
 import { Box, Button, TextField, Typography } from '@mui/material';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
-import config from '~/config';
 import styles from './Auth.module.scss';
 
 import { FacebookIcon, GoogleIcon, AppleIcon, EyeUnshowIcon, EyeShowIcon } from '~/components/Icons';
@@ -55,7 +54,7 @@ function SignUp() {
                         Đã có tài khoản?
                         <Typography
                             component={Link}
-                            to={config.routes.signIn}
+                            to={'/auth/signin'}
                             className={cx('custom-link')}
                             sx={{ marginLeft: '10px!important', fontWeight: 'bold' }}
                         >

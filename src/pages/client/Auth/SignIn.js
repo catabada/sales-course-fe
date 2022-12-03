@@ -1,7 +1,6 @@
 import { Box, Button, Container, TextField, Typography } from '@mui/material';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
-import config from '~/config';
 import styles from './Auth.module.scss';
 
 import { useState } from 'react';
@@ -91,7 +90,7 @@ function SignIn() {
 
                     <Typography
                         component={Link}
-                        to={config.routes.forget}
+                        to={'/auth/forget'}
                         className={cx('custom-link')}
                         sx={{ display: 'block' }}
                     >
@@ -106,7 +105,7 @@ function SignIn() {
                             Bạn chưa có tài khoản?
                             <Typography
                                 component={Link}
-                                to={config.routes.signUp}
+                                to={'/auth/signup'}
                                 className={cx('custom-link')}
                                 sx={{ marginLeft: '10px!important', fontWeight: 'bold' }}
                             >

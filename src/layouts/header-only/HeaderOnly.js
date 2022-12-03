@@ -1,6 +1,6 @@
-import Header from '~/layouts/components/Header';
 import styles from './HeaderOnly.module.scss';
 import classNames from 'classnames/bind';
+import Header from '../components/header';
 
 const cx = classNames.bind(styles);
 function HeaderOnly({ children }) {

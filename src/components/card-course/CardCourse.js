@@ -1,6 +1,5 @@
 import styles from './CardCourse.module.scss';
 import classNames from 'classnames/bind';
-import config from '~/config';
 import PriceCourse from './PriceCourse';
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
@@ -9,7 +8,7 @@ const cx = classNames.bind(styles);
 function CardCourse({ data }) {
 
     return <Card className={cx('card')}    >
-        <CardActionArea component={Link} to={`${config.routes.course}/${data.slug}`}>
+        <CardActionArea component={Link} to={`/${data.slug}`}>
 
             <CardMedia
                 component='img'
