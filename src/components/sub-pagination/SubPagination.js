@@ -1,5 +1,5 @@
 import {AppBar, Grid, IconButton, Typography} from "@mui/material";
-import {LeftArrow, RightArrow} from "~/components/Icons";
+import {LeftArrow, RightArrow} from "~/components/icons";
 import {useEffect, useRef, useState} from "react";
 import {useSearchParams} from "react-router-dom";
 

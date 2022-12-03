@@ -2,7 +2,7 @@ import styles from './BreadcrumbDetail.module.scss';
 import classNames from 'classnames/bind';
 import { Box, Breadcrumbs, CardContent, Container, Grid, Link, Paper, Typography } from '@mui/material';
 import { NavigateNext } from "@mui/icons-material";
-import { StarIcon, HalfStarIcon } from '~/components/Icons';
+import { StarIcon, HalfStarIcon } from '~/components/icons';
 
 
 const cx = classNames.bind(styles);

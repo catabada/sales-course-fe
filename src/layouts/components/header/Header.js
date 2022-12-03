@@ -5,7 +5,7 @@ import Search from '../search';
 import Category from '../category';
 import { AppBar, Box, Button, Container, Toolbar } from '@mui/material';
 import ShoppingCart from '@mui/icons-material/ShoppingCartOutlined';
-import { LogoIcon } from '~/components/Icons';
+import { LogoIcon } from '~/components/icons';
 
 const cx = classNames.bind(styles);
 function Header() {

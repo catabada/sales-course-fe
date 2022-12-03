@@ -28,7 +28,7 @@ import StarOutlineIcon from '@mui/icons-material/StarOutlineOutlined';
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 import SmileIcon from '@mui/icons-material/SentimentSatisfiedOutlined';
 import DocumentIcon from '@mui/icons-material/TextSnippetOutlined';
-import { HalfStarIcon, StarIcon } from "~/components/Icons";
+import { HalfStarIcon, StarIcon } from "~/components/icons";
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import CartIcon from '@mui/icons-material/ShoppingCartOutlined';
