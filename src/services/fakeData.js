@@ -44,5 +44,50 @@ const data = [
         salesPrice: '299,000 đ',
     },
 ];
+export const CategoryData = [
+    {
+        id: 1,
+        name: "Lập trình và CNTT",
+        revenue: 1000000
+    },
+    {
+        id: 2,
+        name: "Ngoại ngữ",
+        revenue: 500000
+    },
+    {
+        id: 3,
+        name: "Marketing",
+        revenue: 200000
+    }
+]
+
+export const RevenueData = [
+    {
+        name: 'March',
+        revenue: 2100000,
+    },
+    {
+        name: 'April',
+        revenue: 400000,
+    },
+    {
+        name: 'May',
+        revenue: 2200000,
+    },
+    {
+        name: 'June',
+        revenue: 1100000,
+    },
+    {
+        name: 'July',
+        revenue: 1900000,
+    },
+    {
+        name: 'September',
+        revenue: 5000000,
+    }
+]
 
 export default data;
+

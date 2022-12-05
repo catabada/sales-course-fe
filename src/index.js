@@ -5,10 +5,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import reportWebVitals from '~/reportWebVitals';
 import GlobalStyles from '~/components/global-styles';
 
-import { createTheme, ThemeProvider } from "@mui/material";
-import { Provider } from 'react-redux/es';
-import { store } from './app/store.';
-import { BrowserRouter } from 'react-router-dom';
+import {createTheme, ThemeProvider} from "@mui/material";
+import {Provider} from 'react-redux/es';
+import {store} from '~/app/store.';
+import {BrowserRouter} from 'react-router-dom';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -29,7 +29,7 @@ root.render(
             <Provider store={store}>
                 <GlobalStyles>
                     <ThemeProvider theme={theme}>
-                        <App />
+                        <App/>
                     </ThemeProvider>
                 </GlobalStyles>
             </Provider>
