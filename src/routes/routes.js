@@ -1,12 +1,13 @@
 //Layouts
-import { HeaderOnly } from '~/layouts';
-
+import {HeaderOnly, AdminLayout} from '~/layouts';
 // Pages
 import Home from '~/pages/client/home';
 import Category from '~/pages/client/category';
-import { Forget, SignIn, SignUp } from '~/pages/client/auth';
+import {Forget, SignIn, SignUp} from '~/pages/client/auth';
 import Course from '~/pages/client/course';
 import Detail from '~/pages/client/detail';
+import Dashboard from "~/pages/admin/dashboard";
+import User from "~/pages/admin/user";
 
 const publicRoutes = [
     {
@@ -52,8 +53,20 @@ const publicRoutes = [
         component: Detail,
         exact: true,
     },
+    {
+        path: '/admin/dashboard',
+        component: Dashboard,
+        layout: AdminLayout,
+        exact: true,
+    },
+    {
+        path: '/admin/user',
+        component: User,
+        layout: AdminLayout,
+        exact: true,
+    },
 ];
 
 const privateRoutes = [];
 
-export { publicRoutes, privateRoutes };
+export {publicRoutes, privateRoutes};
