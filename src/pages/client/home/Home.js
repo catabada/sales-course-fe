@@ -1,21 +1,24 @@
-import CardCourse from '~/components/card-course';
-import styles from './Home.module.scss';
+import style from './Home.module.scss';
 import classNames from 'classnames/bind';
-import data from '~/services/fakeData';
-import { Grid } from '@mui/material';
-const cx = classNames.bind(styles);
+import {CourseData} from '~/services/fakeData';
+import {Box} from '@mui/material';
+import CardCourse from "~/components/card-course";
+
+const cx = classNames.bind(style);
 
 function Home() {
+    const myCourses = CourseData.courses;
+
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('course-list')}>
-                <Grid container spacing={2}>
-                    {data.map((item) => (
-                        <Grid item xs={3}>
-                            <CardCourse key={item.id} data={item} className={cx('course-item')} />
-                        </Grid>
+            <div className={cx('container')}>
+                <div className="row">
+                    {myCourses.map((item) => (
+                        <Box sx={{padding: '1rem'}} className="col-3">
+                            <CardCourse key={item.id} data={item} className={cx('course-item')}/>
+                        </Box>
                     ))}
-                </Grid>
+                </div>
             </div>
         </div>
     );

@@ -1,1 +1,1 @@
-export { default } from './CardCourse'
+export {default} from './CardCourse'
