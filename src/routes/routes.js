@@ -8,6 +8,8 @@ import Course from '~/pages/client/course';
 import Detail from '~/pages/client/detail';
 import Dashboard from "~/pages/admin/dashboard";
 import User from "~/pages/admin/user";
+import MyCourse from "~/pages/client/my-course";
+import WishList from "~/pages/client/wish-list";
 
 const publicRoutes = [
     {
@@ -51,6 +53,16 @@ const publicRoutes = [
     {
         path: '/course/:code',
         component: Detail,
+        exact: true,
+    },
+    {
+        path: '/my-courses',
+        component: MyCourse,
+        exact: true,
+    },
+    {
+        path: '/wishlist',
+        component: WishList,
         exact: true,
     },
     {

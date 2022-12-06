@@ -2,21 +2,29 @@
 @import 'normalize.css';
 
 :root {
-    --primary-color: #fccf00;
+  --primary-color: #fccf00;
 
-    --layout-height-header: 75px;
+  --layout-height-header: 75px;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
 html {
-    font-size: 62.5%;
+  font-size: 62.5%;
 }
 
 body {
-    font-family: 'Inter', sans-serif !important;
-    font-size: 1.6rem;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 1.6rem;
+}
+
+.MuiLinearProgress-bar {
+  background-color: #06C167 !important;
+  height: 5px;
+  left: -3px !important;
+  border-radius: 4px;
 }

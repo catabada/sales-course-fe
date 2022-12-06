@@ -1,10 +1,10 @@
-import { AppBar, Box, Button, Container, Grid, IconButton, Pagination, Typography } from "@mui/material";
+import {AppBar, Box, Button, Container, Grid, IconButton, Pagination, Typography} from "@mui/material";
 import styles from "./ListCourse.module.scss"
 import classNames from "classnames/bind";
-import { useEffect, useRef, useState } from "react";
-import CardCourse from "~/components/card-course";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import {useEffect, useRef, useState} from "react";
+import {useNavigate, useSearchParams} from "react-router-dom";
 import SubPagination from "~/components/sub-pagination";
+import CardCourse from "~/components/card-course";
 
 const cx = classNames.bind(styles);
 
@@ -22,12 +22,12 @@ export default function ListCourse() {
     }
 
     const handlePagination = (event, value) => {
-        setSearch({ page: value })
+        setSearch({page: value})
         setPage(value)
     }
 
     const listCourse = []
-        
+
 
     useEffect(() => {
 
@@ -39,7 +39,7 @@ export default function ListCourse() {
     }, [search.get("page")])
     return (
         <>
-            <SubPagination />
+            <SubPagination/>
             <Container className={cx('wrapper')} maxWidth={false}>
                 <Box className={cx('header-sort')}>
                     <Button onClick={() => handleSort(0)} className={cx(sort === 0 ? 'active' : '')} variant="outlined">Liên
@@ -61,7 +61,7 @@ export default function ListCourse() {
                         {
                             listCourse.map((item, index) => {
                                 return <Grid key={index} item lg={4}>
-                                    <CardCourse key={index} data={item} />
+                                    <CardCourse key={index} data={item}/>
                                 </Grid>
                             })
                         }
@@ -73,7 +73,7 @@ export default function ListCourse() {
                     <Grid container justifyContent={'center'}>
                         <Grid item lg={12}>
                             <Pagination count={11} defaultPage={1} page={page} boundaryCount={2}
-                                onChange={handlePagination} />
+                                        onChange={handlePagination}/>
                         </Grid>
                     </Grid>
                 </Box>

@@ -21,6 +21,9 @@ const theme = createTheme({
         primary: {
             main: '#fccf00',
         }
+    },
+    MobileStepper:{
+
     }
 })
 root.render(
