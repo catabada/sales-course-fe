@@ -45,7 +45,7 @@ export const RevenueData = [
 ]
 
 export const User = {
-    id: 1,
+    id: 0,
     name: 'Guest',
     username: 'Test',
     avatar: 'https://storage.googleapis.com/topica-media/5f990e55cb5acb5e85ce27a9/product/632451d24dee9a002607b795',
@@ -918,92 +918,6 @@ export const CourseData =
                     }
                 ],
                 currentLesson: 2
-            },
-            {
-                id: 4,
-                name: 'YOGA LEVEL UP ĐIÊU KHẮC CƠ THỂ KHỎE ĐẸP SAU SINH',
-                slug: 'yoga-level-up-dieu-khac-co-the-khoe-dep-sau-sinh',
-                category: {
-                    id: 3,
-                    category: null,
-                    name: 'Thể Thao - Sức Khỏe',
-                    slug: 'the-thao-suc-khoe',
-                    url: 'https://cdn2.topica.vn/5f990e55cb5acb5e85ce27a9/product/619bd10f6d05dc00250104e6',
-                    background: 'https://cdn2.topica.vn/5f990e55cb5acb5e85ce27a9/product/619bd1326d05dc00250104e9'
-                },
-                description: '',
-                author: {
-                    id: 4,
-                    user: {
-                        id: 4,
-                        name: 'Trần Thảo Vi',
-                        username: 'Trần Thảo Vi',
-                        avatar: 'https://d303ny97lru840.cloudfront.net/kelley-57e4def8ce4b145a1020dbf9/20170220-thaottn01-20022017/15591061_1840128019600786_2349610888567722012_o.jpg'
-                    },
-                    description:
-                        ['CEO of KungFu English-Ruby\'s House',
-                            'Tốt nghiệp thạc sỹ lý luận và phương pháp giảng dạy tiếng Anh trường đại học Southern Queensland-Australia (Master degree in TESOL).',
-                            'Sỡ hữu bằng TESOL về phương pháp giảng dạy tiếng Anh.']
-                },
-                salesPrice: '299,000 đ',
-                thumbnail: 'https://edumall.vn/_next/image?url=%2Fapi%2Fimageproxy%3Furl%3Dhttps%253A%252F%252Fcdn2.topica.vn%252F61a8671f97b27824ed19c15b%252Fproduct%252F62c24f49436a3b0025d7acd3&w=1920&q=50',
-                chapters: [
-                    {
-                        id: 1,
-                        name: 'Chương 1: MỞ ĐẦU KHÓA HỌC',
-                        lessons: [
-                            {
-                                id: 1,
-                                name: 'Bài học 1:  Các thẻ HTML thông dụng',
-                                time: '00:07:26',
-                                video: 'https://www.youtube.com/embed/1t9Pl0ntH8E',
-                            }
-                        ]
-                    },
-                    {
-                        id: 2,
-                        name: 'Chương 2: NỘI DUNG',
-                        lessons: [
-                            {
-                                id: 2,
-                                name: 'Bài học 1:  Khái niệm khối và cách chuyển đổi khối',
-                                time: '00:14:07',
-                                video: 'https://www.youtube.com/embed/1t9Pl0ntH8E',
-                            },
-                            {
-                                id: 3,
-                                name: 'Bài học 2:  Định dạng và độ ưu tiên',
-                                time: '00:15:53',
-                                video: 'https://www.youtube.com/embed/1t9Pl0ntH8E',
-                            },
-                            {
-                                id: 4,
-                                name: 'Bài học 3:  Type Group',
-                                time: '00:13:46',
-                                video: 'https://www.youtube.com/embed/1t9Pl0ntH8E',
-                            }
-                        ]
-                    },
-                    {
-                        id: 3,
-                        name: 'Chương 3: KẾT THÚC KHÓA HỌC',
-                        lessons: [
-                            {
-                                id: 5,
-                                name: 'Bài học 1:  Khái niệm selector',
-                                time: '00:04:02',
-                                video: 'https://www.youtube.com/embed/1t9Pl0ntH8E',
-                            },
-                            {
-                                id: 6,
-                                name: 'Bài học 2:  Sử dụng selector trong định dạng CSS Phần 1',
-                                time: '00:16:31',
-                                video: 'https://www.youtube.com/embed/1t9Pl0ntH8E',
-                            }
-                        ]
-                    }
-                ],
-                currentLesson: 4,
             },
             {
                 id: 1,
