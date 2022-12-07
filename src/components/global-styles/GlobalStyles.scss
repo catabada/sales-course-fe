@@ -28,3 +28,7 @@ body {
   left: -3px !important;
   border-radius: 4px;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}

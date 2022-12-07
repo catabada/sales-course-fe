@@ -1,0 +1,25 @@
+.wish-list {
+  .title {
+    margin: 3rem 0 2rem;
+  }
+
+  .sub-nav {
+    padding-top: 3rem;
+
+    .next-icon,
+    .sub-last-item,
+    .sub-item {
+      text-decoration: none !important;
+      font-size: 1.6rem !important;
+      color: #082346 !important;
+
+      &:hover {
+        color: #082346 !important;
+      }
+    }
+
+    .sub-last-item {
+      cursor: pointer;
+    }
+  }
+}

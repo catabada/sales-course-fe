@@ -1,9 +1,8 @@
+// khoá học chưa mua
+
 .wrapper {
   position: relative;
   width: 100%;
-
-  // background-image: linear-gradient(191deg, rgba(255, 192, 67, 0) 5.02%, rgba(255, 192, 67, 0.5) 94.1%);
-
 
   .navbar {
     position: sticky;
@@ -17,7 +16,6 @@
   }
 
   .detail-content {
-
     .course,
     .benefit {
       margin-top: 2rem;
@@ -477,12 +475,14 @@
             display: flex;
             align-items: center;
             cursor: pointer;
-            span{
+
+            span {
               margin-left: .5rem;
               font-size: 1.6rem;
             }
           }
-          .share{
+
+          .share {
             margin-left: auto;
           }
 
@@ -513,5 +513,206 @@
       }
     }
 
+  }
+}
+
+// khoá học đã mua
+
+.study-wrapper {
+
+  .sub-nav {
+    padding: 2rem 0 2rem 4rem;
+
+  }
+
+  .content {
+
+
+    .lesson-detail {
+      width: 100%;
+      position: relative;
+
+      .benefit {
+        margin-top: 2rem;
+        margin-bottom: 2.4rem;
+
+        .benefit-wrapper {
+          .benefit-title {
+            font-size: 3rem;
+            margin: 2rem 0;
+            color: #082346;
+          }
+
+          .benefit-content {
+            .benefit-item {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              .benefit-icon {
+                height: 2.2rem;
+                width: 2.2rem;
+                margin-right: 1.2rem;
+              }
+
+              .benefit-text {
+                font-size: 1.4rem;
+                line-height: 1.5;
+                font-weight: 400;
+                margin: 0;
+              }
+            }
+          }
+        }
+      }
+
+      .author {
+        padding: .5rem 1.5rem 2.5rem;
+        margin: 2rem 0;
+
+        .author-title {
+          font-size: 2.4rem;
+          margin: 2rem 0;
+          color: #082346;
+        }
+
+        .author-wrapper {
+          display: flex;
+
+          .author-image {
+
+          }
+
+          .author-info {
+            margin-left: 4rem;
+
+            .author-header {
+              display: flex;
+              flex-direction: column;
+
+              .author-profile {
+                display: flex;
+                align-items: center;
+
+                .author-link {
+                  text-decoration: none;
+                  color: #feda6a;
+                  font-size: 2rem;
+                  font-weight: 700;
+
+                }
+
+                .author-social {
+                  height: 2.4rem;
+                  width: 2.4rem;
+                  margin-left: .5rem;
+                }
+              }
+
+              .author-evolution {
+                display: flex;
+                align-items: center;
+                margin-top: 1.6rem;
+
+                p {
+                  margin-bottom: 0;
+                  margin-left: .5rem;
+                  font-size: 1.4rem;
+                }
+
+                svg {
+                  height: 2rem;
+                  width: 2rem;
+                  margin-left: .4rem;
+                }
+
+                .text {
+                  font-weight: 700;
+                }
+              }
+            }
+
+            .author-body {
+              .author-text {
+                display: flex;
+                color: #000000;
+                padding-top: 1.5rem;
+                font-size: 1.4rem;
+
+                &.hidden {
+                  display: none;
+                }
+              }
+
+
+              .author-more {
+                color: #e3ba00;
+                cursor: pointer;
+                font-size: 1.4rem;
+                font-weight: 700;
+              }
+            }
+          }
+        }
+      }
+
+      .lesson-name {
+        padding: 1.5rem;
+        font-weight: 600;
+        font-size: 3.6rem;
+      }
+
+      .lesson-tag {
+        text-decoration: none;
+        padding: 1rem 2rem;
+        color: #000000;
+        background-color: #FEEC99;
+        border-radius: 20px;
+        font-size: 2rem;
+        text-transform: uppercase;
+        display: inline-block;
+      }
+
+      .wrapper {
+        display: flex;
+        align-items: center;
+
+        .evolution,
+        .number-study,
+        .lesson-time {
+          font-size: 1.8rem;
+          margin-left: 1rem;
+          display: inline-block;
+        }
+
+        .lesson-create,
+        .lesson-update,
+        .lesson-evolution {
+          font-size: 1.8rem;
+          text-align: center;
+        }
+
+        .lesson-evolution {
+          color: #C89F65;
+          cursor: pointer;
+        }
+      }
+
+    }
+
+    .lesson-control {
+      .lesson-name {
+        font-size: 1.6rem;
+      }
+
+      .active {
+        color: #cca800;
+        font-size: 1.6rem;
+      }
+
+      .icon {
+        font-size: 1.4rem;
+      }
+    }
   }
 }

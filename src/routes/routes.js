@@ -66,6 +66,11 @@ const publicRoutes = [
         exact: true,
     },
     {
+        path: '/video',
+        component: WishList,
+        exact: true,
+    },
+    {
         path: '/admin/dashboard',
         component: Dashboard,
         layout: AdminLayout,
