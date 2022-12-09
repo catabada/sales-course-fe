@@ -10,6 +10,7 @@ import Dashboard from "~/pages/admin/dashboard";
 import User from "~/pages/admin/user";
 import MyCourse from "~/pages/client/my-course";
 import WishList from "~/pages/client/wish-list";
+import Profile from "~/pages/client/profile/Profile";
 
 const publicRoutes = [
     {
@@ -66,8 +67,8 @@ const publicRoutes = [
         exact: true,
     },
     {
-        path: '/video',
-        component: WishList,
+        path: '/profile',
+        component: Profile,
         exact: true,
     },
     {

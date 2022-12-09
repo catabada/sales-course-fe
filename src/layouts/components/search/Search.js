@@ -1,17 +1,24 @@
-import { TextField } from '@mui/material';
+import {Box, TextField} from '@mui/material';
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
 import SearchIcon from '@mui/icons-material/Search';
+
 const cx = classNames.bind(styles);
-function Search() {
+
+
+function SearchItem({course}) {
+    return
+}
+
+function Search({data}) {
     return (
-        <div className={cx('wrapper')}>
+        <Box className={cx('wrapper')} sx={{width: `${(data === null) ? '27%' : 'auto'}`}}>
             <TextField
                 className={cx('search-input')}
                 variant="standard"
                 name="query"
                 placeholder="Tìm kiếm khóa học"
-                fullWidth
+                fullWidth={(data === null) ? true : false}
                 InputProps={{
                     style: {
                         fontSize: '1.4rem',
@@ -34,7 +41,7 @@ function Search() {
             />
 
             <div className={cx('content')}>{/* course item */}</div>
-        </div>
+        </Box>
     );
 }
 
