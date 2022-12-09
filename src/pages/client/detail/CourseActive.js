@@ -1,5 +1,5 @@
 import SubNav from "~/components/sub-nav";
-import TabDetail from "~/components/tabs";
+import {TabDetail} from "~/components/tabs";
 import style from './Detail.module.scss';
 import classNames from "classnames/bind";
 import {

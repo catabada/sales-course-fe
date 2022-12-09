@@ -30,7 +30,7 @@ function TabPanels(props) {
         >
             {value === index && (
                 <Box sx={{p: 3}}>
-                    <Typography>{children}</Typography>
+                    <Box>{children}</Box>
                 </Box>
             )}
         </div>
@@ -87,7 +87,7 @@ function TabDetail() {
                     color: '#E3BA00',
                     cursor: 'pointer',
                     display: 'flex',
-                    fontSize:'2rem'
+                    fontSize: '2rem'
                 }}>Xem thêm</Typography>
             </TabPanels>
             <TabPanels value={value} index={1}>

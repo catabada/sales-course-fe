@@ -773,8 +773,13 @@ export const CourseData =
         id: 1,
         user: {
             id: 0,
-            name: 'Guest',
+            fullName: 'Đỗ Bình',
             username: 'Test',
+            lastName: 'Bình',
+            firstName: 'Đỗ',
+            gender: 'Nam',
+            date: null,
+            phone: null,
             avatar: 'https://storage.googleapis.com/topica-media/5f990e55cb5acb5e85ce27a9/product/632451d24dee9a002607b795',
         },
         courses: [
