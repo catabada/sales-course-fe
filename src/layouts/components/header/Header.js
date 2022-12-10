@@ -1,5 +1,5 @@
-import classNames from 'classnames/bind';
 import {Link} from 'react-router-dom';
+import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import Search from '../search';
 import Category from '../category';
@@ -11,7 +11,6 @@ import {
     Toolbar,
     Typography
 } from '@mui/material';
-import ShoppingCart from '@mui/icons-material/ShoppingCartOutlined';
 import {LogoIcon} from '~/components/icons';
 import {CourseData} from '~/services/fakeData'
 import PlayIcon from '@mui/icons-material/PlayArrowOutlined';
@@ -20,6 +19,7 @@ import {useState} from "react";
 // layouts
 import HeaderActive from "~/layouts/components/header/HeaderActive";
 import HeaderAccount from "~/layouts/components/header/HeaderAccount";
+import CartHeader from "~/layouts/components/header/CartHeader";
 
 const cx = classNames.bind(styles);
 
@@ -48,13 +48,7 @@ function Header() {
                                 </Box>
                                 : ''
                         }
-                        <Box className={cx('cart')} component={Link} to={'/cart'}>
-                            <ShoppingCart className={cx('cart-icon')}/>
-
-                            <span className={cx('cart-number')}>1</span>
-
-                            <div className={cx('cart-content')}>{/* cart item */}</div>
-                        </Box>
+                        <CartHeader data={user}/>
 
                         {
                             (user !== null) ?

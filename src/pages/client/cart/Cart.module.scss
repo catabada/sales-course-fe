@@ -1,0 +1,49 @@
+.cart {
+
+  .detail-bill {
+    background-color: rgba(252, 207, 0, 0.2);
+    width: 100%;
+    padding: 1.5rem;
+    border-radius: 2rem;
+  }
+
+  .title {
+    font-size: 3.2rem;
+    margin-top: 1.4rem;
+    font-weight: 700;
+    line-height: 4rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .sub-title {
+    font-size: 2rem;
+    margin-bottom: 5rem;
+    margin-top: 0.5rem;
+  }
+
+  .cart-content {
+    .course-name {
+      width: 220px;
+      font-size: 2rem;
+      font-weight: 700;
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+    }
+
+    .old-price {
+      font-size: 1.4rem;
+      text-decoration: line-through;
+      color: #000000;
+    }
+
+    .current-price {
+      font-size: 2.6rem;
+      color: #fccf00;
+      font-weight: bold;
+    }
+  }
+
+}
