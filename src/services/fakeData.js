@@ -186,8 +186,8 @@ export const CourseList = [
                     'Năm 1982 - 1989: Giảng viên, Học viện Ngân hàng, Hà Nội',
                     'Năm 1989 - 1998: Giảng viên, Đại học Ngân hàng, TP. Hồ Chí Minh']
         },
-        salesPrice: '399,000 đ',
-        price: '699,000 đ',
+        salesPrice: 399000,
+        price: 699000,
         isFree: true,
         chapters: [
             {
@@ -250,8 +250,8 @@ export const CourseList = [
                     'Tác giả của hơn 30 cuốn sách về Kỹ năng mềm, Tâm lý ứng dụng, Giáo dục nhân bản và Nghệ thuật sống.',
                     'Chuyên gia đào tạo Kỹ năng mềm cho đội ngũ nhân lực của các doanh nghiệp với hơn 10 năm kinh nghiệm.']
         },
-        salesPrice: '299,000 đ',
-        price: '499,000 đ',
+        salesPrice: 299000,
+        price: 499000,
         thumbnail: 'https://edumall.vn/_next/image?url=%2Fapi%2Fimageproxy%3Furl%3Dhttps%253A%252F%252Fcdn2.topica.vn%252F191ab4fd-9c62-4494-b209-51f86a3924d3%252Fproduct%252F60769ad631b9ae0024d5dbc4&w=1920&q=50',
         chapters: [
             {
@@ -324,7 +324,8 @@ export const CourseList = [
                     'Tốt nghiệp thạc sỹ lý luận và phương pháp giảng dạy tiếng Anh trường đại học Southern Queensland-Australia (Master degree in TESOL).',
                     'Sỡ hữu bằng TESOL về phương pháp giảng dạy tiếng Anh.']
         },
-        salesPrice: '299,000 đ',
+        salesPrice: 299000,
+        price: 299000,
         thumbnail: 'https://edumall.vn/_next/image?url=%2Fapi%2Fimageproxy%3Furl%3Dhttps%253A%252F%252Fcdn2.topica.vn%252F61a8671f97b27824ed19c15b%252Fproduct%252F62c24f49436a3b0025d7acd3&w=1920&q=50',
         chapters: [
             {
@@ -405,8 +406,8 @@ export const CourseList = [
         },
         slug: 'lap-trinh-frontend-html-css-javascript',
         name: 'Lập trình Frontend - HTML CSS & Javascript',
-        salesPrice: '399,000 đ',
-        price: '699,000 đ',
+        salesPrice: 399000,
+        price: 699000,
         description: 'Khóa học Javascript & HTML CSS giúp bạn có thể tự mình lập trình được bằng việc:\n' +
             '- Hiểu được các khái niệm chuyên ngành từ cơ bản đến nâng cao của Bootstrap. \n' +
             '- Trải nghiệm thực hành các hàm thông dụng trong jQuery xuyên suốt trong các bài và các chương. \n' +
@@ -512,8 +513,8 @@ export const CourseList = [
         },
         slug: 'lap-trinh-nodejs-co-ban',
         name: 'Lập trình NodeJs cơ bản',
-        salesPrice: '399,000 đ',
-        price: '699,000 đ',
+        salesPrice: 399000,
+        price: 699000,
         description: 'Khoá học cung cấp cho học viên các kiến thức cơ bản về lập trình NodeJs, cách cài đặt và áp dụng NodeJS trong việc xây dựng các project chúng ta thường gặp trong thực tế.',
         status: 'hoat dong',
         author: {
@@ -810,8 +811,8 @@ export const CourseData =
                             'Năm 1982 - 1989: Giảng viên, Học viện Ngân hàng, Hà Nội',
                             'Năm 1989 - 1998: Giảng viên, Đại học Ngân hàng, TP. Hồ Chí Minh']
                 },
-                salesPrice: '399,000 đ',
-                price: '699,000 đ',
+                salesPrice: 399000,
+                price: 699000,
                 isFree: true,
                 chapters: [
                     {
@@ -875,8 +876,8 @@ export const CourseData =
                             'Tác giả của hơn 30 cuốn sách về Kỹ năng mềm, Tâm lý ứng dụng, Giáo dục nhân bản và Nghệ thuật sống.',
                             'Chuyên gia đào tạo Kỹ năng mềm cho đội ngũ nhân lực của các doanh nghiệp với hơn 10 năm kinh nghiệm.']
                 },
-                salesPrice: '299,000 đ',
-                price: '499,000 đ',
+                salesPrice: 299000,
+                price: 499000,
                 thumbnail: 'https://edumall.vn/_next/image?url=%2Fapi%2Fimageproxy%3Furl%3Dhttps%253A%252F%252Fcdn2.topica.vn%252F191ab4fd-9c62-4494-b209-51f86a3924d3%252Fproduct%252F60769ad631b9ae0024d5dbc4&w=1920&q=50',
                 chapters: [
                     {
@@ -945,8 +946,8 @@ export const CourseData =
                 },
                 slug: 'lap-trinh-frontend-html-css-javascript',
                 name: 'Lập trình Frontend - HTML CSS & Javascript',
-                salesPrice: '399,000 đ',
-                price: '699,000 đ',
+                salesPrice: 399000,
+                price: 699000,
                 description: 'Khóa học Javascript & HTML CSS giúp bạn có thể tự mình lập trình được bằng việc:\n' +
                     '- Hiểu được các khái niệm chuyên ngành từ cơ bản đến nâng cao của Bootstrap. \n' +
                     '- Trải nghiệm thực hành các hàm thông dụng trong jQuery xuyên suốt trong các bài và các chương. \n' +
@@ -1053,8 +1054,8 @@ export const CourseData =
                 },
                 slug: 'lap-trinh-nodejs-co-ban',
                 name: 'Lập trình NodeJs cơ bản',
-                salesPrice: '399,000 đ',
-                price: '699,000 đ',
+                salesPrice: 399000,
+                price: 699000,
                 description: 'Khoá học cung cấp cho học viên các kiến thức cơ bản về lập trình NodeJs, cách cài đặt và áp dụng NodeJS trong việc xây dựng các project chúng ta thường gặp trong thực tế.',
                 status: 'hoat dong',
                 author: {
