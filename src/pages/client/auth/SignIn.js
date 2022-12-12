@@ -1,19 +1,85 @@
 import { Box, Button, Container, TextField, Typography } from '@mui/material';
 import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './Auth.module.scss';
 
 import { useState } from 'react';
 import { FacebookIcon, GoogleIcon, AppleIcon, EyeUnshowIcon, EyeShowIcon } from '~/components/icons';
+import { Form, useForm } from '~/hooks/useForm';
+import { useDispatch, useSelector } from 'react-redux';
+import AuthService from '~/services/AuthService';
+import { requestLogin } from '~/redux/auth/authSlice';
 
 const cx = classNames.bind(styles);
 
 function SignIn() {
     const [show, setShow] = useState(false);
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
+
+
+    const authService = new AuthService(dispatch);
+    const token = useSelector(state => state.authReducer.token)
     const handleClick = (e) => {
         e.preventDefault();
         setShow(!show);
     };
+
+    const initialValues = {
+        username: '',
+        password: ''
+    }
+    const validate = (fieldValues = values) => {
+        let temp = { ...errors }
+        let tempEnable = { ...errorsEnable }
+        if ('username' in fieldValues) {
+            if (fieldValues.username === '') {
+                tempEnable.username = true;
+                temp.username = 'Không được để trống.'
+            } else {
+                tempEnable.username = false;
+                temp.username = ''
+            }
+        }
+        if ('password' in fieldValues) {
+            if (fieldValues.password === '') {
+                tempEnable.password = true;
+                temp.password = 'Không được để trống.'
+            } else {
+                tempEnable.password = false;
+                temp.password = ''
+            }
+        }
+        setErrors({
+            ...temp
+        })
+        setErrorsEnable({
+            ...tempEnable
+        })
+        if (fieldValues === values)
+            return Object.values(temp).every(x => x === "")
+    }
+
+    const {
+        values,
+        setValues,
+        errors,
+        setErrors,
+        errorsEnable,
+        setErrorsEnable,
+        handleInputChange,
+        resetForm
+    } = useForm(initialValues, true, validate);
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (validate()) {
+            dispatch(requestLogin(values));
+            if (token !== '') navigate("/home")
+        }
+    }
+
 
     return (
         <Container maxWidth={false}>
@@ -46,33 +112,47 @@ function SignIn() {
                         <div className={cx('divider')}>Hoặc tiếp tục với</div>
                     </div>
 
-                    <form id="form">
+                    <Form onSubmit={handleSubmit} sx={{ width: '100%' }}>
                         <Box sx={{ position: 'relative' }}>
                             <TextField
-                                label="Địa chỉ email"
+                                label="Tên đăng nhập"
+                                autoComplete='off'
                                 InputProps={{
                                     style: { fontSize: '1.5rem' },
                                 }}
                                 sx={{ marginTop: '1rem' }}
                                 variant="outlined"
                                 fullWidth
+                                name="username"
+                                onChange={handleInputChange}
+                                FormHelperTextProps={{ style: { fontSize: 12 } }}
+                                error={errorsEnable.username}
+                                value={values.username}
+                                helperText={errors.username}
                                 placeholder="mail@example.com"
                                 InputLabelProps={{ style: { fontSize: '1.6rem' } }}
                             />
                         </Box>
 
-                        <Box sx={{ position: 'relative' }}>
+                        <Box sx={{ position: 'relative', marginBottom: '15px' }}>
                             <TextField
                                 sx={{
                                     position: 'relative',
                                     marginTop: '3rem',
                                 }}
+                                autoComplete='off'
                                 label="Mật khẩu"
                                 variant="outlined"
                                 placeholder={'*******'}
                                 fullWidth
                                 type={show ? 'text' : 'password'}
                                 size="medium"
+                                name="password"
+                                onChange={handleInputChange}
+                                FormHelperTextProps={{ style: { fontSize: 12 } }}
+                                error={errorsEnable.password}
+                                value={values.password}
+                                helperText={errors.password}
                                 InputProps={{
                                     style: { fontSize: '1.5rem' },
                                 }}
@@ -86,7 +166,10 @@ function SignIn() {
                                 )}
                             </button>
                         </Box>
-                    </form>
+                        <Button variant="contained" type="submit" fullWidth className={cx('btn')}>
+                            Đăng nhập
+                        </Button>
+                    </Form>
 
                     <Typography
                         component={Link}
@@ -97,9 +180,7 @@ function SignIn() {
                         Quên mật khẩu?
                     </Typography>
 
-                    <Button variant="contained" disabled fullWidth className={cx('btn')}>
-                        Đăng nhập
-                    </Button>
+
                     <div className={cx('flex')}>
                         <Typography sx={{ color: '#00459F', fontSize: '1.5rem' }}>
                             Bạn chưa có tài khoản?

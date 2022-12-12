@@ -4,7 +4,7 @@ import { Box, Grid, Paper, Typography } from '@mui/material';
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import CardCategory from '~/components/card-category';
-import categoryApi from '~/apis/categoryApi';
+import {getCategoriesSearch} from '../../../redux/category/categorySlice'
 
 
 const cx = classNames.bind(styles);
@@ -14,7 +14,7 @@ function Category() {
 
 
     useEffect(() => {
-        dispatch(categoryApi.fetchCategoriesSearch({ type: 0 }))
+        dispatch(getCategoriesSearch({}))
     }, [dispatch])
     return <div className={cx("category")}>
         <Box

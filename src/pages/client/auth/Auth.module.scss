@@ -1,12 +1,13 @@
 .wrapper {
-    padding: 30px 10px;
+    padding: 10px 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     .content {
         width: 380px;
-
+        margin-top: 10px;
+        
         .form-label {
             letter-spacing: 0;
             font-weight: 600;
@@ -17,6 +18,7 @@
             font-size: 30px;
             color: #000;
             font-weight: 600;
+            margin-bottom: 10px;
         }
 
         .content-social {
@@ -25,7 +27,7 @@
                     width: 100%;
                     background-color: #fff;
                     & {
-                        margin-top: 13px;
+                        margin: 15px 0;
                     }
                     &.fb-background {
                         background-color: #3a5c98;
@@ -115,7 +117,7 @@
         }
         .btn-second {
             background-color: #c89f65;
-            margin-top: 1rem;
+            margin: 20px 0;
             color: #fff;
         }
         .flex {
@@ -145,5 +147,59 @@
                 }
             }
         }
+    }
+
+    .confirm {
+        margin-top: 100px;
+        width: 400px;
+        .title {
+            font-size: 3.4rem;
+            color: #000;
+            font-weight: 600;
+        }
+        .content {
+            color: #C89F65;
+            font-size: 1.6rem;
+            margin-top: 30px;
+            font-weight: 400;
+            line-height: 22px;
+        }
+        .des {
+            color: #000;
+            font-size: 1.4rem;
+            margin-top: 47px;
+            font-weight: 400;
+            line-height: 22px;
+        }
+
+        .send-again {
+            flex: 1;
+            height: 60px;
+            margin-top: 30px;
+            min-height: 60px;
+            border-radius: 8px;
+            background-color: #C89F65;
+        }
+        .btn {
+            font-size: 16px;
+            letter-spacing: 0;
+            font-weight: 600;
+            text-transform: none;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .btn-second {
+            background-color: #c89f65;
+            color: #fff;
+        }
+        .custom-link {
+            text-decoration: none;
+            margin: 20px 0;
+            text-align: center;
+            color: #393f4d;
+            font-size: 1.6rem;
+            letter-spacing: 0;
+        }   
     }
 }

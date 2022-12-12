@@ -10,7 +10,7 @@ import { LogoIcon } from '~/components/icons';
 const cx = classNames.bind(styles);
 function Header() {
     return (
-        <AppBar position={'fixed'}>
+        <AppBar position={'fixed'} sx={{zIndex: 1000}}>
             <Container maxWidth={false} className={cx('wrapper')}>
                 <Toolbar className={cx('inner')}>
                     <div className={cx('header')}>

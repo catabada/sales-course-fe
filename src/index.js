@@ -5,10 +5,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import reportWebVitals from '~/reportWebVitals';
 import GlobalStyles from '~/components/global-styles';
 
-import {createTheme, ThemeProvider} from "@mui/material";
-import {Provider} from 'react-redux/es';
-import {store} from '~/app/store.';
-import {BrowserRouter} from 'react-router-dom';
+
+import { createTheme, ThemeProvider } from "@mui/material";
+import { Provider } from 'react-redux/es';
+import { persistor, store } from '~/app/store.';
+import { BrowserRouter } from 'react-router-dom';
+import { PersistGate } from 'redux-persist/integration/react';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -27,11 +29,13 @@ root.render(
     <React.StrictMode>
         <BrowserRouter>
             <Provider store={store}>
-                <GlobalStyles>
-                    <ThemeProvider theme={theme}>
-                        <App/>
-                    </ThemeProvider>
-                </GlobalStyles>
+                <PersistGate persistor={persistor}>
+                    <GlobalStyles>
+                        <ThemeProvider theme={theme}>
+                            <App />
+                        </ThemeProvider>
+                    </GlobalStyles>
+                </PersistGate>
             </Provider>
         </BrowserRouter>
     </React.StrictMode>,
