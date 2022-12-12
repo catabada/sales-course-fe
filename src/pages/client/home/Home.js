@@ -1,6 +1,11 @@
 import style from './Home.module.scss';
 import classNames from 'classnames/bind';
 
+import {CourseList, SlideShow} from '~/services/fakeData';
+import {Typography} from '@mui/material';
+import {SlickCustomDot, SlickCustomArrow} from "~/components/slick";
+
+
 import data from '~/services/fakeData';
 import { Grid } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
