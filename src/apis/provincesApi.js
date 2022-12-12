@@ -1,15 +1,13 @@
-import { getProvinces } from "~/redux/province/provinceAction";
 import axiosClient from "./axiosClient";
 
 export const provincesApi = {
-    fetchProvinces() {
-        return dispatch => {
-            axiosClient.get('/p')
-                .then((response) => {
-                    dispatch(getProvinces(response));
-                }).catch((err) => {
-                });
-        }
+    async fetchProvinceByCode(code) {
+        return axiosClient.get(`/p/${code}`)
+            .then((response) => {
+                return response;
+            }).catch((err) => {
+                return err.response
+            });
     }
 }
 export default provincesApi;

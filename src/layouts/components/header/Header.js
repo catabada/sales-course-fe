@@ -29,7 +29,7 @@ function Header() {
     // const user = null;
 
     return (
-        <AppBar position={'fixed'}>
+        <AppBar position={'fixed'} sx={{zIndex: 1000}}>
             <Container maxWidth={false} className={cx('wrapper')}>
                 <Toolbar className={cx('inner')}>
                     <div className={cx('header')}>

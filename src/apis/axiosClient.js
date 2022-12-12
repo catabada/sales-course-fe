@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-    baseURL: "http://localhost:8081/api/v1",
-    // baseURL: "https://provinces.open-api.vn/api",
+    baseURL: "http://localhost:8081/api",
     headers: {
         'Content-Type': 'application/json',
     }
@@ -12,7 +11,21 @@ const axiosClient = axios.create({
 // Add a request interceptor
 axiosClient.interceptors.request.use(function (config) {
     // Do something before request is sent
-    return config;
+    const customHeaders = {}
+
+    const accessToken = localStorage.getItem('access_token')
+
+    if (accessToken) {
+        customHeaders.Authorization = accessToken;
+    }
+    return {
+        ...config,
+        headers: {
+            ...customHeaders,
+            ...config.headers
+        }
+    };
+
 }, function (error) {
     // Do something with request error
     return Promise.reject(error);
