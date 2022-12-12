@@ -1,12 +1,26 @@
 import style from './Home.module.scss';
 import classNames from 'classnames/bind';
+
 import {CourseList, SlideShow} from '~/services/fakeData';
 import {Typography} from '@mui/material';
 import {SlickCustomDot, SlickCustomArrow} from "~/components/slick";
 
-const cx = classNames.bind(style);
+
+import data from '~/services/fakeData';
+import { Grid } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import ProvinceService from '~/services/ProvinceService';
+const cx = classNames.bind(styles);
+
 
 function Home() {
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+    }, [dispatch]);
+
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
