@@ -1,7 +1,7 @@
 import { Box, Button, IconButton, InputAdornment, TextField, Typography, useFormControl } from '@mui/material';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
-import styles from './Auth.module.scss';
+import style from './Auth.module.scss';
 
 import { FacebookIcon, GoogleIcon, AppleIcon, EyeUnshowIcon, EyeShowIcon } from '~/components/icons';
 import { useState } from 'react';
@@ -9,7 +9,7 @@ import { Form, useForm } from '~/hooks/useForm';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { authApi } from '~/apis/authApi';
 
-const cx = classNames.bind(styles);
+const cx = classNames.bind(style);
 function SignUp() {
     const [showConfirm, setShowConfirm] = useState(false);
 

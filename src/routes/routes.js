@@ -6,8 +6,16 @@ import Category from '~/pages/client/category';
 import {Forget, SignIn, SignUp} from '~/pages/client/auth';
 import Course from '~/pages/client/course';
 import Detail from '~/pages/client/detail';
+import MyCourse from "~/pages/client/my-course";
+import WishList from "~/pages/client/wish-list";
+import Profile from "~/pages/client/profile";
+import Cart from "~/pages/client/cart";
+import Payment from "~/pages/client/payment";
+
+// Admin
 import Dashboard from "~/pages/admin/dashboard";
 import User from "~/pages/admin/user";
+
 
 const publicRoutes = [
     {
@@ -51,6 +59,31 @@ const publicRoutes = [
     {
         path: '/course/:code',
         component: Detail,
+        exact: true,
+    },
+    {
+        path: '/my-courses',
+        component: MyCourse,
+        exact: true,
+    },
+    {
+        path: '/wishlist',
+        component: WishList,
+        exact: true,
+    },
+    {
+        path: '/profile',
+        component: Profile,
+        exact: true,
+    },
+    {
+        path: '/cart',
+        component: Cart,
+        exact: true,
+    },
+    {
+        path: '/payment',
+        component: Payment,
         exact: true,
     },
     {

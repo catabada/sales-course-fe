@@ -1,388 +1,8 @@
+// khoá học chưa mua
+
 .wrapper {
   position: relative;
   width: 100%;
-
-  // background-image: linear-gradient(191deg, rgba(255, 192, 67, 0) 5.02%, rgba(255, 192, 67, 0.5) 94.1%);
-
-
-  .navbar {
-    position: sticky;
-    top: 75px;
-    z-index: 900;
-
-    .tabs {
-      background-color: #fff;
-      color: #c89f65;
-    }
-  }
-
-  .detail-content {
-
-    .course,
-    .benefit {
-      margin-top: 2rem;
-      margin-bottom: 2.4rem;
-
-      .course-wrapper,
-      .benefit-wrapper {
-        .course-more {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-
-          .btn-more {
-            border-radius: 20px;
-            color: #000000;
-            outline: #000;
-            border: 1px solid #000;
-            padding: 1rem;
-            font-size: 1rem;
-          }
-        }
-
-        .course-video {
-          padding: 0.5rem 0.5rem 0.5rem 1rem;
-          position: relative;
-
-          .read-more-hidden {
-            right: 0;
-            width: 100%;
-            bottom: 0;
-            cursor: pointer;
-            height: 60px;
-            display: flex;
-            position: absolute;
-            font-size: 16px;
-            text-align: center;
-            font-weight: bold;
-            padding-top: 40px;
-            justify-content: center;
-            background-image: linear-gradient(180deg, rgba(255, 255, 255, .3) -29.26%, #FFFFFF 89.89%);
-          }
-
-          .lesson-content {
-            margin-left: 2.5rem;
-            border-left: 1px solid #C89F65;
-            padding-left: 2.5rem;
-
-            .video-overview {
-              display: flex;
-              align-items: center;
-              padding-left: 0.5rem;
-              font-size: 1.6rem;
-            }
-
-            .video-icon__play {
-              height: 2.4rem;
-              width: 2.4rem;
-              margin-right: 1rem;
-            }
-
-            .video-icon__down {
-              height: 2rem;
-              width: 2.4rem;
-            }
-
-            .video-list {
-              list-style: none;
-
-              .video-item {
-                align-items: center;
-
-                .video-title {
-                  margin: 0;
-                }
-
-                .video-duration {
-                  margin-bottom: 0;
-                  margin-left: auto;
-                }
-              }
-            }
-
-            .lesson-content-title {
-              font-size: 1.6rem;
-              line-height: 1.4;
-              margin-bottom: .7rem;
-            }
-          }
-
-          .lesson-number {
-            color: #C89F65;
-            width: 48px;
-            height: 48px;
-            display: flex;
-            font-size: 20px;
-            background: linear-gradient(177.98deg, rgba(255, 192, 67, 0.1008) 1.7%, rgba(255, 192, 67, 0.28) 94.73%);
-            text-align: center;
-            align-items: center;
-            font-weight: 700;
-            border-radius: 30px;
-            justify-content: center
-          }
-
-          .lesson-header {
-            display: flex;
-            align-items: center;
-
-            .lesson-header-title {
-              color: #C89F65;
-              font-size: 2rem;
-              font-weight: 700;
-              line-height: 2.8;
-            }
-
-            .lesson-duration {
-              margin-left: auto;
-              color: #C89F65;
-              font-size: 1.8rem;
-              font-weight: 700;
-              line-height: 2.4;
-            }
-          }
-        }
-
-        .course-title,
-        .benefit-title {
-          font-size: 2.4rem;
-          margin: 2rem 0;
-          color: #082346;
-        }
-
-        .benefit-content {
-          .benefit-item {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            .benefit-icon {
-              height: 2.2rem;
-              width: 2.2rem;
-              margin-right: 1.2rem;
-            }
-
-            .benefit-text {
-              font-size: 1.4rem;
-              line-height: 1.5;
-              font-weight: 400;
-              margin: 0;
-            }
-          }
-        }
-      }
-    }
-
-    .author {
-      padding: .5rem 1.5rem 2.5rem;
-      margin: 2rem 0;
-
-      .author-title {
-        font-size: 2.4rem;
-        margin: 2rem 0;
-        color: #082346;
-      }
-
-      .author-wrapper {
-        display: flex;
-
-        .author-image {
-
-        }
-
-        .author-info {
-          margin-left: 4rem;
-
-          .author-header {
-            display: flex;
-            flex-direction: column;
-
-            .author-profile {
-              display: flex;
-              align-items: center;
-
-              .author-link {
-                text-decoration: none;
-                color: #feda6a;
-                font-size: 2rem;
-                font-weight: 700;
-
-              }
-
-              .author-social {
-                height: 2.4rem;
-                width: 2.4rem;
-                margin-left: .5rem;
-              }
-            }
-
-            .author-evolution {
-              display: flex;
-              align-items: center;
-              margin-top: 1.6rem;
-
-              p {
-                margin-bottom: 0;
-                margin-left: .5rem;
-                font-size: 1.4rem;
-              }
-
-              svg {
-                height: 2rem;
-                width: 2rem;
-                margin-left: .4rem;
-              }
-
-              .text {
-                font-weight: 700;
-              }
-            }
-          }
-
-          .author-body {
-            .author-text {
-              display: flex;
-              color: #000000;
-              padding-top: 1.5rem;
-              font-size: 1.4rem;
-            }
-
-            .author-more {
-              color: #e3ba00;
-              cursor: pointer;
-              font-size: 1.4rem;
-              font-weight: 700;
-            }
-          }
-        }
-      }
-    }
-
-    .course-evolution {
-      margin: 2rem 0;
-      padding: 0 2rem;
-
-      .evolution-title {
-        font-size: 2.4rem;
-        margin: 2rem 0;
-        color: #082346;
-      }
-
-      .evolution-wrapper {
-        margin-top: 2rem;
-
-        .evolution-content {
-          display: flex;
-
-          .evolution-left {
-            width: 22vw;
-            display: flex;
-            min-width: max-content;
-            align-items: center;
-            margin-bottom: 40px;
-            flex-direction: column;
-            justify-content: center;
-
-            .evolution-overview {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              margin-bottom: 2rem;
-            }
-
-            .evolution-item {
-              display: flex;
-              align-items: center;
-              margin-top: 2rem;
-
-              .evolution-icon {
-                width: 2.4rem;
-                height: 2.4rem;
-                margin-right: 1.4rem;
-              }
-
-              .evolution-text {
-                font-size: 1.6rem;
-
-              }
-            }
-          }
-
-          .divide {
-            margin-right: 4.7%;
-          }
-
-          .evolution-right {
-            display: flex;
-            flex-direction: column;
-            flex-wrap: wrap;
-
-
-            .evolution-right-wrapper {
-              width: 50%;
-              margin-right: 1.6rem;
-
-
-              .evolution-comment-item {
-                height: 140px;
-                display: flex;
-                padding: 1.5rem 1.3rem;
-                box-shadow: 0px 0px 8px rgb(0 0 0 / 25%);
-                border-radius: 16px;
-                margin-bottom: 2rem;
-                flex-direction: column;
-                background-color: #FFFFFF;
-
-                .evolution-student {
-                  display: flex;
-                  align-items: center;
-                }
-
-                .evolution-student-name {
-                  font-size: 1.6rem;
-                  font-weight: 700;
-                  line-height: 1.6;
-                }
-
-                .evolution-rate {
-                  margin-left: 1rem;
-                  height: 26px;
-                }
-
-                .evolution-student-comment {
-                  overflow-y: auto;
-                  height: 73px;
-
-                  &::-webkit-scrollbar {
-                    display: none;
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-
-    .faq {
-      margin: 2rem 0;
-      padding: 0 2rem;
-
-      .faq-title {
-        font-size: 2.4rem;
-        margin: 2rem 0;
-        color: #082346;
-      }
-
-      .faq-wrapper {
-        padding: 1rem 1rem 1rem 2rem;
-        margin: 2rem 0;
-
-        .faq-header {
-          font-size: 2.4rem;
-        }
-      }
-    }
-  }
 
   .sale {
     position: fixed;
@@ -477,12 +97,14 @@
             display: flex;
             align-items: center;
             cursor: pointer;
-            span{
+
+            span {
               margin-left: .5rem;
               font-size: 1.6rem;
             }
           }
-          .share{
+
+          .share {
             margin-left: auto;
           }
 
@@ -513,5 +135,206 @@
       }
     }
 
+  }
+}
+
+// khoá học đã mua
+
+.study-wrapper {
+
+  .sub-nav {
+    padding: 2rem 0 2rem 4rem;
+
+  }
+
+  .content {
+
+
+    .lesson-detail {
+      width: 100%;
+      position: relative;
+
+      .benefit {
+        margin-top: 2rem;
+        margin-bottom: 2.4rem;
+
+        .benefit-wrapper {
+          .benefit-title {
+            font-size: 3rem;
+            margin: 2rem 0;
+            color: #082346;
+          }
+
+          .benefit-content {
+            .benefit-item {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              .benefit-icon {
+                height: 2.2rem;
+                width: 2.2rem;
+                margin-right: 1.2rem;
+              }
+
+              .benefit-text {
+                font-size: 1.4rem;
+                line-height: 1.5;
+                font-weight: 400;
+                margin: 0;
+              }
+            }
+          }
+        }
+      }
+
+      .author {
+        padding: .5rem 1.5rem 2.5rem;
+        margin: 2rem 0;
+
+        .author-title {
+          font-size: 2.4rem;
+          margin: 2rem 0;
+          color: #082346;
+        }
+
+        .author-wrapper {
+          display: flex;
+
+          .author-image {
+
+          }
+
+          .author-info {
+            margin-left: 4rem;
+
+            .author-header {
+              display: flex;
+              flex-direction: column;
+
+              .author-profile {
+                display: flex;
+                align-items: center;
+
+                .author-link {
+                  text-decoration: none;
+                  color: #feda6a;
+                  font-size: 2rem;
+                  font-weight: 700;
+
+                }
+
+                .author-social {
+                  height: 2.4rem;
+                  width: 2.4rem;
+                  margin-left: .5rem;
+                }
+              }
+
+              .author-evolution {
+                display: flex;
+                align-items: center;
+                margin-top: 1.6rem;
+
+                p {
+                  margin-bottom: 0;
+                  margin-left: .5rem;
+                  font-size: 1.4rem;
+                }
+
+                svg {
+                  height: 2rem;
+                  width: 2rem;
+                  margin-left: .4rem;
+                }
+
+                .text {
+                  font-weight: 700;
+                }
+              }
+            }
+
+            .author-body {
+              .author-text {
+                display: flex;
+                color: #000000;
+                padding-top: 1.5rem;
+                font-size: 1.4rem;
+
+                &.hidden {
+                  display: none;
+                }
+              }
+
+
+              .author-more {
+                color: #e3ba00;
+                cursor: pointer;
+                font-size: 1.4rem;
+                font-weight: 700;
+              }
+            }
+          }
+        }
+      }
+
+      .lesson-name {
+        padding: 1.5rem;
+        font-weight: 600;
+        font-size: 3.6rem;
+      }
+
+      .lesson-tag {
+        text-decoration: none;
+        padding: 1rem 2rem;
+        color: #000000;
+        background-color: #FEEC99;
+        border-radius: 20px;
+        font-size: 2rem;
+        text-transform: uppercase;
+        display: inline-block;
+      }
+
+      .wrapper {
+        display: flex;
+        align-items: center;
+
+        .evolution,
+        .number-study,
+        .lesson-time {
+          font-size: 1.8rem;
+          margin-left: 1rem;
+          display: inline-block;
+        }
+
+        .lesson-create,
+        .lesson-update,
+        .lesson-evolution {
+          font-size: 1.8rem;
+          text-align: center;
+        }
+
+        .lesson-evolution {
+          color: #C89F65;
+          cursor: pointer;
+        }
+      }
+
+    }
+
+    .lesson-control {
+      .lesson-name {
+        font-size: 1.6rem;
+      }
+
+      .active {
+        color: #cca800;
+        font-size: 1.6rem;
+      }
+
+      .icon {
+        font-size: 1.4rem;
+      }
+    }
   }
 }

@@ -1,8 +1,8 @@
 import { Button, Radio, TextField } from '@mui/material';
 import classNames from 'classnames/bind';
-import styles from './Auth.module.scss';
+import style from './Auth.module.scss';
 import { CheckIcon } from '~/components/icons';
-const cx = classNames.bind(styles);
+const cx = classNames.bind(style);
 
 function Forget() {
     return (
