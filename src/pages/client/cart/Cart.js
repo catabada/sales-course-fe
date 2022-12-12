@@ -13,6 +13,9 @@ import {useState} from "react";
 const cx = classNames.bind(style);
 
 function Cart() {
+    const [disable, setDisable] = useState(true);
+
+
     const data = {name: 'Giỏ hàng', slug: ''}
     const redirect = () => {
         window.location.href = '/payment'
@@ -36,6 +39,22 @@ function Cart() {
 
                     <div className={cx('cart-content')}>
                         <Box sx={{display: 'flex', flexDirection: 'column'}}>
+                            <Box sx={{display: 'flex', marginBottom: '1rem'}}>
+                                <Typography variant='body1'
+                                            sx={{
+                                                fontSize: '1.8rem',
+                                                fontWeight: 'bold',
+                                                marginRight: '1rem',
+                                                cursor: 'pointer'
+                                            }}>
+                                    Chọn tất cả
+                                </Typography>
+                                <Typography variant='body1'
+                                            sx={{fontSize: '1.8rem', fontWeight: 'bold', cursor: 'pointer'}}>
+                                    Xoá tất cả
+                                </Typography>
+                            </Box>
+
                             {
                                 CourseList.map((course, index) => {
 
@@ -138,6 +157,7 @@ function Cart() {
 
                             <Button variant='contained' fullWidth
                                     onClick={redirect}
+                                    disabled={disable}
                                     sx={{
                                         fontSize: '2rem',
                                         color: '#000',

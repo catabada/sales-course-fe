@@ -75,6 +75,8 @@ function CourseActive({data}) {
         //     here
     }
 
+    console.log('render')
+
     const parentCategory = getCategoryParent(data);
 
     return <div className=''>

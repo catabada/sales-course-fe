@@ -51,6 +51,12 @@ export const User = {
     avatar: 'https://storage.googleapis.com/topica-media/5f990e55cb5acb5e85ce27a9/product/632451d24dee9a002607b795',
 }
 
+export const SlideShow = [
+    'https://cdn2.topica.vn/b92eed95-8a0f-4ba6-bc37-aaa9205437f5/product/63897d7aaf47c60040e48e98',
+    'https://cdn2.topica.vn/b92eed95-8a0f-4ba6-bc37-aaa9205437f5/product/63897fd8af47c60040e48ea3',
+    'https://cdn2.topica.vn/b92eed95-8a0f-4ba6-bc37-aaa9205437f5/product/63898019af47c60040e48ea7',
+]
+
 export const UserList = [
     {
         id: 0,
@@ -163,6 +169,7 @@ export const CourseList = [
         id: 5,
         slug: 'ky-nang-tuyen-dung-nhan-vien',
         name: 'Kỹ năng tuyển dụng nhân viên',
+        video: 'https://www.youtube.com/embed/1t9Pl0ntH8E',
         category: {
             id: 6,
             category: null,
@@ -302,6 +309,7 @@ export const CourseList = [
         id: 4,
         name: 'YOGA LEVEL UP ĐIÊU KHẮC CƠ THỂ KHỎE ĐẸP SAU SINH',
         slug: 'yoga-level-up-dieu-khac-co-the-khoe-dep-sau-sinh',
+        video: 'https://www.youtube.com/embed/NvUdEDefObw',
         category: {
             id: 3,
             category: null,

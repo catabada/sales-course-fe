@@ -4,18 +4,25 @@ import SubNav from "~/components/sub-nav";
 import {Avatar, Box, Button, Container, Divider, Typography} from "@mui/material";
 
 import {CourseList} from '~/services/fakeData'
+import {useState} from "react";
 
 const cx = classNames.bind(style);
 
 function Payment() {
+
     const data = {name: 'Thanh toán', slug: ''}
-    const redirect = () => {
-        window.location.href = '/payment'
-    }
+    const [disable, setDisable] = useState(true)
     const price = CourseList.reduce((accumulator, currentValue) => accumulator + currentValue.price, 0)
     const salePrice = CourseList.reduce((accumulator, currentValue) => accumulator + currentValue.salesPrice, 0)
-    // border: '3px solid #FCCF00',
-    //     backgroundColor: '#FEF5CC',
+
+
+    const handleChange = (e) => {
+        const inputChecked = e.target
+        setDisable(false)
+    }
+    const handleClick = () => {
+
+    }
 
     const decrement = price - salePrice;
 
@@ -29,14 +36,20 @@ function Payment() {
                     <Box>
                         <Typography variant='h4' className={cx('sub-title')}>Phương thức thanh toán</Typography>
                         <Box sx={{display: 'flex'}}>
-                            <Box sx={{
-                                height: '15.5rem',
-                                width: '12rem',
-                                padding: '0.8rem',
-                                borderRadius: '2rem',
-                                border: '1px solid #E0E0E0',
-                                cursor: 'pointer'
-                            }}>
+                            <input type='radio' name='payment' id='vn-pay' hidden
+                                   onChange={(e) => handleChange(e)}/>
+                            <Box
+                                component={'label'}
+                                htmlFor='vn-pay'
+                                className={cx('vn-pay')}
+                                sx={{
+                                    height: '15.5rem',
+                                    width: '12rem',
+                                    padding: '0.8rem',
+                                    borderRadius: '2rem',
+                                    border: '1px solid #E0E0E0',
+                                    cursor: 'pointer'
+                                }}>
                                 <Box sx={{margin: '22px auto'}}>
                                     <Avatar variant="square"
                                             src="/vnpay.png"
@@ -51,15 +64,21 @@ function Payment() {
                                     VN Pay QR
                                 </Typography>
                             </Box>
-                            <Box sx={{
-                                height: '15.5rem',
-                                width: '12rem',
-                                padding: '0.8rem',
-                                borderRadius: '2rem',
-                                border: '1px solid #E0E0E0',
-                                cursor: 'pointer',
-                                marginLeft: '2rem'
-                            }}>
+
+                            <input type='radio' name='payment' id='momo' hidden onChange={(e) => handleChange(e)}/>
+                            <Box
+                                htmlFor='momo'
+                                component={'label'}
+                                className={cx('momo')}
+                                sx={{
+                                    height: '15.5rem',
+                                    width: '12rem',
+                                    padding: '0.8rem',
+                                    borderRadius: '2rem',
+                                    border: '1px solid #E0E0E0',
+                                    cursor: 'pointer',
+                                    marginLeft: '2rem'
+                                }}>
                                 <Box sx={{margin: '22px auto'}}>
                                     <Avatar variant="square"
                                             src="/momo.png"
@@ -121,8 +140,8 @@ function Payment() {
                             </Box>
 
                             <Button variant='contained' fullWidth
-                                    onClick={redirect}
-                                    disabled
+                                    onClick={handleClick}
+                                    disabled={disable}
                                     sx={{
                                         fontSize: '2rem',
                                         color: '#000',
