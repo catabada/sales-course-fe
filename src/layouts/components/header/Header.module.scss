@@ -34,21 +34,25 @@
         margin-right: 20px;
         margin-left: 2rem;
 
-        .cart-badge {
-          &::after {
-            content: '';
-            position: absolute;
-            right: 2px;
-            top: 20px;
-            z-index: 99;
-          }
+        &:hover .cart-content {
+          display: block;
+        }
 
-          &:hover ~ .cart-content {
-            display: block;
-          }
+
+        .cart-badge {
         }
 
         .cart-content {
+          &::before {
+            content: '';
+            position: absolute;
+            right: 2px;
+            bottom: 100%;
+            z-index: 99;
+            width: 100%;
+            height: 2rem;
+          }
+
           display: none;
           position: absolute;
           padding: 2rem 1rem 1rem;
