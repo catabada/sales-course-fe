@@ -74,10 +74,10 @@ function SignIn() {
     } = useForm(initialValues, true, validate);
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (validate()) {
-            dispatch(requestLogin(values));
+            await dispatch(requestLogin(values));
             if (token !== '') navigate("/home")
         }
     }
