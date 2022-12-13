@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import { LogoIcon } from '~/components/icons';
 import PlayIcon from '@mui/icons-material/PlayArrowOutlined';
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 
 // layouts
 import HeaderActive from "~/layouts/components/header/HeaderActive";
@@ -32,9 +32,10 @@ function Header() {
     const user = useSelector(state => state.userReducer.user)
 
     useEffect(() => {
-        if(userId !== 0) {
+        if (userId !== 0) {
             dispatch(requestGetProfile({ userId: userId, accessToken: accessToken }))
         }
+
     }, [dispatch, userId, accessToken])
 
     return (
@@ -50,7 +51,7 @@ function Header() {
                         <Search data={user} />
                         <HeaderActive />
                         {
-                            (user !== null) ?
+                            (!!user) ?
                                 <Box component={Link} to={'/my-courses'} className={cx('my-courses')}>
                                     <PlayIcon sx={{ height: '3rem', width: '3rem' }} />
                                     <Typography className={cx('text')}>Khoá học của tôi</Typography>

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { authApi } from "~/apis/authApi";
-import { USER_GET_PROFILE } from "./userType";
+import { USER_GET_PROFILE, USER_LOGOUT } from "./userType";
 
 const initialState = {
     users: [],
@@ -9,7 +9,19 @@ const initialState = {
 }
 
 export const requestGetProfile = createAsyncThunk(USER_GET_PROFILE, async (params, thunkApi) => {
-    return await authApi.getProfile(params.userId, params.accessToken)
+    try {
+        const response = await authApi.getProfile(params.userId, params.accessToken)
+        if (!response.success) {
+            return thunkApi.rejectWithValue(response);
+        }
+        return thunkApi.fulfillWithValue(response);
+    } catch (err) {
+        return thunkApi.rejectWithValue(err.response.data);
+    }
+})
+
+export const requestLogoutUser = createAsyncThunk(USER_LOGOUT, async (params, thunkApi) => {
+    return thunkApi.fulfillWithValue(params);
 })
 
 export const userSlice = createSlice({
@@ -28,6 +40,11 @@ export const userSlice = createSlice({
                 return state;
             })
             .addCase(requestGetProfile.rejected, (state, action) => {
+                return state;
+            })
+            .addCase(requestLogoutUser.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.user = null;
                 return state;
             })
     }

@@ -36,15 +36,15 @@ export const requestLogin = createAsyncThunk(AUTH_LOGIN, async (params, thunkApi
             text: response.message,
         });
     }
-    return response;
+    return thunkApi.fulfillWithValue(response);
 })
 
 export const requestRegister = createAsyncThunk(AUTH_REGISTER, async (params, thunkApi) => {
     return await authApi.register(params);
 })
 
-export const requestLogout = createAsyncThunk(AUTH_LOGOUT, (params, thunkApi) => {
-    return 0;
+export const requestLogout = createAsyncThunk(AUTH_LOGOUT, async (params, thunkApi) => {
+    return 
 })
 
 

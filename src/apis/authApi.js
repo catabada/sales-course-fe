@@ -37,7 +37,10 @@ export const authApi = {
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        })
+        }).then((response) => {
+            return response;
+        }).catch((err) => err.response.data)
+        
     }
 
 
