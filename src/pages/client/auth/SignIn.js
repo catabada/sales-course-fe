@@ -1,7 +1,9 @@
 import { Box, Button, Container, TextField, Typography } from '@mui/material';
 import classNames from 'classnames/bind';
+
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Auth.module.scss';
+
 
 import { useState } from 'react';
 import { FacebookIcon, GoogleIcon, AppleIcon, EyeUnshowIcon, EyeShowIcon } from '~/components/icons';
@@ -10,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import AuthService from '~/services/AuthService';
 import { requestLogin } from '~/redux/auth/authSlice';
 
-const cx = classNames.bind(styles);
+const cx = classNames.bind(style);
 
 function SignIn() {
     const [show, setShow] = useState(false);
