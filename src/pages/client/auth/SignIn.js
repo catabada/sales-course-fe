@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import AuthService from '~/services/AuthService';
 import { requestLogin } from '~/redux/auth/authSlice';
 
-const cx = classNames.bind(style);
+const cx = classNames.bind(styles);
 
 function SignIn() {
     const [show, setShow] = useState(false);

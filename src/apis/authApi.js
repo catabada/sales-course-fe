@@ -30,17 +30,14 @@ export const authApi = {
     },
 
     async getProfile(userId, token) {
-        return await axiosClient.get(`/user/profile/${userId}`, {
+        return await axiosClient.get(`/user/profile`, {
+            params: {
+                id: userId
+            },
             headers: {
                 Authorization: `Bearer ${token}`
             }
         })
-            .then((response) => {
-                return response;
-            })
-            .catch((error) => {
-                return error.response.data
-            })
     }
 
 

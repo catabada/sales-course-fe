@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { authApi } from "../../apis/authApi";
-import { AUTH_GET_PROFILE, AUTH_LOGIN, AUTH_LOGOUT, AUTH_REGISTER } from "./authType";
+import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_REGISTER } from "./authType";
 import MySwal from "~/constants/MySwal";
 
 const initialState = {
     userId: 0,
     username: '',
-    access_token: '',
+    accessToken: '',
     isLoading: false,
 }
 
@@ -44,12 +44,10 @@ export const requestRegister = createAsyncThunk(AUTH_REGISTER, async (params, th
 })
 
 export const requestLogout = createAsyncThunk(AUTH_LOGOUT, (params, thunkApi) => {
-    return;
+    return 0;
 })
 
-export const requestGetProfile = createAsyncThunk(AUTH_GET_PROFILE, async (params, thunkApi) => {
-    return await authApi.getProfile(params.userId, params.token);
-})
+
 
 export const authSlice = createSlice({
     name: "auth",
@@ -61,7 +59,7 @@ export const authSlice = createSlice({
                 const data = action.payload.data;
                 state.userId = data.userId;
                 state.username = data.username;
-                state.access_token = data.token;
+                state.accessToken = data.token;
                 return state;
             })
             .addCase(requestRegister.fulfilled, (state, action) => {
@@ -70,7 +68,7 @@ export const authSlice = createSlice({
             .addCase(requestLogout.fulfilled, (state, action) => {
                 state.userId = 0;
                 state.username = '';
-                state.access_token = '';
+                state.accessToken = '';
                 return state;
             })
     }
