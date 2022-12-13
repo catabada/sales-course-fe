@@ -6,13 +6,11 @@ import LogoutIcon from "@mui/icons-material/LogoutOutlined";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { requestLogout } from "~/redux/auth/authSlice";
-import { requestGetProfile } from "~/redux/user/userSlice";
+import { requestLogoutUser } from "~/redux/user/userSlice";
 
-function HeaderAccount({user}) {
+function HeaderAccount({ user }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-
 
     const [anchorEl, setAnchorEl] = useState(null);
 
@@ -23,15 +21,18 @@ function HeaderAccount({user}) {
     const handleClose = () => {
         setAnchorEl(null);
     };
-    const handleLogout = () => {
-        dispatch(requestLogout())
-        navigate({pathname: '/auth/signin'})
+    const handleLogout = async () => {
+        await dispatch(requestLogout())
+        await dispatch(requestLogoutUser());
+        navigate({ pathname: '/auth/signin' })
     }
+
 
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
     return <Box>
-        <Avatar src={user.imageUrl}
+        <Avatar
+            src={user.imageUrl}
             alt="avatar"
             sx={{ width: 56, height: 56, cursor: 'pointer', marginLeft: '1rem' }}
             onClick={handleClick}>
