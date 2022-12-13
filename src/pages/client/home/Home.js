@@ -1,4 +1,4 @@
-import style from './Home.module.scss';
+import styles from './Home.module.scss';
 import classNames from 'classnames/bind';
 
 import {CourseList, SlideShow} from '~/services/fakeData';
@@ -7,10 +7,10 @@ import {SlickCustomDot, SlickCustomArrow} from "~/components/slick";
 
 
 import data from '~/services/fakeData';
-import { Grid } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import ProvinceService from '~/services/ProvinceService';
+import { SlickCustomArrow, SlickCustomDot } from '~/components/slick';
 const cx = classNames.bind(styles);
 
 
@@ -25,7 +25,7 @@ function Home() {
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
                 <div className={cx("slide-show")}>
-                    <SlickCustomDot data={SlideShow}/>
+                    <SlickCustomDot data={ []} />
                 </div>
                 {/* ban chay*/}
                 <section id='bestseller'>
@@ -37,7 +37,7 @@ function Home() {
                         </div>
                     </div>
                     <div className={cx("section-content")}>
-                        <SlickCustomArrow data={CourseList}/>
+                        <SlickCustomArrow data={ []}/>
                     </div>
                 </section>
 
@@ -52,7 +52,7 @@ function Home() {
                         </div>
                     </div>
                     <div className={cx("section-content")}>
-                        <SlickCustomArrow data={CourseList}/>
+                        <SlickCustomArrow data={ []}/>
                     </div>
                 </section>
 
@@ -66,7 +66,7 @@ function Home() {
                         </div>
                     </div>
                     <div className={cx("section-content")}>
-                        <SlickCustomArrow data={CourseList}/>
+                        <SlickCustomArrow data={ []}/>
                     </div>
                 </section>
             </div>

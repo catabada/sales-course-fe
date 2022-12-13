@@ -1,11 +1,18 @@
-import {Avatar, Box, Divider, Popover, Typography} from "@mui/material";
-import {Link} from "react-router-dom";
+import { Avatar, Box, Divider, Popover, Typography } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
 import AccountIcon from "@mui/icons-material/AccountCircleOutlined";
 import FavoriteIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import LogoutIcon from "@mui/icons-material/LogoutOutlined";
-import {useState} from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { requestLogout } from "~/redux/auth/authSlice";
+import { requestGetProfile } from "~/redux/user/userSlice";
 
-function HeaderAccount({data}) {
+function HeaderAccount({user}) {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+
 
     const [anchorEl, setAnchorEl] = useState(null);
 
@@ -16,14 +23,18 @@ function HeaderAccount({data}) {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const handleLogout = () => {
+        dispatch(requestLogout())
+        navigate({pathname: '/auth/signin'})
+    }
 
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
     return <Box>
-        <Avatar src={data.user.avatar}
-                alt="avatar"
-                sx={{width: 56, height: 56, cursor: 'pointer', marginLeft: '1rem'}}
-                onClick={handleClick}>
+        <Avatar src={user.imageUrl}
+            alt="avatar"
+            sx={{ width: 56, height: 56, cursor: 'pointer', marginLeft: '1rem' }}
+            onClick={handleClick}>
         </Avatar>
         <Popover
             id={id}
@@ -41,18 +52,18 @@ function HeaderAccount({data}) {
                 },
             }}
         >
-            <Box component={"ul"} sx={{listStyle: 'none', padding: '1rem 0 1rem 1rem'}}>
-                <Box component={"li"} sx={{marginBottom: '1rem', padding: '0.6rem 1.6rem'}}>
+            <Box component={"ul"} sx={{ listStyle: 'none', padding: '1rem 0 1rem 1rem' }}>
+                <Box component={"li"} sx={{ marginBottom: '1rem', padding: '0.6rem 1.6rem' }}>
                     <Box
                         component={Link}
                         to={'/profile'}
                         sx={{
                             textDecoration: 'none',
                             color: '#082346',
-                            '&:hover': {color: '#082346'}
+                            '&:hover': { color: '#082346' }
                         }}>
-                        < Box className='d-flex align-items-center'>
-                            <AccountIcon sx={{height: '2.2rem', width: '2.2rem'}}/>
+                        <Box className='d-flex align-items-center'>
+                            <AccountIcon sx={{ height: '2.2rem', width: '2.2rem' }} />
                             <Typography sx={{
                                 fontSize: '1.8rem',
                                 color: '#082346',
@@ -65,17 +76,17 @@ function HeaderAccount({data}) {
                         </Box>
                     </Box>
                 </Box>
-                <Box component={"li"} sx={{marginBottom: '1rem', padding: '0.6rem 1.6rem'}}>
+                <Box component={"li"} sx={{ marginBottom: '1rem', padding: '0.6rem 1.6rem' }}>
                     <Box
                         component={Link}
                         to={'/wishlist'}
                         sx={{
                             textDecoration: 'none',
                             color: '#082346',
-                            '&:hover': {color: '#082346'}
+                            '&:hover': { color: '#082346' }
                         }}>
-                        < Box className='d-flex align-items-center'>
-                            <FavoriteIcon sx={{height: '2.2rem', width: '2.2rem'}}/>
+                        <Box className='d-flex align-items-center'>
+                            <FavoriteIcon sx={{ height: '2.2rem', width: '2.2rem' }} />
                             <Typography sx={{
                                 fontSize: '1.8rem',
                                 color: '#082346',
@@ -92,18 +103,21 @@ function HeaderAccount({data}) {
                     height: '0.2rem',
                     backgroundColor: '#cbcbcb',
                     marginBottom: '1rem'
-                }}/>
-                <Box component={"li"} sx={{padding: '0.6rem 1.6rem'}}>
+                }} />
+                <Box component={"li"} sx={{ padding: '0.6rem 1.6rem' }}
+                    onClick={handleLogout}
+                >
                     <Box
                         component={Link}
-                        to={'/logout'}
                         sx={{
                             textDecoration: 'none',
                             color: '#ff414e',
-                            '&:hover': {color: '#ff414e'}
+                            '&:hover': { color: '#ff414e' }
                         }}>
-                        < Box className='d-flex align-items-center'>
-                            <LogoutIcon sx={{height: '2.2rem', width: '2.2rem'}}/>
+                        <Box className='d-flex align-items-center'
+
+                        >
+                            <LogoutIcon sx={{ height: '2.2rem', width: '2.2rem' }} />
                             <Typography sx={{
                                 fontSize: '1.8rem',
                                 color: '#ff414e',

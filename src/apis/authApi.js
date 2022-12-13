@@ -17,16 +17,28 @@ export const authApi = {
     },
 
     async login(userLogin) {
-            return await axiosClient.post('/user/login', {
-                username: userLogin.username,
-                password: userLogin.password
+        return await axiosClient.post('/user/login', {
+            username: userLogin.username,
+            password: userLogin.password
+        })
+            .then((response) => {
+                return response;
             })
-                .then((response) => {
-                    return response;
-                })
-                .catch((error) => {
-                    return error.response.data
-                })
-        }
+            .catch((error) => {
+                return error.response.data
+            })
+    },
+
+    async getProfile(userId, token) {
+        return await axiosClient.get(`/user/profile`, {
+            params: {
+                id: userId
+            },
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+    }
+
 
 }

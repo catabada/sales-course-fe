@@ -1,0 +1,1 @@
+export const USER_GET_PROFILE = 'USER_GET_PROFILE';

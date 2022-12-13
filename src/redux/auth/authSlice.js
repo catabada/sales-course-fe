@@ -1,18 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { authApi } from "../../apis/authApi";
-import { AUTH_LOGIN, AUTH_REGISTER } from "./authType";
+import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_REGISTER } from "./authType";
 import MySwal from "~/constants/MySwal";
-import Swal from "sweetalert2";
 
 const initialState = {
     userId: 0,
     username: '',
-    token: '',
+    accessToken: '',
     isLoading: false,
 }
 
 export const requestLogin = createAsyncThunk(AUTH_LOGIN, async (params, thunkApi) => {
-    
+
     const response = await authApi.login(params);
     if (response.success) {
         MySwal.fire({
@@ -40,9 +39,15 @@ export const requestLogin = createAsyncThunk(AUTH_LOGIN, async (params, thunkApi
     return response;
 })
 
-export const requestRegister = createAsyncThunk(AUTH_REGISTER, (params, thunkApi) => {
-    return authApi.register(params);
+export const requestRegister = createAsyncThunk(AUTH_REGISTER, async (params, thunkApi) => {
+    return await authApi.register(params);
 })
+
+export const requestLogout = createAsyncThunk(AUTH_LOGOUT, (params, thunkApi) => {
+    return 0;
+})
+
+
 
 export const authSlice = createSlice({
     name: "auth",
@@ -54,23 +59,18 @@ export const authSlice = createSlice({
                 const data = action.payload.data;
                 state.userId = data.userId;
                 state.username = data.username;
-                state.token = data.token;
+                state.accessToken = data.token;
                 return state;
             })
             .addCase(requestRegister.fulfilled, (state, action) => {
                 return state;
             })
-        // [requestLogin.fulfilled]: (state, action) => {
-        //     console.log(action.payload)
-        //     const data = action.payload.data;
-        //     state.userId = data.userId;
-        //     state.username = data.username;
-        //     state.token = data.token;
-        //     return state;
-        // },
-        // [requestRegister.fulfilled]: (state, action) => {
-        //     return state;
-        // }
+            .addCase(requestLogout.fulfilled, (state, action) => {
+                state.userId = 0;
+                state.username = '';
+                state.accessToken = '';
+                return state;
+            })
     }
 })
 

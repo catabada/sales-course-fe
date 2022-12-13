@@ -12,6 +12,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist'
+import { userReducer } from '~/redux/user/userSlice';
 
 const persistConfig = {
   key: 'root',
@@ -22,6 +23,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   categoryReducer: categoryReducer,
   authReducer: authReducer,
+  userReducer: userReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
