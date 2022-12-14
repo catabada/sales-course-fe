@@ -1,16 +1,17 @@
-import { Box, Button, Container, TextField, Typography } from '@mui/material';
+import { Backdrop, Box, Button, CircularProgress, Container, TextField, Typography } from '@mui/material';
 import classNames from 'classnames/bind';
 
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Auth.module.scss';
 
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FacebookIcon, GoogleIcon, AppleIcon, EyeUnshowIcon, EyeShowIcon } from '~/components/icons';
 import { Form, useForm } from '~/hooks/useForm';
 import { useDispatch, useSelector } from 'react-redux';
 import AuthService from '~/services/AuthService';
 import { requestLogin } from '~/redux/auth/authSlice';
+import Loading from '~/components/loading';
 
 const cx = classNames.bind(styles);
 
@@ -19,9 +20,7 @@ function SignIn() {
     const dispatch = useDispatch();
     const navigate = useNavigate()
 
-
-    const authService = new AuthService(dispatch);
-    const token = useSelector(state => state.authReducer.token)
+    const { isLoading, accessToken, isSuccess } = useSelector(state => state.authReducer)
     const handleClick = (e) => {
         e.preventDefault();
         setShow(!show);
@@ -72,13 +71,15 @@ function SignIn() {
         handleInputChange,
         resetForm
     } = useForm(initialValues, true, validate);
-
+    useEffect(() => {
+        if (accessToken !== '') navigate("/home")
+    }, [accessToken, navigate])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (validate()) {
             await dispatch(requestLogin(values));
-            if (token !== '') navigate("/home")
+
         }
     }
 
@@ -131,7 +132,7 @@ function SignIn() {
                                 error={errorsEnable.username}
                                 value={values.username}
                                 helperText={errors.username}
-                                placeholder="mail@example.com"
+                                placeholder="username"
                                 InputLabelProps={{ style: { fontSize: '1.6rem' } }}
                             />
                         </Box>
@@ -198,6 +199,7 @@ function SignIn() {
                     </div>
                 </div>
             </div>
+            <Loading open={isLoading} />
         </Container>
     );
 }

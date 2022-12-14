@@ -8,10 +8,15 @@ import { useState } from 'react';
 import { Form, useForm } from '~/hooks/useForm';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { authApi } from '~/apis/authApi';
+import { useDispatch, useSelector } from 'react-redux';
+import { requestRegister } from '~/redux/auth/authSlice';
+import Loading from '~/components/loading';
 
 const cx = classNames.bind(style);
 function SignUp() {
+    const dispatch = useDispatch()
     const [showConfirm, setShowConfirm] = useState(false);
+    const { isLoading } = useSelector(state => state.authReducer)
 
 
     const initialFieldValues = {
@@ -103,15 +108,17 @@ function SignUp() {
         handleInputChange,
         resetForm
     } = useForm(initialFieldValues, true, validate);
-    const handleSendEmail = () => {
+    const handleSendEmail = async () => {
         if (validate()) {
-            setShowConfirm(true);
-            authApi.register(values).then(res => {
-                console.log(res);
-            }).catch(err => {
-                console.log(err);
-            })
+            await dispatch(requestRegister({ userRegister: values }))
+            if (!isLoading) {
+                setShowConfirm(true);
+            }
         }
+    }
+
+    const handleSendEmailAgain = () => {
+        dispatch(requestRegister({ userRegister: values }))
     }
 
     const handleSubmit = (e) => {
@@ -257,7 +264,12 @@ function SignUp() {
                 <Typography className={cx('des')}>
                     Vui lòng nhấn vào đường dẫn được gửi tới email của bạn để hoàn thành đăng ký. Nếu bạn không nhận được email, hãy kiểm tra tệp tin rác của bạn.
                 </Typography>
-                <Button variant="contained" fullWidth className={cx('btn', 'btn-second')}>
+                <Button
+                    variant="contained"
+                    fullWidth
+                    className={cx('btn', 'btn-second')}
+                    onClick={handleSendEmailAgain}
+                >
                     Gửi lại email xác nhận
                 </Button>
                 <div className={cx('flex')}>
@@ -274,6 +286,7 @@ function SignUp() {
                     </Typography>
                 </div>
             </div>
+            <Loading open={isLoading} />
         </div>
     );
 }
