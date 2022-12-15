@@ -9,9 +9,10 @@ import { useEffect, useState } from 'react';
 import { FacebookIcon, GoogleIcon, AppleIcon, EyeUnshowIcon, EyeShowIcon } from '~/components/icons';
 import { Form, useForm } from '~/hooks/useForm';
 import { useDispatch, useSelector } from 'react-redux';
-import AuthService from '~/services/AuthService';
 import { requestLogin } from '~/redux/auth/authSlice';
 import Loading from '~/components/loading';
+import FacebookLogin from '~/components/facebook-login';
+
 
 const cx = classNames.bind(styles);
 
@@ -83,7 +84,7 @@ function SignIn() {
         }
     }
 
-
+    
     return (
         <Container maxWidth={false}>
             <div className={cx('wrapper')}>
@@ -96,6 +97,7 @@ function SignIn() {
                         <div className={cx('social-list')}>
                             <button className={cx('social-item', 'fb-background')}>
                                 <FacebookIcon />
+                                <FacebookLogin />
                                 <Typography className={cx('social-lable', 'fb-color')}>
                                     Continue with Facebook
                                 </Typography>
