@@ -2,30 +2,33 @@ import CourseActive from "~/pages/client/detail/CourseActive";
 import CourseInactive from "~/pages/client/detail/CourseInactive";
 import {CourseData, User, CourseList} from '~/services/fakeData';
 import {useParams} from "react-router-dom";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {getCoursesAllFieldByCodeName} from "~/redux/course/courseSlice";
 
 function Detail() {
     const {code} = useParams();
-    // user login
-    const user = CourseData.user.id === User.id;
-    // get my course of user or course list
-    let activeCourse = true;
-    let courses
-    if (user) {
-        courses = CourseData.courses;
-    } else {
-        activeCourse = false;
-        courses = CourseList;
-    }
+    const dispatch = useDispatch();
+    const coursesAllField = useSelector(state => state.courseReducer.coursesAllField)
 
-    // check my course list contain course:slug
-    let thisCourse = courses.find((course) => course.slug === code);
-    // if undefined
-    if (thisCourse === undefined) {
-        activeCourse = false;
-        thisCourse = CourseList.find((course) => course.slug === code)
-    }
+    useEffect(() => {
+        dispatch(getCoursesAllFieldByCodeName(code))
+    }, [dispatch])
 
-    return (activeCourse ? <CourseActive data={thisCourse}/> : <CourseInactive data={thisCourse}/>)
+    const isMyCourse = true;
+
+    return (
+        <>
+            {
+                isMyCourse
+                    ? (coursesAllField && <CourseActive data={coursesAllField}/>)
+                    : (coursesAllField && <CourseInactive data={coursesAllField}/>)
+            }
+        </>
+
+    )
+
+
 }
 
 export default Detail;

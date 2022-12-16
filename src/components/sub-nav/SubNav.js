@@ -8,26 +8,26 @@ const cx = classNames.bind(style);
 
 function SubNav({data, breadcrumbCourse}) {
     const element = [];
-    element.unshift({name: data.name, slug: data.slug});
+    element.unshift({name: data.name, codeName: data.codeName});
     if (data?.category)
         element.unshift({
             name: data.category.name,
-            slug: data.category.slug
+            codeName: data.category.codeName
         })
     if (data?.category?.category)
         element.unshift({
             name: data.category.category.name,
-            slug: data.category.category.slug
+            codeName: data.category.category.codeName
         })
     if (data?.category?.category?.category)
         element.unshift({
             name: data.category.category.category.name,
-            slug: data.category.category.category.slug
+            codeName: data.category.category.category.codeName
         })
     if (data?.category?.category?.category?.category)
         element.unshift({
             name: data.category.category.category.category.name,
-            slug: data.category.category.category.category.slug
+            codeName: data.category.category.category.category.codeName
         })
     return <Breadcrumbs
         separator={<NavigateNextIcon fontSize="medium" className={cx('next-icon')}/>}
@@ -44,7 +44,8 @@ function SubNav({data, breadcrumbCourse}) {
                         {item.name}
                     </Typography>
                 } else {
-                    return <Link key={index} color="inherit" href={item.slug} className={cx('sub-item')}>
+                    return <Link key={index} color="inherit" href={`/category/${item.codeName}`}
+                                 className={cx('sub-item')}>
                         {item.name}
                     </Link>
                 }

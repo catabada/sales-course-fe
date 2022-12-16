@@ -27,7 +27,6 @@ function HeaderAccount({ user }) {
         navigate({ pathname: '/auth/signin' })
     }
 
-
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
     return <Box>

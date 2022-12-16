@@ -5,20 +5,37 @@ import {Box, Container, Grid, Paper} from "@mui/material";
 import Filter from "~/components/filter";
 import ListCourse from "~/components/list-course";
 import {useParams} from "react-router-dom";
-import {CategoryList} from '~/services/fakeData';
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect, useState} from "react";
+import {getCategoryByCode} from "~/redux/category/categorySlice";
+import {getCoursesSearch} from "~/redux/course/courseSlice";
 
 
 const cx = classNames.bind(style);
 
 function Course() {
     const {codeCategory} = useParams();
-    const categoryList = CategoryList;
-    const thisCategory = categoryList.find((course) => course.slug === codeCategory);
+    const dispatch = useDispatch();
 
+    const courses = useSelector(state => state.courseReducer.courses)
+    const category = useSelector(state => state.categoryReducer.category)
+
+
+    useEffect(() => {
+        dispatch(getCategoryByCode(codeCategory))
+    }, [dispatch, codeCategory])
+
+    useEffect(() => {
+        category && dispatch(getCoursesSearch({
+            category: {
+                id: category.id
+            }
+        }));
+    }, [dispatch, category])
 
     return <Box className={cx('wrapper')}>
         <Box sx={{width: '100%'}}>
-            <Breadcrumb data={thisCategory}/>
+            {category && <Breadcrumb category={category}/>}
 
             <Container maxWidth={false}>
                 <Paper elevation={4}>
@@ -26,8 +43,8 @@ function Course() {
                         <Grid item lg={2} sx={{width: '100%'}}>
                             <Filter codeCategory={codeCategory}/>
                         </Grid>
-                        <Grid item lg={8} sx={{width: '100%', position: 'relative'}}>
-                            {/* <ListCourse /> */}
+                        <Grid item lg={10} sx={{width: '100%', position: 'relative'}}>
+                            <ListCourse courses={courses}/>
                         </Grid>
                     </Grid>
                 </Paper>

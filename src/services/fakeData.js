@@ -44,6 +44,34 @@ export const RevenueData = [
     }
 ]
 
+export const faqFakeData = [
+    {
+        id: 1,
+        title: "Cách đăng thảo luận, thắc mắc về bài học",
+        content: "Bạn truy cập hướng dẫn tại: http://topi.ca/edumall_thaoluan",
+
+    },
+    {
+        id: 2,
+        title: "Điều chỉnh chất lượng video",
+        content: "Bạn truy cập hướng dẫn tại: http://topi.ca/edumall_dcvideo",
+
+    },
+    {
+        id: 3,
+        title: "Cách sử dụng khuyến mãi",
+        content: "Bạn tham khảo hướng dẫn tại: http://topi.ca/edumall_makhuyenmai",
+
+    },
+    {
+        id: 4,
+        title: "Xem tài liệu khóa học ở đâu?",
+        content: "Bạn tham khảo hướng dẫn tại: http://topi.ca/edumall_tailieu",
+
+    },
+]
+
+
 export const User = {
     id: 0,
     name: 'Guest',
