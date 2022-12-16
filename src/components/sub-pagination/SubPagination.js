@@ -55,12 +55,12 @@ export default function SubPagination() {
         <AppBar ref={domPaginationScroll}
                 sx={{
                     width: '200px',
-                    top: 0,
-                    right: '-26%',
+                    marginLeft: 'auto',
                     backgroundColor: 'transparent',
                     boxShadow: 'none',
                     transition: '0.6s',
-                    zIndex: 10
+                    position: 'relative',
+                    zIndex: 1
                 }}
                 position={"absolute"}>
             <Grid container alignItems={"center"} spacing={2}>

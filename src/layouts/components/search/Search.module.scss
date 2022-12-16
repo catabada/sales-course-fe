@@ -7,10 +7,12 @@
   padding: 2px;
   margin: 0 2rem;
   position: relative;
-  width: 400px;
+
+  &.full-width {
+    width: 400px;
+  }
 
   .search-input {
-    width: 100%;
     color: #fff;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 20px;
@@ -31,7 +33,7 @@
     z-index: 999;
     background-color: #fff;
     width: 500px;
-    max-height: 300px;
+    max-height: 500px;
     overflow-y: scroll;
     box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%);
 
