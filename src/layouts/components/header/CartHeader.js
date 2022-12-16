@@ -1,10 +1,11 @@
-import { Avatar, Badge, Box, Button, Divider, Popover, Typography } from "@mui/material";
-import { Link, redirect } from "react-router-dom";
+import {Avatar, Badge, Box, Button, Divider, Popover, Typography} from "@mui/material";
+import {Link, redirect} from "react-router-dom";
 import ShoppingCart from "@mui/icons-material/ShoppingCartOutlined";
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 
 const cx = classNames.bind(styles);
+
 
 function CartItem({ course }) {
     course = {}
@@ -27,12 +28,14 @@ function CartItem({ course }) {
                     <Typography variant="body1"
                         sx={{ fontSize: '1.4rem', textDecoration: 'line-through', color: '#C4C4C4' }}>
                         {Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(course.price)}
+
                     </Typography>
                 </Box>
             </Box>
         </Box>
     </Box>
 }
+
 
 function CartHeader({ data }) {
     const redirect = () => {
@@ -84,6 +87,7 @@ function CartHeader({ data }) {
                 Xem tất cả {length} sản phẩm
             </Button>
         </Box>
+
     </Box>
 }
 

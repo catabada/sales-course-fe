@@ -323,18 +323,46 @@
     }
 
     .lesson-control {
-      .lesson-name {
-        font-size: 1.6rem;
+
+      .chapters {
+        padding: 1rem 0;
+
+        &.active {
+          color: #cca800;
+        }
       }
 
-      .active {
-        color: #cca800;
-        font-size: 1.6rem;
+      .chapters.active {
+        .icon-next {
+          display: none;
+        }
+
+        .icon-more {
+          display: block;
+        }
+      }
+
+      .lesson-item {
+        height: 6rem;
+
+        &.active {
+          background-color: #eee;
+        }
       }
 
       .icon {
-        font-size: 1.4rem;
+        height: 3rem;
+        width: 3rem;
+
+        &.icon-next {
+          display: block;
+        }
+
+        &.icon-more {
+          display: none;
+        }
       }
+
     }
   }
 }

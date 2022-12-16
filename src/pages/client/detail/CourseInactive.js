@@ -22,10 +22,9 @@ import {TabScroll} from "~/components/tabs";
 
 const cx = classNames.bind(style);
 
-function CourseInactive({data}) {
+function CourseInactive(props) {
 
-    data.url = 'https://res.cloudinary.com/dbrdml9bf/image/upload/v1638449082/topica/wave_iabqmr.png';
-
+    const {data} = props
 
     return (
         <div className={cx('wrapper')}>
@@ -45,7 +44,6 @@ function CourseInactive({data}) {
                             justifyContent: 'center',
                             zIndex: 1000,
                             marginTop: '-300px',
-                            visibility: 'hidden'
                         }}
                     >
                         <div className={cx('sale')}>
@@ -53,22 +51,28 @@ function CourseInactive({data}) {
                                 <div className={cx('sale-image')}>
                                     <div className={cx('sale-image-wrapper')}>
                                         <img
-                                            src='https://d1nzpkv5wwh1xf.cloudfront.net/640/k-57ac2d8c047c990776574ffe/20170817-thayanh_linhnt19_17817/duonglt10.png'
-                                            alt='text'
+                                            src={`/images/${data.image}`}
+                                            alt={data.image}
                                             className={cx('sale-banner')}/>
-                                        <BackDropVideo url={data.video}/>
+                                        <BackDropVideo url={data.videoDemo}/>
                                     </div>
                                 </div>
                                 <div className={cx('sale-detail')}>
                                     <div className={cx('price-info')}>
-                                        <span className={cx('old-price')}>699,000 đ</span>
-                                        <span className={cx('current-price')}>399,000 đ</span>
+                                        <span className={cx('old-price')}>  {Intl.NumberFormat('vi-VN', {
+                                            style: 'currency',
+                                            currency: 'VND'
+                                        }).format(data.price)}</span>
+                                        <span className={cx('current-price')}>  {Intl.NumberFormat('vi-VN', {
+                                            style: 'currency',
+                                            currency: 'VND'
+                                        }).format((data.price - data.price * data.discount))}</span>
                                     </div>
 
-                                    <div className={cx('sale-offer')}>
-                                        Ưu đãi sẽ kết thúc sau
-                                        <span>06:40:59</span>
-                                    </div>
+                                    {/*<div className={cx('sale-offer')}>*/}
+                                    {/*    Ưu đãi sẽ kết thúc sau*/}
+                                    {/*    <span>06:40:59</span>*/}
+                                    {/*</div>*/}
                                     <div className={cx('add-cart')}>
                                         <Button variant="outlined" className={cx('btn-add')}
                                                 startIcon={<CartIcon

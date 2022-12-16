@@ -1,18 +1,23 @@
 import styles from './Home.module.scss';
 import classNames from 'classnames/bind';
 
-import data from '~/services/fakeData';
-import { Grid, Typography } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { SlickCustomArrow, SlickCustomDot } from '~/components/slick';
+import {SlideShow} from '~/services/fakeData';
+import {SlickCustomDot, SlickCustomArrow} from "~/components/slick";
+
+
+import {Grid, Typography} from '@mui/material';
+import {useDispatch, useSelector} from 'react-redux';
+import {useEffect} from 'react';
+import {getCoursesSearch} from "~/redux/course/courseSlice";
+
 const cx = classNames.bind(styles);
 
 
 function Home() {
     const dispatch = useDispatch()
-
+    const courses = useSelector(state => state.courseReducer.courses)
     useEffect(() => {
+        dispatch(getCoursesSearch({}))
     }, [dispatch]);
 
 
@@ -20,7 +25,7 @@ function Home() {
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
                 <div className={cx("slide-show")}>
-                    <SlickCustomDot data={ []} />
+                    <SlickCustomDot data={SlideShow}/>
                 </div>
                 {/* ban chay*/}
                 <section id='bestseller'>
@@ -32,7 +37,7 @@ function Home() {
                         </div>
                     </div>
                     <div className={cx("section-content")}>
-                        <SlickCustomArrow data={ []}/>
+                        <SlickCustomArrow data={[]}/>
                     </div>
                 </section>
 
@@ -47,7 +52,7 @@ function Home() {
                         </div>
                     </div>
                     <div className={cx("section-content")}>
-                        <SlickCustomArrow data={ []}/>
+                        <SlickCustomArrow data={[]}/>
                     </div>
                 </section>
 
@@ -56,12 +61,12 @@ function Home() {
                     <div className={cx('section-header')}>
                         <div>
                             <Typography variant='h2' className={cx('title')}>
-                                Các khóa học bán chạy nhất tháng này
+                                Các khóa học xem nhiều nhất
                             </Typography>
                         </div>
                     </div>
                     <div className={cx("section-content")}>
-                        <SlickCustomArrow data={ []}/>
+                        <SlickCustomArrow data={[]}/>
                     </div>
                 </section>
             </div>

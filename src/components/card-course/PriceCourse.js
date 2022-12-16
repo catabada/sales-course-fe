@@ -5,8 +5,8 @@ import style from "~/pages/client/cart/Cart.module.scss";
 
 const cx = classNames.bind(styles);
 
-function PriceCourse({price, salesPrice, isFree}) {
-    if (isFree) {
+function PriceCourse({price, discount}) {
+    if (price === 0) {
         return (
             <div className={cx('card-course-price', 'card-free')}>
                 <Typography
@@ -16,13 +16,16 @@ function PriceCourse({price, salesPrice, isFree}) {
                 </Typography>
             </div>
         );
-    } else if (price) {
+    } else if (discount !== 0) {
         return (
             <div className={cx('card-course-price')}>
                 <Typography
                     variant='body2'
                     className={cx('card-sales-price')}>
-                    {Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'}).format(salesPrice)}
+                    {Intl.NumberFormat('vi-VN', {
+                        style: 'currency',
+                        currency: 'VND'
+                    }).format((price - price * discount))}
                 </Typography>
                 <Typography
                     variant='body2'
@@ -37,7 +40,7 @@ function PriceCourse({price, salesPrice, isFree}) {
                 <Typography
                     variant='body2'
                     className={cx('card-sales-price')}>
-                    {Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'}).format(salesPrice)}
+                    {Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'}).format(price)}
                 </Typography>
             </div>
         );

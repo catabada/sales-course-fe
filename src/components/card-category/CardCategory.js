@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 import {Box, Card, CardContent, Paper, Typography} from '@mui/material';
 import styles from './CardCategory.module.scss';
 import classNames from 'classnames/bind';
@@ -10,8 +10,7 @@ function CardCategory({category}) {
         <Box
             className={cx('card-category')}
             component={Link}
-            // to={category.codeName}
-            to={category.slug}
+            to={category.codeName}
         >
             <Paper
                 className={cx('image-bg')}
@@ -19,10 +18,10 @@ function CardCategory({category}) {
                 square
                 sx={{
                     background: `linear-gradient(
-                                    0deg, 
-                                    rgba(0, 0, 0, 0.75) 0%, 
-                                    rgba(0, 0, 0, 0) 100%), 
-                                    url(${category.url})`,
+                                    0deg,
+                                    rgba(0, 0, 0, 0.75) 0%,
+                                    rgba(0, 0, 0, 0) 100%),
+                                    url('/images/category/${category.codeName}.png')`,
                 }}>
                 <Card className={cx('card-wrapper')}>
                     <CardContent
@@ -38,15 +37,15 @@ function CardCategory({category}) {
                             }}>
                             {category.name}
                         </Typography>
-                        <Typography
-                            variant='body1'
-                            sx={{
-                                fontSize: 18,
-                                fontWeight: 'bold',
-                                color: '#fff',
-                            }}>
-                            392 khóa học
-                        </Typography>
+                        {/*<Typography*/}
+                        {/*    variant='body1'*/}
+                        {/*    sx={{*/}
+                        {/*        fontSize: 18,*/}
+                        {/*        fontWeight: 'bold',*/}
+                        {/*        color: '#fff',*/}
+                        {/*    }}>*/}
+                        {/*    392 khóa học*/}
+                        {/*</Typography>*/}
                     </CardContent>
                 </Card>
             </Paper>

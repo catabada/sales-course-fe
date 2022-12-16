@@ -13,8 +13,8 @@ import classNames from "classnames/bind";
 import styles from "./Filter.module.scss";
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import categoryApi from "~/apis/categoryApi";
 import {Link} from "react-router-dom";
+import {getCategoriesSearch, getCategoryByCode} from "~/redux/category/categorySlice";
 
 const cx = classNames.bind(styles);
 export default function Filter({codeCategory}) {
@@ -22,15 +22,13 @@ export default function Filter({codeCategory}) {
 
     const subCategories = useSelector(state => state.categoryReducer.categories);
 
-
     useEffect(() => {
-        dispatch(categoryApi.fetchCategoriesSearch({
+        dispatch(getCategoriesSearch({
             category: {
                 codeName: codeCategory
             }
         }))
-    })
-
+    }, [dispatch, codeCategory])
     return (
         <Box sx={{width: '100%'}}>
             <Box className={cx('wrapper')}>
