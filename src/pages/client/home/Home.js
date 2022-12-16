@@ -20,7 +20,16 @@ function Home() {
         dispatch(getCoursesSearch({}))
     }, [dispatch]);
 
+    const viewedArray = courses.slice().sort((a, b) => {
+        return a.viewed > b.viewed ? -1 : 1
+    });
+    const createdDateArray = courses.slice().sort((a, b) => {
+        return a.createdDate > b.createdDate ? -1 : 1
+    });
 
+    const priceArray = courses.slice().sort((a, b) => {
+        return a.price > b.price ? -1 : 1
+    });
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
@@ -37,7 +46,7 @@ function Home() {
                         </div>
                     </div>
                     <div className={cx("section-content")}>
-                        <SlickCustomArrow data={[]}/>
+                        <SlickCustomArrow data={priceArray}/>
                     </div>
                 </section>
 
@@ -52,7 +61,7 @@ function Home() {
                         </div>
                     </div>
                     <div className={cx("section-content")}>
-                        <SlickCustomArrow data={[]}/>
+                        <SlickCustomArrow data={createdDateArray}/>
                     </div>
                 </section>
 
@@ -66,7 +75,7 @@ function Home() {
                         </div>
                     </div>
                     <div className={cx("section-content")}>
-                        <SlickCustomArrow data={[]}/>
+                        <SlickCustomArrow data={viewedArray}/>
                     </div>
                 </section>
             </div>
