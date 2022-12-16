@@ -61,10 +61,12 @@ const getCategoryParent = (data) => {
 function CourseActive(props) {
     const {data} = props;
     const chapters = data && data.chapters;
-
-    const [lesson, setLesson] = useState(data || data.chapters[0].lessons[0])
+    const [lesson, setLesson] = useState()
     const parentCategory = getCategoryParent(data);
 
+    useEffect(() => {
+        chapters && setLesson(chapters[0].lessons[0])
+    }, [chapters])
     let arrayIndex = [];
     const handleClick = (index, event) => {
         if (arrayIndex.includes(index)) {
@@ -102,7 +104,7 @@ function CourseActive(props) {
                         {
                             lesson &&
                             <div className={cx('lesson-detail')}>
-                                <iframe width="100%" height="500" src="https://www.youtube.com/embed/Mx9gcGFlEgw"
+                                <iframe width="100%" height="500" src={lesson.video}
                                         title="YouTube video player"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowFullScreen></iframe>
@@ -116,14 +118,14 @@ function CourseActive(props) {
                                 {/*details*/}
                                 <Box className='row' sx={{margin: '1.5rem 0 4rem'}}>
                                     <div className="row col-5 align-items-center">
-                                        <Typography variant='body1' className={cx('wrapper', 'col-4')}>
-                                            <LockIcon sx={{
-                                                width: '3rem',
-                                                height: '3rem',
-                                                color: '#FCCF00'
-                                            }}/>
-                                            <span className={cx('lesson-time')}>{"lesson.time"}</span>
-                                        </Typography>
+                                        {/*<Typography variant='body1' className={cx('wrapper', 'col-4')}>*/}
+                                        {/*    <LockIcon sx={{*/}
+                                        {/*        width: '3rem',*/}
+                                        {/*        height: '3rem',*/}
+                                        {/*        color: '#FCCF00'*/}
+                                        {/*    }}/>*/}
+                                        {/*    <span className={cx('lesson-time')}>{"lesson.time"}</span>*/}
+                                        {/*</Typography>*/}
                                         <Typography variant='body1' className={cx('wrapper', 'col-3')}>
                                             <PlayArrowIcon sx={{
                                                 width: '3rem',
@@ -297,13 +299,13 @@ function CourseActive(props) {
                                                                                       maxWidth: '350px'
                                                                                   }
                                                                               }}/>
-                                                                <ListItemText primary={"time"} className='col-2'
-                                                                              primaryTypographyProps={{
-                                                                                  style: {
-                                                                                      fontSize: '1.8rem',
-                                                                                      color: '#757575'
-                                                                                  }
-                                                                              }}/>
+                                                                {/*<ListItemText primary={"time"} className='col-2'*/}
+                                                                {/*              primaryTypographyProps={{*/}
+                                                                {/*                  style: {*/}
+                                                                {/*                      fontSize: '1.8rem',*/}
+                                                                {/*                      color: '#757575'*/}
+                                                                {/*                  }*/}
+                                                                {/*              }}/>*/}
                                                             </Box>
                                                         ))
                                                     }
