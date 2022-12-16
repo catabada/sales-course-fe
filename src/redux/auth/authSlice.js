@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { authApi } from "../../apis/authApi";
+import { authApi } from "~/apis/authApi";
 import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_REGISTER } from "./authType";
 import MySwal from "~/constants/MySwal";
 

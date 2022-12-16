@@ -43,6 +43,20 @@
         }
 
         .cart-content {
+          .course-title {
+            text-transform: capitalize;
+            font-weight: 700;
+            text-overflow: ellipsis;
+            line-height: 2.5rem;
+            -webkit-line-clamp: 1;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            color: #000000;
+            font-size: 1.6rem;
+            overflow: hidden;
+
+          }
+
           &::before {
             content: '';
             position: absolute;
@@ -59,7 +73,7 @@
           right: 0;
           top: 50px;
           background-color: #fff;
-          width: 400px;
+          width: 350px;
           min-height: 50px;
           z-index: 98;
           border-radius: 10px;

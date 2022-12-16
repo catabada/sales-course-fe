@@ -57,7 +57,7 @@ function Header() {
                                 </Box>
                                 : ''
                         }
-                        <CartHeader data={user}/>
+                        <CartHeader/>
 
                         {
                             (!!user) ?

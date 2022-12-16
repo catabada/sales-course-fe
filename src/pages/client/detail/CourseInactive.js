@@ -19,12 +19,18 @@ import FavoriteIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import ShareIcon from '@mui/icons-material/ShareOutlined';
 import BackDropVideo from "~/components/back-drop";
 import {TabScroll} from "~/components/tabs";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import {addToCart} from "~/redux/cart/cartSlice";
 
 const cx = classNames.bind(style);
 
 function CourseInactive(props) {
-
     const {data} = props
+    const dispatch = useDispatch();
+    const addCart = () => {
+        dispatch(addToCart({...data}))
+    }
 
     return (
         <div className={cx('wrapper')}>
@@ -74,16 +80,19 @@ function CourseInactive(props) {
                                     {/*    <span>06:40:59</span>*/}
                                     {/*</div>*/}
                                     <div className={cx('add-cart')}>
-                                        <Button variant="outlined" className={cx('btn-add')}
-                                                startIcon={<CartIcon
-                                                    sx={{height: '2.4rem', width: '2.4rem'}}/>}> Thêm
-                                            vào giỏ hàng</Button>
+                                        <Button
+                                            onClick={() => addCart()}
+                                            variant="outlined" className={cx('btn-add')}
+                                            startIcon={<CartIcon
+                                                sx={{height: '2.4rem', width: '2.4rem'}}/>}>
+                                            Thêm vào giỏ hàng
+                                        </Button>
                                     </div>
                                     <div className={cx('buy-now')}>
                                         <Button variant="contained" className={cx('btn-buy-now')}> Mua ngay</Button>
                                     </div>
                                     <div className={cx('tool')}>
-                                        <div className={cx('wish-list')}>
+                                        <div className={cx('wish-list')} onClick={() => props.parentCallback(data)}>
                                             <FavoriteIcon sx={{height: '2.4rem', width: '2.4rem'}}/>
                                             <span>Lưu vào Yêu thích</span>
                                         </div>
