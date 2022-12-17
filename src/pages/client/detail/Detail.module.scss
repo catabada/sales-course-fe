@@ -295,28 +295,24 @@
         display: inline-block;
       }
 
+      .evolution,
+      .number-study,
+      .lesson-time {
+        font-size: 1.4rem;
+        margin-left: 1rem;
+        display: inline-block;
+      }
+
       .wrapper {
         display: flex;
         align-items: center;
+        width: 33.3333%;
 
-        .evolution,
-        .number-study,
-        .lesson-time {
-          font-size: 1.8rem;
-          margin-left: 1rem;
-          display: inline-block;
-        }
 
         .lesson-create,
-        .lesson-update,
-        .lesson-evolution {
-          font-size: 1.8rem;
+        .lesson-update {
+          font-size: 1.4rem;
           text-align: center;
-        }
-
-        .lesson-evolution {
-          color: #C89F65;
-          cursor: pointer;
         }
       }
 

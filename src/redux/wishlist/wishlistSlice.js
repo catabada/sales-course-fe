@@ -63,7 +63,6 @@ const wishlistSlice = createSlice({
                 state.isLoading = false;
                 const data = action.payload
                 state.wishlist.push(data)
-                console.log(state.wishlist)
                 return state;
             })
             //delete

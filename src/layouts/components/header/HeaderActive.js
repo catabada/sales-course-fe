@@ -20,7 +20,6 @@ function HeaderActive() {
     return <Box sx={{flex: 1}}>
         <Button variant="outlined" className={cx('btn-active')} onClick={handleClickOpen}>
             Kích hoạt khoá học
-
         </Button>
         <Dialog open={open} onClose={handleClose}
                 PaperProps={{

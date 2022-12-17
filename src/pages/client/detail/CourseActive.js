@@ -28,11 +28,12 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import WebsiteIcon from "@mui/icons-material/LanguageOutlined";
 import StarOutlineIcon from "@mui/icons-material/StarOutlineOutlined";
 import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
+import Feedback from './Feedback'
+
 import {useDispatch, useSelector} from "react-redux";
 import {getLecturerById, lecturerReducer} from "~/redux/lecturer/lecturerSlice";
 import {getChapterSearch} from "~/redux/chapter/chapterSlice";
 import {getLessonSearch} from "~/redux/lesson/lessonSlice";
-import data from "bootstrap/js/src/dom/data";
 
 const cx = classNames.bind(style);
 
@@ -126,7 +127,8 @@ function CourseActive(props) {
                                         {/*    }}/>*/}
                                         {/*    <span className={cx('lesson-time')}>{"lesson.time"}</span>*/}
                                         {/*</Typography>*/}
-                                        <Typography variant='body1' className={cx('wrapper', 'col-3')}>
+                                        <Typography variant='body1' className='col-3'
+                                                    sx={{display: 'flex', alignItems: 'center'}}>
                                             <PlayArrowIcon sx={{
                                                 width: '3rem',
                                                 height: '3rem',
@@ -134,7 +136,8 @@ function CourseActive(props) {
                                             }}/>
                                             <span className={cx('number-study')}>{data.viewed}</span>
                                         </Typography>
-                                        <Typography variant='body1' className={cx('wrapper', 'col-5')}>
+                                        <Typography variant='body1' className='col-7'
+                                                    sx={{display: 'flex', alignItems: 'center'}}>
                                             <StarIcon sx={{
                                                 width: '3rem',
                                                 height: '3rem',
@@ -147,17 +150,14 @@ function CourseActive(props) {
                                         <Typography variant='body1' className={cx('wrapper', 'col-4')}>
                                         <span
                                             className={cx('lesson-create')}>Thời gian tạo bài:
-                                            {lesson.createdDate
-                                            }
+                                            <br/> {lesson.createdDate}
                                         </span>
                                         </Typography>
                                         <Typography variant='body1' className={cx('wrapper', 'col-4')}>
                                         <span
-                                            className={cx('lesson-update')}>Thời gian cập nhật: {lesson.modifierDate}</span>
+                                            className={cx('lesson-update')}>Thời gian cập nhật: <br/> {lesson.modifierDate}</span>
                                         </Typography>
-                                        <Typography variant='body1' className={cx('wrapper', 'col-4')}>
-                                            <span className={cx('lesson-evolution')}>Chia sẻ đánh giá của bạn</span>
-                                        </Typography>
+                                        <Feedback course={data}/>
                                     </div>
                                 </Box>
 
