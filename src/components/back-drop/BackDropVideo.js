@@ -10,6 +10,7 @@ function BackDropVideo({url}) {
     const handleToggle = () => {
         setOpen(!open);
     };
+
     return <Box sx={{position: 'absolute'}}>
         <PlayArrowIcon
             onClick={handleToggle}

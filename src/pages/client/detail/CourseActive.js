@@ -15,7 +15,7 @@ import {
     Typography
 } from "@mui/material";
 
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import ExpandNext from '@mui/icons-material/NavigateNext';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import PlayIcon from '@mui/icons-material/PlayCircleOutline';
@@ -28,56 +28,67 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import WebsiteIcon from "@mui/icons-material/LanguageOutlined";
 import StarOutlineIcon from "@mui/icons-material/StarOutlineOutlined";
 import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
+import {useDispatch, useSelector} from "react-redux";
+import {getLecturerById, lecturerReducer} from "~/redux/lecturer/lecturerSlice";
+import {getChapterSearch} from "~/redux/chapter/chapterSlice";
+import {getLessonSearch} from "~/redux/lesson/lessonSlice";
+import data from "bootstrap/js/src/dom/data";
 
 const cx = classNames.bind(style);
 
-
-function CourseActive({data}) {
-    const arrayChapter = data.chapters;
-    const [open, setOpen] = useState(0);
-    const [lesson, setLesson] = useState(arrayChapter[0].lessons[0]);
-
-
-    const handleClick = (index) => {
-        setOpen(index);
-    };
-
-    const handleClickLesson = (e, lessonItem) => {
-        const liElement = e.target.parentElement.parentElement;
-        liElement.backgroundColor = '#ccc';
-        setLesson(lessonItem)
+const getCategoryParent = (data) => {
+    const result = {name: data.name, codeName: data.codeName};
+    if (data?.category) {
+        result.name = data.category.name
+        result.codeName = data.category.codeName
     }
-
-
-    const getCategoryParent = (data) => {
-        const result = {};
-        if (data?.category) {
-            result.name = data.category.name
-            result.slug = data.category.slug
-        }
-        if (data?.category?.category) {
-            result.name = data.category.category.name
-            result.slug = data.category.category.slug
-        }
-        if (data?.category?.category?.category) {
-            result.name = data.category.category.category.name
-            result.slug = data.category.category.category.slug
-        }
-        if (data?.category?.category?.category?.category) {
-            result.name = data.category.category.category.category.name
-            result.slug = data.category.category.category.category.slug
-        }
-
-        return result
+    if (data?.category?.category) {
+        result.name = data.category.category.name
+        result.codeName = data.category.category.codeName
     }
-
-    const handleSeeMore = (e) => {
-        //     here
+    if (data?.category?.category?.category) {
+        result.name = data.category.category.category.name
+        result.codeName = data.category.category.category.codeName
     }
+    if (data?.category?.category?.category?.category) {
+        result.name = data.category.category.category.category.name
+        result.codeName = data.category.category.category.category.codeName
+    }
+    return result
+}
 
-    console.log('render')
 
+function CourseActive(props) {
+    const {data} = props;
+    const chapters = data && data.chapters;
+
+    const [lesson, setLesson] = useState(data || data.chapters[0].lessons[0])
     const parentCategory = getCategoryParent(data);
+
+    let arrayIndex = [];
+    const handleClick = (index, event) => {
+        if (arrayIndex.includes(index)) {
+            const divActive = document.querySelector(`#button-${index}.Detail_active__3sav1`)
+            divActive.classList.remove("Detail_active__3sav1")
+            const newArray = arrayIndex.filter(item => item !== index);
+            arrayIndex = newArray;
+        } else {
+            arrayIndex.push(index)
+            const divElement = event.target.closest(".Detail_chapters__Mgpiu")
+            divElement.classList.add("Detail_active__3sav1")
+        }
+
+        const collapse = document.querySelector(`#chapter-${index}`)
+        if (collapse.hidden) collapse.hidden = false;
+        else collapse.hidden = true;
+    }
+    const handleSelectLesson = (lesson, e) => {
+        const liActive = document.querySelector(".Detail_lesson-item__DWjah.Detail_active__3sav1 ")
+        liActive && liActive.classList.remove("Detail_active__3sav1")
+        const liElement = e.target.closest("li")
+        liElement.classList.add("Detail_active__3sav1");
+        setLesson(lesson)
+    }
 
     return <div className=''>
         <div className={cx('study-wrapper')}>
@@ -88,132 +99,129 @@ function CourseActive({data}) {
             <div className={cx('content')}>
                 <div className="row g-0">
                     <Box className="col-8" sx={{paddingLeft: '4rem', paddingRight: '2rem'}}>
-                        <div className={cx('lesson-detail')}>
-                            <iframe width="100%" height="500" src={lesson.video}
-                                    title="YouTube video player"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen></iframe>
+                        {
+                            lesson &&
+                            <div className={cx('lesson-detail')}>
+                                <iframe width="100%" height="500" src="https://www.youtube.com/embed/Mx9gcGFlEgw"
+                                        title="YouTube video player"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen></iframe>
 
-                            <h2 className={cx('lesson-name')}>{lesson.name.substring(lesson.name.indexOf(":") + 1)}</h2>
-                            <Box sx={{marginBottom: '3rem'}}>
-                                <Box component={Link} to={`/category/${parentCategory.slug}`}
-                                     className={cx('lesson-tag')}>{parentCategory.name}</Box>
-                            </Box>
+                                <h2 className={cx('lesson-name')}>{lesson.name}</h2>
+                                <Box sx={{marginBottom: '3rem'}}>
+                                    <Box component={Link} to={`/category/${parentCategory.codeName}`}
+                                         className={cx('lesson-tag')}>{parentCategory.name}</Box>
+                                </Box>
 
-                            {/*details*/}
-                            <Box className='row' sx={{margin: '1.5rem 0 4rem'}}>
-                                <div className="row col-5 align-items-center">
-                                    <Typography variant='body1' className={cx('wrapper', 'col-4')}>
-                                        <LockIcon sx={{
-                                            width: '3rem',
-                                            height: '3rem',
-                                            color: '#FCCF00'
-                                        }}/>
-                                        <span className={cx('lesson-time')}>{lesson.time}</span>
-                                    </Typography>
-                                    <Typography variant='body1' className={cx('wrapper', 'col-3')}>
-                                        <PlayArrowIcon sx={{
-                                            width: '3rem',
-                                            height: '3rem',
-                                            color: '#FCCF00'
-                                        }}/>
-                                        <span className={cx('number-study')}>895</span>
-                                    </Typography>
-                                    <Typography variant='body1' className={cx('wrapper', 'col-5')}>
-                                        <StarIcon sx={{
-                                            width: '3rem',
-                                            height: '3rem',
-                                            color: '#FCCF00'
-                                        }}/>
-                                        <span className={cx('evolution')}>4.7 Đánh giá</span>
-                                    </Typography>
-                                </div>
-                                <div className="row col-7 align-items-center">
-                                    <Typography variant='body1' className={cx('wrapper', 'col-4')}>
-                                        <span className={cx('lesson-create')}>Thời gian tạo: 22/05/2019</span>
-                                    </Typography>
-                                    <Typography variant='body1' className={cx('wrapper', 'col-4')}>
-                                        <span className={cx('lesson-update')}>Thời gian cập nhật: 13/03/2022</span>
-                                    </Typography>
-                                    <Typography variant='body1' className={cx('wrapper', 'col-4')}>
-                                        <span className={cx('lesson-evolution')}>Chia sẻ đánh giá của bạn</span>
-                                    </Typography>
-                                </div>
-                            </Box>
-
-                            {/*tabs*/}
-                            <TabDetail/>
-
-                            <Grid className={cx('benefit')}>
-                                <div className={cx('benefit-wrapper')}>
-                                    <h2 className={cx('benefit-title')}>Lợi ích từ khoá học</h2>
-                                    <div className={cx('benefit-content')}>
-                                        <div className={cx('benefit-item')}>
-                                            <TaskIcon className={cx('benefit-icon')}/>
-                                            <p className={cx('benefit-text')}>Khóa học hướng dẫn cách thiết lập các
-                                                chiến lược nhân sự dựa vào nhu cầu và quy mô của công ty, từ đó có
-                                                những
-                                                bước triển khai kế hoạch một cách hợp lý nhất.</p>
-                                        </div>
+                                {/*details*/}
+                                <Box className='row' sx={{margin: '1.5rem 0 4rem'}}>
+                                    <div className="row col-5 align-items-center">
+                                        <Typography variant='body1' className={cx('wrapper', 'col-4')}>
+                                            <LockIcon sx={{
+                                                width: '3rem',
+                                                height: '3rem',
+                                                color: '#FCCF00'
+                                            }}/>
+                                            <span className={cx('lesson-time')}>{"lesson.time"}</span>
+                                        </Typography>
+                                        <Typography variant='body1' className={cx('wrapper', 'col-3')}>
+                                            <PlayArrowIcon sx={{
+                                                width: '3rem',
+                                                height: '3rem',
+                                                color: '#FCCF00'
+                                            }}/>
+                                            <span className={cx('number-study')}>{data.viewed}</span>
+                                        </Typography>
+                                        <Typography variant='body1' className={cx('wrapper', 'col-5')}>
+                                            <StarIcon sx={{
+                                                width: '3rem',
+                                                height: '3rem',
+                                                color: '#FCCF00'
+                                            }}/>
+                                            <span className={cx('evolution')}>4.7 Đánh giá</span>
+                                        </Typography>
                                     </div>
-                                </div>
-                            </Grid>
-
-                            <Box className={cx('author')}>
-                                <h2 className={cx('author-title')}>Giảng viên</h2>
-                                <Box className={cx('author-wrapper')}>
-                                    <div className={cx('author-image')}>
-                                        <Badge>
-                                            <Avatar
-                                                src="https://cdn7.edumall.vn/uploads/images/instructors/le-tham-duong.png"
-                                                alt='author'
-                                                sx={{width: 120, height: 120}}/>
-                                        </Badge>
+                                    <div className="row col-7 align-items-center">
+                                        <Typography variant='body1' className={cx('wrapper', 'col-4')}>
+                                        <span
+                                            className={cx('lesson-create')}>Thời gian tạo bài:
+                                            {lesson.createdDate
+                                            }
+                                        </span>
+                                        </Typography>
+                                        <Typography variant='body1' className={cx('wrapper', 'col-4')}>
+                                        <span
+                                            className={cx('lesson-update')}>Thời gian cập nhật: {lesson.modifierDate}</span>
+                                        </Typography>
+                                        <Typography variant='body1' className={cx('wrapper', 'col-4')}>
+                                            <span className={cx('lesson-evolution')}>Chia sẻ đánh giá của bạn</span>
+                                        </Typography>
                                     </div>
-                                    <Box className={cx('author-info')}>
-                                        <div className={cx('author-header')}>
-                                            <div className={cx('author-profile')}>
-                                                <Box component={Link} to={'/'} className={cx('author-link')}>Lê Thẩm
-                                                    Dương</Box>
-                                                <LinkedInIcon sx={{color: '#007bb6'}}
-                                                              className={cx('author-social')}/>
-                                                <WebsiteIcon className={cx('author-social')}/>
-                                            </div>
-                                            <div className={cx('author-evolution')}>
-                                                <StarOutlineIcon/>
-                                                <Typography variant='body1'
-                                                            className={cx('text')}>4.7/5</Typography>
-                                                <Typography variant='body1'>sao</Typography>
-                                                <GroupOutlinedIcon/>
-                                                <Typography variant='body1' className={cx('text')}>1091</Typography>
-                                                <Typography variant='body1'>Người theo dõi</Typography>
+                                </Box>
+
+                                {/*tabs*/}
+                                <TabDetail data={data}/>
+
+                                <Grid className={cx('benefit')}>
+                                    <div className={cx('benefit-wrapper')}>
+                                        <h2 className={cx('benefit-title')}>Lợi ích từ khoá học</h2>
+                                        <div className={cx('benefit-content')}>
+                                            <div className={cx('benefit-item')}>
+                                                <TaskIcon className={cx('benefit-icon')}/>
+                                                <p className={cx('benefit-text')}>Khóa học hướng dẫn cách thiết lập các
+                                                    chiến lược nhân sự dựa vào nhu cầu và quy mô của công ty, từ đó có
+                                                    những
+                                                    bước triển khai kế hoạch một cách hợp lý nhất.</p>
                                             </div>
                                         </div>
-                                        <div id={cx('description-expand')} className={cx('author-body')}>
-                                            <Typography variant='body1'>
-                                                {
-                                                    data.author.description.map((item, index) => {
-                                                        if (index === 0) {
-                                                            return <span className={cx('author-text')} key={index}>
-                                                                        {item}
-                                                                    </span>
-                                                        } else {
-                                                            return <span className={cx('author-text', 'hidden')}
-                                                                         key={index}>
-                                                                        {item}
-                                                                    </span>
-                                                        }
-                                                    })
-                                                }
-                                                <span className={cx('author-more')}
-                                                      onClick={(e) => handleSeeMore(e)}>Xem thêm</span>
+                                    </div>
+                                </Grid>
 
-                                            </Typography>
+                                {data.lecturer && <Box className={cx('author')}>
+                                    <h2 className={cx('author-title')}>Giảng viên</h2>
+                                    <Box className={cx('author-wrapper')}>
+                                        <div className={cx('author-image')}>
+                                            <Badge>
+                                                <Avatar
+                                                    src={`/images/author/${data.lecturer.codeName}.jpg`}
+                                                    alt='author'
+                                                    sx={{width: 120, height: 120}}/>
+                                            </Badge>
                                         </div>
+                                        <Box className={cx('author-info')}>
+                                            <div className={cx('author-header')}>
+                                                <div className={cx('author-profile')}>
+                                                    <Box component={Link} to={`/author/${data.lecturer.codeName}`}
+                                                         className={cx('author-link')}>
+                                                        {data.lecturer.name}
+                                                    </Box>
+                                                    <LinkedInIcon sx={{color: '#007bb6'}}
+                                                                  className={cx('author-social')}/>
+                                                    <WebsiteIcon className={cx('author-social')}/>
+                                                </div>
+                                                <div className={cx('author-evolution')}>
+                                                    <StarOutlineIcon/>
+                                                    <Typography variant='body1'
+                                                                className={cx('text')}>4.7/5</Typography>
+                                                    <Typography variant='body1'>sao</Typography>
+                                                    <GroupOutlinedIcon/>
+                                                    <Typography variant='body1' className={cx('text')}>1091</Typography>
+                                                    <Typography variant='body1'>Người theo dõi</Typography>
+                                                </div>
+                                            </div>
+                                            <div id={cx('description-expand')} className={cx('author-body')}>
+                                                <Typography variant='body1'>
+                                                    <span className={cx('author-text')}>
+                                                        {data.lecturer.description}
+                                                    </span>
+                                                </Typography>
+                                            </div>
+                                        </Box>
                                     </Box>
                                 </Box>
-                            </Box>
-                        </div>
+                                }
+                            </div>
+                        }
                     </Box>
 
                     {/*lesson control*/}
@@ -224,15 +232,24 @@ function CourseActive({data}) {
                             className={cx("lesson-control")}
                         >
                             {
-                                arrayChapter.map((item, index) => {
+                                data.chapters && data.chapters.map((item, index) => {
                                     return <div key={index}>
-                                        <ListItemButton onClick={() => handleClick(index)} sx={{paddingRight: 0}}>
+                                        <ListItemButton
+                                            id={`button-${index}`}
+                                            onClick={(event) => handleClick(index, event)}
+                                            className={cx("chapters")}>
                                             <ListItemText primary={item.name}
                                                           primaryTypographyProps={{
                                                               style: {
                                                                   fontSize: '2rem',
                                                                   lineHeight: '2.4rem',
                                                                   textTransform: 'uppercase',
+                                                                  overflow: "hidden",
+                                                                  textOverflow: 'ellipsis',
+                                                                  WebkitLineClamp: 1,
+                                                                  display: "-webkit-box",
+                                                                  WebkitBoxOrient: 'vertical',
+                                                                  maxWidth: '350px'
                                                               }
                                                           }}
                                                           secondary={`${item.lessons.length} Bài đăng`}
@@ -244,27 +261,20 @@ function CourseActive({data}) {
                                                               }
                                                           }}
                                                           sx={{display: 'flex', justifyContent: 'space-between'}}
-                                                          className={cx(`${open === index ? 'active' : ''}`)}/>
-                                            {(open === index) ?
-                                                <ExpandMore className={cx(`${open === index ? 'active' : ''}`)}
-                                                            sx={{
-                                                                width: '3rem',
-                                                                height: '3rem'
-                                                            }}/> :
-                                                <ExpandNext className={cx('icon')}
-                                                            sx={{
-                                                                width: '3rem',
-                                                                height: '3rem'
-                                                            }}/>}
+                                            />
+                                            <ExpandMore className={cx('icon', 'icon-more')}/>
+                                            <ExpandNext className={cx('icon', 'icon-next')}/>
                                         </ListItemButton>
-                                        <Collapse in={open === index} timeout="auto" unmountOnExit>
+                                        <Collapse id={`chapter-${index}`} hidden={true} in={true} timeout="auto"
+                                                  unmountOnExit>
                                             <List component="div" disablePadding className='row'>
                                                 <Box component={'ul'} className='col-12'
                                                      sx={{listStyle: 'none', flexDirection: 'column',}}>
                                                     {
-                                                        item.lessons.map((lItem, lIndex) => (
-                                                            <Box key={lIndex} className='row align-items-center '
-                                                                 onClick={(e) => handleClickLesson(e, lItem)}
+                                                        item.lessons && item.lessons.map((lesson, i) => (
+                                                            <Box key={i}
+                                                                 className={cx('row', ' align-items-center', 'lesson-item')}
+                                                                 onClick={(e) => handleSelectLesson(lesson, e)}
                                                                  component={'li'}
                                                                  sx={{cursor: 'pointer', marginBottom: '1rem'}}>
                                                                 <ListItemIcon className='col-1' sx={{minWidth: '20px'}}>
@@ -274,14 +284,20 @@ function CourseActive({data}) {
                                                                         color: '#000'
                                                                     }}/>
                                                                 </ListItemIcon>
-                                                                <ListItemText primary={lItem.name} className='col-9'
+                                                                <ListItemText primary={lesson.name} className='col-9'
                                                                               primaryTypographyProps={{
                                                                                   style: {
                                                                                       fontSize: '1.8rem',
-                                                                                      color: '#000'
+                                                                                      color: '#000',
+                                                                                      overflow: "hidden",
+                                                                                      textOverflow: 'ellipsis',
+                                                                                      WebkitLineClamp: 2,
+                                                                                      display: "-webkit-box",
+                                                                                      WebkitBoxOrient: 'vertical',
+                                                                                      maxWidth: '350px'
                                                                                   }
                                                                               }}/>
-                                                                <ListItemText primary={lItem.time} className='col-2'
+                                                                <ListItemText primary={"time"} className='col-2'
                                                                               primaryTypographyProps={{
                                                                                   style: {
                                                                                       fontSize: '1.8rem',

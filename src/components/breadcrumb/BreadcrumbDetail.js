@@ -9,12 +9,13 @@ import SubNav from "~/components/sub-nav";
 const cx = classNames.bind(styles);
 
 function BreadcrumbDetail({data}) {
+    const url = 'https://res.cloudinary.com/dbrdml9bf/image/upload/v1638449082/topica/wave_iabqmr.png';
 
     return (
         <Box className={cx('breadcrumb')}>
             <Paper
                 className={cx('image-bg')}
-                style={{backgroundImage: `linear-gradient(191deg, rgba(255, 192, 67, 0) 5.02%, rgba(255, 192, 67, 0.5) 94.1%), url(${data.url})`}}
+                style={{backgroundImage: `linear-gradient(191deg, rgba(255, 192, 67, 0) 5.02%, rgba(255, 192, 67, 0.5) 94.1%), url(${url})`}}
             >
                 <Container maxWidth={false}>
                     <div className={cx('content')}>
@@ -31,28 +32,28 @@ function BreadcrumbDetail({data}) {
 
                         <Typography variant="p"
                                     sx={{
-                                        fontSize: '1.2rem',
+                                        fontSize: '1.6rem',
                                         color: '#000',
                                     }}>
                             {data.description}
                         </Typography>
 
-                        <div className={cx('evaluate-wrapper')}>
-                            <Grid container direction="row"
-                                  alignItems="center">
-                                <Grid item xs={12} sx={{display: 'inherit'}}
-                                      alignItems="center">
-                                    <div>
-                                        <StarIcon/>
-                                        <StarIcon/>
-                                        <StarIcon/>
-                                        <StarIcon/>
-                                        <HalfStarIcon/>
-                                    </div>
-                                    <span className={cx('text')}>4.6/5 (15,677 Đánh giá)</span>
-                                </Grid>
-                            </Grid>
-                        </div>
+                        {/*<div className={cx('evaluate-wrapper')}>*/}
+                        {/*    <Grid container direction="row"*/}
+                        {/*          alignItems="center">*/}
+                        {/*        <Grid item xs={12} sx={{display: 'inherit'}}*/}
+                        {/*              alignItems="center">*/}
+                        {/*            <div>*/}
+                        {/*                <StarIcon/>*/}
+                        {/*                <StarIcon/>*/}
+                        {/*                <StarIcon/>*/}
+                        {/*                <StarIcon/>*/}
+                        {/*                <HalfStarIcon/>*/}
+                        {/*            </div>*/}
+                        {/*            <span className={cx('text')}>4.6/5 (15,677 Đánh giá)</span>*/}
+                        {/*        </Grid>*/}
+                        {/*    </Grid>*/}
+                        {/*</div>*/}
                     </div>
                 </Container>
 

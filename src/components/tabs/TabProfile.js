@@ -1,7 +1,8 @@
 import {Avatar, Box, Button, FormControl, MenuItem, Tab, Tabs, TextField, Typography} from "@mui/material";
 import PropTypes from "prop-types";
 import {TabContext, TabList, TabPanel} from "@mui/lab";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {useDispatch} from "react-redux";
 
 
 TabPanel.propTypes = {
@@ -44,9 +45,15 @@ function TabProfile({data}) {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-
+    const dispatch = useDispatch();
     const genders = ['Nam', 'Nữ', 'Giới tính khác']
 
+    useEffect(() => {
+
+    },[dispatch])
+    const handleChangeFile = (e) => {
+        console.log(e.target.value);
+    }
     return (
         <Box>
             <Box sx={{paddingLeft: 0}}>
@@ -72,7 +79,7 @@ function TabProfile({data}) {
                                 <TextField
                                     id="standard-required"
                                     label="Tên"
-                                    defaultValue={data.user.lastName}
+                                    defaultValue={data.lastName}
                                     variant="standard"
                                     name='first-name'
                                     InputLabelProps={{
@@ -95,7 +102,7 @@ function TabProfile({data}) {
                                 <TextField
                                     id="standard-required"
                                     label="Họ"
-                                    defaultValue={data.user.firstName}
+                                    defaultValue={data.firstName}
                                     variant="standard"
                                     name='last-name'
                                     InputLabelProps={{
@@ -118,7 +125,6 @@ function TabProfile({data}) {
                                 <TextField
                                     id="standard-required"
                                     label="Giới tính"
-                                    defaultValue={data.user.gender}
                                     variant="standard"
                                     select
                                     name='gender'
@@ -153,7 +159,6 @@ function TabProfile({data}) {
                                     id="standard-required"
                                     label="Ngày sinh"
                                     type='date'
-                                    defaultValue={data.user.firstName}
                                     variant="standard"
                                     name='date'
                                     InputLabelProps={{
@@ -173,33 +178,6 @@ function TabProfile({data}) {
                                 />
                             </FormControl>
                         </Box>
-                        {/*<Box sx={{width: '50%', padding: '2% 5% 0 0'}}>*/}
-                        {/*    <FormControl sx={{width: '100%'}}>*/}
-                        {/*        <TextField*/}
-                        {/*            */}
-                        {/*            id="standard-required"*/}
-                        {/*            label="Số điện thoại"*/}
-                        {/*            defaultValue={data.user.phone}*/}
-                        {/*            variant="standard"*/}
-                        {/*            name='first-name'*/}
-                        {/*            InputLabelProps={{*/}
-                        {/*                style: {*/}
-                        {/*                    fontSize: '2rem',*/}
-                        {/*                    transform: 'none',*/}
-                        {/*                    transition: 'none',*/}
-                        {/*                }*/}
-                        {/*            }}*/}
-                        {/*            InputProps={{*/}
-                        {/*                style: {*/}
-                        {/*                    paddingBottom: '2rem',*/}
-                        {/*                    fontSize: '2rem',*/}
-                        {/*                    marginTop: '2.6rem'*/}
-                        {/*                }*/}
-                        {/*            }}*/}
-                        {/*        />*/}
-                        {/*    </FormControl>*/}
-                        {/*</Box>*/}
-                        {/*<Box sx={{width: '50%', padding: '2% 5% 0 0'}}> </Box>*/}
                         <Button
                             type='submit'
                             sx={{
@@ -226,19 +204,27 @@ function TabProfile({data}) {
                         flexDirection: 'column'
                     }}>
                         <Box sx={{width: 120, height: 120}}>
-                            <Avatar alt='user-image' src={data.user.avatar}
+                            <Avatar alt='user-image' src={data.imageUrl}
                                     sx={{width: '100%', height: '100%', border: '1px solid #ccc'}}/>
                         </Box>
-                        <Typography variant='body1'
-                                    sx={{
-                                        marginTop: '2rem',
-                                        fontSize: '2rem',
-                                        textDecoration: 'underline',
-                                        cursor: 'pointer'
-                                    }}>
+                        <Box
+                            component={"label"}
+                            htmlFor="file"
+                            sx={{
+                                marginTop: '2rem',
+                                fontSize: '2rem',
+                                textDecoration: 'underline',
+                                cursor: 'pointer'
+                            }}>
                             Cập nhập ảnh
-                        </Typography>
-                        <input type="file" accept='.png, .jpg,. jpeg' name='file' className='file-upload'/>
+                        </Box>
+
+                        <input
+                            type="file"
+                            accept='.png, .jpg,. jpeg'
+                            id='file' name='file' className='file-upload'
+                            onChange={(e) => handleChangeFile(e)}
+                        />
                     </Box>
                 </Box>
             </TabPanels>

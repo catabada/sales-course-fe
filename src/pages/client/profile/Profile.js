@@ -4,12 +4,17 @@ import {Box, Typography} from "@mui/material";
 import SubNav from "~/components/sub-nav";
 import {TabProfile} from "~/components/tabs";
 import {CourseData} from '~/services/fakeData'
+import {useDispatch, useSelector} from "react-redux";
+import {requestGetProfile} from "~/redux/user/userSlice";
+import {useEffect} from "react";
 
 const cx = classNames.bind(style);
 
 function Profile() {
-    const user = CourseData;
-    const data = {name: 'Trang cá nhân & Cài đặt', slug: ''};
+    const data = {name: 'Trang cá nhân & Cài đặt'};
+    const user = useSelector(state => state.userReducer.user)
+
+    console.log(user)
     return <Box className={cx('profile')}>
         <SubNav data={data}/>
 
@@ -18,7 +23,7 @@ function Profile() {
         </Box>
 
         <Box className={cx('content')}>
-            <TabProfile data={user}/>
+            {user && <TabProfile data={user}/>}
         </Box>
     </Box>
 }
