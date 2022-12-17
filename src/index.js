@@ -11,6 +11,8 @@ import { Provider } from 'react-redux/es';
 import { persistor, store } from '~/app/store.';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { GOOGLE_APP_ID } from './constants/LoginConstant';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -24,7 +26,7 @@ const theme = createTheme({
             main: '#fccf00',
         }
     },
-    MobileStepper:{
+    MobileStepper: {
 
     }
 })
@@ -32,13 +34,15 @@ root.render(
     <React.StrictMode>
         <BrowserRouter>
             <Provider store={store}>
-                <PersistGate persistor={persistor}>
-                    <GlobalStyles>
-                        <ThemeProvider theme={theme}>
-                            <App />
-                        </ThemeProvider>
-                    </GlobalStyles>
-                </PersistGate>
+                <GoogleOAuthProvider clientId={GOOGLE_APP_ID}>
+                    <PersistGate persistor={persistor}>
+                        <GlobalStyles>
+                            <ThemeProvider theme={theme}>
+                                <App />
+                            </ThemeProvider>
+                        </GlobalStyles>
+                    </PersistGate>
+                </GoogleOAuthProvider>
             </Provider>
         </BrowserRouter>
     </React.StrictMode>,

@@ -1,20 +1,20 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { authApi } from "../../apis/authApi";
-import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_REGISTER } from "./authType";
+import { AUTH_LOGIN, AUTH_LOGIN_FB, AUTH_LOGIN_GG, AUTH_LOGOUT, AUTH_REGISTER } from "./authType";
 import MySwal from "~/constants/MySwal";
 
 const initialState = {
     userId: 0,
     username: '',
     accessToken: '',
+    urlImage: '',
     isLoading: false,
-    isSuccess: false,
 }
 
 export const requestLogin = createAsyncThunk(AUTH_LOGIN, async (params, thunkApi) => {
     try {
         const response = await authApi.login(params);
-        if (response.success) {
+        if (!response.success) {
             return thunkApi.fulfillWithValue(response);
         } else {
             return thunkApi.rejectWithValue(response);
@@ -41,7 +41,28 @@ export const requestLogout = createAsyncThunk(AUTH_LOGOUT, async (params, thunkA
     return
 })
 
-
+export const requestLoginFacebook = createAsyncThunk(AUTH_LOGIN_FB, async (params, thunkApi) => {
+    try {
+        const response = await authApi.loginFacebook(params.accessToken);
+        if (!response.success) {
+            return thunkApi.rejectWithValue(response);
+        }
+        return thunkApi.fulfillWithValue(response);
+    } catch (err) {
+        return thunkApi.rejectWithValue(err.response.data);
+    }
+})
+export const requestLoginGoogle = createAsyncThunk(AUTH_LOGIN_GG, async (params, thunkApi) => {
+    try {
+        const response = await authApi.loginGoogle(params.code);
+        if (!response.success) {
+            return thunkApi.rejectWithValue(response);
+        }
+        return thunkApi.fulfillWithValue(response);
+    } catch (err) {
+        return thunkApi.rejectWithValue(err.response.data);
+    }
+})
 
 export const authSlice = createSlice({
     name: "auth",
@@ -59,7 +80,6 @@ export const authSlice = createSlice({
                 state.username = data.username;
                 state.accessToken = data.token;
                 state.isLoading = false;
-                state.isSuccess = true;
                 MySwal.fire({
                     toast: true,
                     position: 'top-end',
@@ -79,7 +99,6 @@ export const authSlice = createSlice({
             })
             .addCase(requestLogin.rejected, (state, action) => {
                 state.isLoading = false;
-                state.isSuccess = false;
                 MySwal.fire({
                     icon: 'error',
                     title: 'Oops...',
@@ -87,6 +106,52 @@ export const authSlice = createSlice({
                 });
                 return state;
             })
+
+            // Login Facebook
+            .addCase(requestLoginFacebook.pending, (state, action) => {
+                state.isLoading = true;
+                return state;
+            })
+            .addCase(requestLoginFacebook.fulfilled, (state, action) => {
+                const data = action.payload.data;
+                state.userId = data.userId;
+                state.username = data.username;
+                state.accessToken = data.token;
+                state.isLoading = false;
+            })
+            .addCase(requestLoginFacebook.rejected, (state, action) => {
+                state.isLoading = false;
+                // MySwal.fire({
+                //     icon: 'error',
+                //     title: 'Oops...',
+                //     text: action.payload.message,
+                // });
+                return state;
+            })
+
+            // Login Google
+            .addCase(requestLoginGoogle.pending, (state, action) => {
+                state.isLoading = true;
+                return state;
+            })
+            .addCase(requestLoginGoogle.fulfilled, (state, action) => {
+                const data = action.payload.data;
+                state.userId = data.userId;
+                state.username = data.username;
+                state.accessToken = data.token;
+                state.isLoading = false;
+            })
+            .addCase(requestLoginGoogle.rejected, (state, action) => {
+                state.isLoading = false;
+                // MySwal.fire({
+                //     icon: 'error',
+                //     title: 'Oops...',
+                //     text: action.payload.message,
+                // });
+                return state;
+            })
+
+
             .addCase(requestRegister.pending, (state, action) => {
                 state.isLoading = true;
                 return state;
