@@ -20,6 +20,7 @@ import {lessonReducer} from "~/redux/lesson/lessonSlice";
 import {wishlistReducer} from "~/redux/wishlist/wishlistSlice";
 import {cartReducer} from "~/redux/cart/cartSlice";
 import {feedbackReducer} from "~/redux/feedback/feedbackSlice";
+import {discussReducer} from "~/redux/discuss/discussSlice";
 
 const persistConfig = {
     key: 'root',
@@ -38,6 +39,7 @@ const rootReducer = combineReducers({
     wishlistReducer: wishlistReducer,
     cartReducer: cartReducer,
     feedbackReducer: feedbackReducer,
+    discussReducer: discussReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

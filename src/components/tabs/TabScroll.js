@@ -39,7 +39,7 @@ const cx = classNames.bind(style);
 function RatingList({rating}) {
     let result = [];
     for (let i = 0; i < 5; i++) {
-        if (i <= rating) {
+        if (i < rating) {
             result.push(<StarIconFill key={i} sx={{
                 height: '2.4rem', width: '2.4rem', color: '#FFC043FF'
             }}/>)
@@ -58,19 +58,20 @@ function RatingList({rating}) {
 }
 
 function TabScroll({data}) {
-    const chapterRef = useRef();
     const dispatch = useDispatch();
-    const feedBacks = useSelector(state => state.feedbackReducer.feedbacks)
     const faqList = faqFakeData;
     const [value, setValue] = useState(0);
     const [open, setOpen] = useState([])
+
+    const feedBacks = useSelector(state => state.feedbackReducer.feedbacks)
+
     useEffect(() => {
         data && dispatch(requestFeedbackSearch({
             course: {
                 id: data.id
             }
         }))
-    }, [dispatch])
+    }, [data])
     const handleChange = (e, newValue) => {
         setValue(newValue)
     }
@@ -111,7 +112,6 @@ function TabScroll({data}) {
         const courseVideo = document.querySelector("#readMore")
         const backgroundElement = document.querySelector(".TabScroll_read-more-hidden__VBoLr");
         const textInner = e.target.innerHTML;
-        console.log(e.target.innerHTML)
         if (textInner.length === 8) {
             courseVideo.style.height = "auto";
             backgroundElement.style.display = "none";
@@ -132,8 +132,7 @@ function TabScroll({data}) {
 
 
     const countTotalRating = feedBacks?.reduce((acu, currentValue) => acu + currentValue.rating, 0)
-    const avgRating = countTotalRating / feedBacks?.length;
-
+    const avgRating = (countTotalRating / feedBacks?.length).toFixed(1);
     return <div>
         <AppBar className={cx('navbar')}>
             <Tabs
@@ -326,7 +325,7 @@ function TabScroll({data}) {
                                                 <div className={cx('evolution-student')}>
                                                     <Typography variant='body1'
                                                                 className={cx('evolution-student-name', 'col-4')}>
-                                                        {item.appUser.username}
+                                                        {item.userInfo.username}
                                                     </Typography>
                                                     <div className='col-8'>
                                                         <RatingList rating={item.rating}/>

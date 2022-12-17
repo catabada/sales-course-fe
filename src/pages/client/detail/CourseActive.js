@@ -162,7 +162,7 @@ function CourseActive(props) {
                                 </Box>
 
                                 {/*tabs*/}
-                                <TabDetail data={data}/>
+                                <TabDetail data={data} lesson={lesson}/>
 
                                 <Grid className={cx('benefit')}>
                                     <div className={cx('benefit-wrapper')}>
