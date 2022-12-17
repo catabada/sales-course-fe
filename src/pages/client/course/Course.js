@@ -14,7 +14,6 @@ import {getCoursesSearch} from "~/redux/course/courseSlice";
 const cx = classNames.bind(style);
 
 const filterCourseByPrice = (arrayPrice, courses, currentCourses) => {
-    console.log("render")
 
     const result = []
     if (arrayPrice.length == 0) {

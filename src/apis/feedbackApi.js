@@ -24,7 +24,7 @@ export const feedbackApi = {
             // params: {
             content: feedback.content,
             rating: feedback.rating,
-            appUser: feedback.appUser,
+            userInfo: feedback.userInfo,
             course: feedback.course
             // },
             // headers: {

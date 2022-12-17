@@ -32,13 +32,13 @@ function Feedback({course}) {
             course: {
                 id: course.id,
             },
-            appUser: {
-                id: userId,
+            userInfo: {
+                userId: userId,
             },
             content: content,
             rating: rate,
         }))
-        navigate('#')
+        setOpen(!open)
     }
     return <Box sx={{display: 'flex'}} className='col-4'>
         <Typography variant='body1' onClick={() => setOpen(!open)} sx={{

@@ -8,6 +8,7 @@ const initialState = {
     isSuccess: false,
 }
 export const requestFeedbackSearch = createAsyncThunk(FEEDBACK_GET_SEARCH, (params, thunkApi) => {
+    console.log(params)
     const feedbacks = feedbackApi.getFeedbackSearch(params);
     return feedbacks;
 })
@@ -36,7 +37,6 @@ const feedbackSlice = createSlice({
             })
             // create
             .addCase(requestFeedbackCreate.rejected, (state, action) => {
-                console.log(action.payload)
                 state.isLoading = false;
                 state.isSuccess = false;
                 return state
