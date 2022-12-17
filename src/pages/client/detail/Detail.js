@@ -28,7 +28,7 @@ function Detail() {
         }))
     }
 
-    const isMyCourse = false;
+    const isMyCourse = true;
 
     return (
         <>

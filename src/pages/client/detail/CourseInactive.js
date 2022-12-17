@@ -20,14 +20,18 @@ import ShareIcon from '@mui/icons-material/ShareOutlined';
 import BackDropVideo from "~/components/back-drop";
 import {TabScroll} from "~/components/tabs";
 import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {addToCart} from "~/redux/cart/cartSlice";
+import {useEffect} from "react";
+import {requestFeedbackSearch} from "~/redux/feedback/feedbackSlice";
 
 const cx = classNames.bind(style);
 
 function CourseInactive(props) {
     const {data} = props
     const dispatch = useDispatch();
+
+
     const addCart = () => {
         dispatch(addToCart({...data}))
     }

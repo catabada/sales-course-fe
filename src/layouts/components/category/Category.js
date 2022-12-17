@@ -45,9 +45,8 @@ function Category() {
                 <Typography noWrap className={cx('title')}>
                     Danh mục
                 </Typography>
-
-                <KeyboardArrowUpOutlinedIcon className={cx('icon', 'icon-arrow', 'icon-up')}/>
-                <KeyboardArrowDownOutlinedIcon className={cx('icon', 'icon-arrow', 'icon-down')}/>
+                {/*<KeyboardArrowUpOutlinedIcon className={cx('icon', 'icon-arrow', 'icon-up')}/>*/}
+                {/*<KeyboardArrowDownOutlinedIcon className={cx('icon', 'icon-arrow', 'icon-down')}/>*/}
             </div>
 
             {/*<Box className={cx('category-content')}>*/}
@@ -69,4 +68,4 @@ function Category() {
     );
 }
 
-export default memo(Category);
+export default Category;
