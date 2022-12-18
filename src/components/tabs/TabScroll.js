@@ -4,7 +4,7 @@ import {
     AppBar, Avatar, Badge, Box, Button, Collapse,
     Grid,
     List,
-    ListItem, ListItemButton, ListItemIcon, ListItemText, makeStyles,
+    ListItem, ListItemButton, ListItemText,
     Step,
     StepContent,
     StepLabel,
@@ -13,12 +13,11 @@ import {
     Tabs, Typography,
 
 } from '@mui/material';
-import {memo, useEffect, useMemo, useRef, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {Container} from '@mui/system';
 import TaskIcon from '@mui/icons-material/TaskAltOutlined';
 import PlayIcon from '@mui/icons-material/PlayCircleOutlined';
 import ArrowDownIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
-import ArrowUpIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
 import WebsiteIcon from '@mui/icons-material/LanguageOutlined';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import StarOutlineIcon from '@mui/icons-material/StarOutlineOutlined';
@@ -28,20 +27,51 @@ import DocumentIcon from '@mui/icons-material/TextSnippetOutlined';
 import {HalfStarIcon, StarIcon} from "~/components/icons";
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import CartIcon from '@mui/icons-material/ShoppingCartOutlined';
-import FavoriteIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import ShareIcon from '@mui/icons-material/ShareOutlined';
 import {Link} from "react-router-dom";
-import ExpandNext from "@mui/icons-material/NavigateNext";
 import {faqFakeData} from '~/services/fakeData'
+import {useDispatch, useSelector} from "react-redux";
+import {requestFeedbackSearch} from "~/redux/feedback/feedbackSlice";
+import StarIconFill from '@mui/icons-material/Star';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 const cx = classNames.bind(style);
 
+function RatingList({rating}) {
+    let result = [];
+    for (let i = 0; i < 5; i++) {
+        if (i < rating) {
+            result.push(<StarIconFill key={i} sx={{
+                height: '2.4rem', width: '2.4rem', color: '#FFC043FF'
+            }}/>)
+        } else {
+            result.push(<StarBorderIcon key={i} sx={{
+                height: '2.4rem', width: '2.4rem', color: '#FFC043FF'
+            }}/>)
+        }
+    }
+
+    return <div>
+        {
+            result.map(item => item)
+        }
+    </div>
+}
+
 function TabScroll({data}) {
-    const chapterRef = useRef();
+    const dispatch = useDispatch();
     const faqList = faqFakeData;
     const [value, setValue] = useState(0);
     const [open, setOpen] = useState([])
+
+    const feedBacks = useSelector(state => state.feedbackReducer.feedbacks)
+
+    useEffect(() => {
+        data && dispatch(requestFeedbackSearch({
+            course: {
+                id: data.id
+            }
+        }))
+    }, [data])
     const handleChange = (e, newValue) => {
         setValue(newValue)
     }
@@ -82,7 +112,6 @@ function TabScroll({data}) {
         const courseVideo = document.querySelector("#readMore")
         const backgroundElement = document.querySelector(".TabScroll_read-more-hidden__VBoLr");
         const textInner = e.target.innerHTML;
-        console.log(e.target.innerHTML)
         if (textInner.length === 8) {
             courseVideo.style.height = "auto";
             backgroundElement.style.display = "none";
@@ -101,6 +130,9 @@ function TabScroll({data}) {
         </div>)
     }
 
+
+    const countTotalRating = feedBacks?.reduce((acu, currentValue) => acu + currentValue.rating, 0)
+    const avgRating = (countTotalRating / feedBacks?.length).toFixed(1);
     return <div>
         <AppBar className={cx('navbar')}>
             <Tabs
@@ -260,19 +292,15 @@ function TabScroll({data}) {
                                     fontSize: '2.4rem',
                                     fontWeight: 700,
                                     paddingBottom: '.5rem'
-                                }}>4.6/5</Typography>
+                                }}>{avgRating}/5</Typography>
                                 <div>
-                                    <StarIcon/>
-                                    <StarIcon/>
-                                    <StarIcon/>
-                                    <StarIcon/>
-                                    <HalfStarIcon/>
+                                    <RatingList rating={avgRating}/>
                                 </div>
                                 <Typography variant='body1' sx={{
                                     fontSize: '1.2rem',
                                     paddingTop: '.5rem',
                                     color: '#082346'
-                                }}>(15,677 đánh giá)</Typography>
+                                }}>({feedBacks?.length} đánh giá)</Typography>
                             </div>
                             <div>
                                 <div className={cx('evolution-item')}>
@@ -289,103 +317,32 @@ function TabScroll({data}) {
                         </div>
                         <div className={cx('divide')}></div>
                         <div className={cx('evolution-right')}>
-                            <div className={cx('evolution-right-wrapper')}>
-                                <div className={cx('evolution-comment-item')}>
-                                    <div className={cx('evolution-student')}>
-                                        <Typography variant='body1'
-                                                    className={cx('evolution-student-name')}>
-                                            Lan Phuong
-                                        </Typography>
-                                        <div>
-                                            <StarIcon/>
-                                            <StarIcon/>
-                                            <StarIcon/>
-                                            <StarOutlineIcon sx={{
-                                                color: '#FFC043',
-                                                height: '2.4rem',
-                                                width: '2.4rem'
-                                            }}/>
-                                            <StarOutlineIcon sx={{
-                                                color: '#FFC043',
-                                                height: '2.4rem',
-                                                width: '2.4rem'
-                                            }}/>
+                            {
+                                feedBacks?.map((item, index) => {
+                                    if (index <= 4) {
+                                        return <div key={index} className={cx('evolution-right-wrapper')}>
+                                            <div className={cx('evolution-comment-item')}>
+                                                <div className={cx('evolution-student')}>
+                                                    <Typography variant='body1'
+                                                                className={cx('evolution-student-name', 'col-4')}>
+                                                        {item.userInfo.username}
+                                                    </Typography>
+                                                    <div className='col-8'>
+                                                        <RatingList rating={item.rating}/>
+                                                    </div>
+                                                </div>
+                                                <div className={cx('evolution-student-comment')}>
+                                                    <Typography variant='body1' sx={{fontSize: '1.6rem'}}>
+                                                        {item.content}
+                                                    </Typography>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className={cx('evolution-student-comment')}>
-                                        <Typography variant='body1' sx={{fontSize: '1.6rem'}}>Giảng
-                                            viên
-                                            nhiệt tình, chương trình
-                                            học đơn giản, dễ hiểu. Nội
-                                            dung rất đáng học</Typography>
-                                    </div>
-                                </div>
-                            </div>
+                                    }
+                                })
+                            }
 
-                            <div className={cx('evolution-right-wrapper')}>
-                                <div className={cx('evolution-comment-item')}>
-                                    <div className={cx('evolution-student')}>
-                                        <Typography variant='body1'
-                                                    className={cx('evolution-student-name')}>
-                                            Hong Mai
-                                        </Typography>
-                                        <div className={cx('evolution-rate')}>
-                                            <StarIcon/>
-                                            <StarIcon/>
-                                            <StarIcon/>
-                                            <StarOutlineIcon sx={{
-                                                color: '#FFC043',
-                                                height: '2.4rem',
-                                                width: '2.4rem'
-                                            }}/>
-                                            <StarOutlineIcon sx={{
-                                                color: '#FFC043',
-                                                height: '2.4rem',
-                                                width: '2.4rem'
-                                            }}/>
-                                        </div>
-                                    </div>
-                                    <div className={cx('evolution-student-comment')}>
-                                        <Typography variant='body1' sx={{fontSize: '1.6rem'}}>Giáo
-                                            trình
-                                            giảng dạy chi tiết, có hướng dẫn công cụ đi kèm. Tuy
-                                            nhiên
-                                            cần thêm case study thực tế để dễ tham khảo</Typography>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={cx('evolution-right-wrapper')}>
-                                <div className={cx('evolution-comment-item')}>
-                                    <div className={cx('evolution-student')}>
-                                        <Typography variant='body1'
-                                                    className={cx('evolution-student-name')}>
-                                            Hong Mai
-                                        </Typography>
-                                        <div className={cx('evolution-rate')}>
-                                            <StarIcon/>
-                                            <StarIcon/>
-                                            <StarIcon/>
-                                            <StarOutlineIcon sx={{
-                                                color: '#FFC043',
-                                                height: '2.4rem',
-                                                width: '2.4rem'
-                                            }}/>
-                                            <StarOutlineIcon sx={{
-                                                color: '#FFC043',
-                                                height: '2.4rem',
-                                                width: '2.4rem'
-                                            }}/>
-                                        </div>
-                                    </div>
-                                    <div className={cx('evolution-student-comment')}>
-                                        <Typography variant='body1' sx={{fontSize: '1.6rem'}}>Giáo
-                                            trình
-                                            giảng dạy chi tiết, có hướng dẫn công cụ đi kèm. Tuy
-                                            nhiên
-                                            cần thêm case study thực tế để dễ tham khảo</Typography>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>

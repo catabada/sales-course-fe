@@ -1,22 +1,22 @@
-import { Box, Button, IconButton, InputAdornment, TextField, Typography, useFormControl } from '@mui/material';
+import {Button, TextField, Typography} from '@mui/material';
 import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import style from './Auth.module.scss';
 
-import { FacebookIcon, GoogleIcon, AppleIcon, EyeUnshowIcon, EyeShowIcon } from '~/components/icons';
-import { useState } from 'react';
-import { Form, useForm } from '~/hooks/useForm';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { authApi } from '~/apis/authApi';
-import { useDispatch, useSelector } from 'react-redux';
-import { requestRegister } from '~/redux/auth/authSlice';
+import {FacebookIcon, GoogleIcon, AppleIcon} from '~/components/icons';
+import {useState} from 'react';
+import {Form, useForm} from '~/hooks/useForm';
+import {useDispatch, useSelector} from 'react-redux';
+import {requestRegister} from '~/redux/auth/authSlice';
 import Loading from '~/components/loading';
 
 const cx = classNames.bind(style);
+
 function SignUp() {
     const dispatch = useDispatch()
+    const navigate = useNavigate();
     const [showConfirm, setShowConfirm] = useState(false);
-    const { isLoading } = useSelector(state => state.authReducer)
+    const {isLoading} = useSelector(state => state.authReducer)
 
 
     const initialFieldValues = {
@@ -27,8 +27,8 @@ function SignUp() {
     }
 
     const validate = (fieldValues = values) => {
-        let temp = { ...errors }
-        let tempEnable = { ...errorsEnable }
+        let temp = {...errors}
+        let tempEnable = {...errorsEnable}
         if ('email' in fieldValues) {
             if (fieldValues.email !== '') {
                 if ((/$^|.+@.+..+/).test(fieldValues.email)) {
@@ -110,7 +110,7 @@ function SignUp() {
     } = useForm(initialFieldValues, true, validate);
     const handleSendEmail = async () => {
         if (validate()) {
-            await dispatch(requestRegister({ userRegister: values }))
+            await dispatch(requestRegister({userRegister: values}))
             if (!isLoading) {
                 setShowConfirm(true);
             }
@@ -118,7 +118,7 @@ function SignUp() {
     }
 
     const handleSendEmailAgain = () => {
-        dispatch(requestRegister({ userRegister: values }))
+        dispatch(requestRegister({userRegister: values}))
     }
 
     const handleSubmit = (e) => {
@@ -135,17 +135,17 @@ function SignUp() {
                 <div className={cx('content-social')}>
                     <div className={cx('social-list')}>
                         <button className={cx('social-item', 'fb-background')}>
-                            <FacebookIcon />
+                            <FacebookIcon/>
                             <Typography className={cx('social-lable', 'fb-color')}>Continue with Facebook</Typography>
                         </button>
 
                         <button className={cx('social-item')}>
-                            <GoogleIcon />
+                            <GoogleIcon/>
                             <Typography className={cx('social-lable')}>Continue with Google</Typography>
                         </button>
 
                         <button className={cx('social-item')}>
-                            <AppleIcon />
+                            <AppleIcon/>
                             <Typography className={cx('social-lable')}>Continue with Apple</Typography>
                         </button>
                     </div>
@@ -161,13 +161,13 @@ function SignUp() {
                         autoComplete='off'
                         margin='normal'
                         InputProps={{
-                            style: { fontSize: '1.6rem' },
+                            style: {fontSize: '1.6rem'},
                         }}
-                        InputLabelProps={{ style: { fontSize: 16 } }}
-                        FormHelperTextProps={{ style: { fontSize: 12 } }}
+                        InputLabelProps={{style: {fontSize: 16}}}
+                        FormHelperTextProps={{style: {fontSize: 12}}}
                         variant="outlined"
                         fullWidth
-                        placeholder="mail@example.com"
+                        placeholder="username"
                         error={errorsEnable.username}
                         helperText={errors.username}
                         onChange={handleInputChange}
@@ -180,10 +180,10 @@ function SignUp() {
                         label="Địa chỉ email"
                         margin='normal'
                         InputProps={{
-                            style: { fontSize: '1.6rem' },
+                            style: {fontSize: '1.6rem'},
                         }}
-                        InputLabelProps={{ style: { fontSize: 16 } }}
-                        FormHelperTextProps={{ style: { fontSize: 12 } }}
+                        InputLabelProps={{style: {fontSize: 16}}}
+                        FormHelperTextProps={{style: {fontSize: 12}}}
                         variant="outlined"
                         fullWidth
                         placeholder="mail@example.com"
@@ -200,13 +200,13 @@ function SignUp() {
                         label="Mật khẩu"
                         autoComplete='current-password'
                         InputProps={{
-                            style: { fontSize: '1.6rem' },
+                            style: {fontSize: '1.6rem'},
                         }}
-                        InputLabelProps={{ style: { fontSize: 16 } }}
-                        FormHelperTextProps={{ style: { fontSize: 12 } }}
+                        InputLabelProps={{style: {fontSize: 16}}}
+                        FormHelperTextProps={{style: {fontSize: 12}}}
                         variant="outlined"
                         fullWidth
-                        placeholder="mail@example.com"
+                        placeholder="*******"
                         error={errorsEnable.password}
                         helperText={errors.password}
                         onChange={handleInputChange}
@@ -219,13 +219,13 @@ function SignUp() {
                         margin='normal'
                         autoComplete='off'
                         InputProps={{
-                            style: { fontSize: '1.6rem' },
+                            style: {fontSize: '1.6rem'},
                         }}
-                        InputLabelProps={{ style: { fontSize: 16 } }}
-                        FormHelperTextProps={{ style: { fontSize: 12 } }}
+                        InputLabelProps={{style: {fontSize: 16}}}
+                        FormHelperTextProps={{style: {fontSize: 12}}}
                         variant="outlined"
                         fullWidth
-                        placeholder="mail@example.com"
+                        placeholder="0123133123"
                         error={errorsEnable.phone}
                         helperText={errors.phone}
                         onChange={handleInputChange}
@@ -245,13 +245,12 @@ function SignUp() {
 
 
                 <div className={cx('flex')}>
-                    <Typography sx={{ color: '#00459F', fontSize: '1.5rem' }}>
+                    <Typography sx={{color: '#00459F', fontSize: '1.5rem'}}>
                         Đã có tài khoản?
                         <Typography
-                            component={Link}
-                            to={'/auth/signin'}
+                            onClick={() => navigate("/auth/signin")}
                             className={cx('custom-link')}
-                            sx={{ marginLeft: '10px!important', fontWeight: 'bold' }}
+                            sx={{marginLeft: '10px!important', fontWeight: 'bold', cursor: 'pointer'}}
                         >
                             Đăng nhập
                         </Typography>
@@ -262,7 +261,8 @@ function SignUp() {
                 <Typography className={cx('title')}>Xác nhận</Typography>
                 <Typography className={cx('content')}>Chúng tôi đã gửi email tới địa chỉ {values.email}</Typography>
                 <Typography className={cx('des')}>
-                    Vui lòng nhấn vào đường dẫn được gửi tới email của bạn để hoàn thành đăng ký. Nếu bạn không nhận được email, hãy kiểm tra tệp tin rác của bạn.
+                    Vui lòng nhấn vào đường dẫn được gửi tới email của bạn để hoàn thành đăng ký. Nếu bạn không nhận
+                    được email, hãy kiểm tra tệp tin rác của bạn.
                 </Typography>
                 <Button
                     variant="contained"
@@ -273,20 +273,19 @@ function SignUp() {
                     Gửi lại email xác nhận
                 </Button>
                 <div className={cx('flex')}>
-                    <Typography sx={{ color: '#00459F', fontSize: '1.5rem' }}>
+                    <Typography sx={{color: '#00459F', fontSize: '1.5rem'}}>
                         Đã có tài khoản?
                         <Typography
-                            component={Link}
-                            to={'/auth/signin'}
+                            onClick={() => navigate('/auth/signin')}
                             className={cx('custom-link')}
-                            sx={{ marginLeft: '10px!important', fontWeight: 'bold' }}
+                            sx={{marginLeft: '10px!important', fontWeight: 'bold'}}
                         >
                             Đăng nhập
                         </Typography>
                     </Typography>
                 </div>
             </div>
-            <Loading open={isLoading} />
+            <Loading open={isLoading}/>
         </div>
     );
 }

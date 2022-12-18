@@ -28,11 +28,12 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import WebsiteIcon from "@mui/icons-material/LanguageOutlined";
 import StarOutlineIcon from "@mui/icons-material/StarOutlineOutlined";
 import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
+import Feedback from './Feedback'
+
 import {useDispatch, useSelector} from "react-redux";
 import {getLecturerById, lecturerReducer} from "~/redux/lecturer/lecturerSlice";
 import {getChapterSearch} from "~/redux/chapter/chapterSlice";
 import {getLessonSearch} from "~/redux/lesson/lessonSlice";
-import data from "bootstrap/js/src/dom/data";
 
 const cx = classNames.bind(style);
 
@@ -61,10 +62,12 @@ const getCategoryParent = (data) => {
 function CourseActive(props) {
     const {data} = props;
     const chapters = data && data.chapters;
-
-    const [lesson, setLesson] = useState(data || data.chapters[0].lessons[0])
+    const [lesson, setLesson] = useState()
     const parentCategory = getCategoryParent(data);
 
+    useEffect(() => {
+        chapters && setLesson(chapters[0].lessons[0])
+    }, [chapters])
     let arrayIndex = [];
     const handleClick = (index, event) => {
         if (arrayIndex.includes(index)) {
@@ -102,7 +105,7 @@ function CourseActive(props) {
                         {
                             lesson &&
                             <div className={cx('lesson-detail')}>
-                                <iframe width="100%" height="500" src="https://www.youtube.com/embed/Mx9gcGFlEgw"
+                                <iframe width="100%" height="500" src={lesson.video}
                                         title="YouTube video player"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowFullScreen></iframe>
@@ -116,15 +119,16 @@ function CourseActive(props) {
                                 {/*details*/}
                                 <Box className='row' sx={{margin: '1.5rem 0 4rem'}}>
                                     <div className="row col-5 align-items-center">
-                                        <Typography variant='body1' className={cx('wrapper', 'col-4')}>
-                                            <LockIcon sx={{
-                                                width: '3rem',
-                                                height: '3rem',
-                                                color: '#FCCF00'
-                                            }}/>
-                                            <span className={cx('lesson-time')}>{"lesson.time"}</span>
-                                        </Typography>
-                                        <Typography variant='body1' className={cx('wrapper', 'col-3')}>
+                                        {/*<Typography variant='body1' className={cx('wrapper', 'col-4')}>*/}
+                                        {/*    <LockIcon sx={{*/}
+                                        {/*        width: '3rem',*/}
+                                        {/*        height: '3rem',*/}
+                                        {/*        color: '#FCCF00'*/}
+                                        {/*    }}/>*/}
+                                        {/*    <span className={cx('lesson-time')}>{"lesson.time"}</span>*/}
+                                        {/*</Typography>*/}
+                                        <Typography variant='body1' className='col-3'
+                                                    sx={{display: 'flex', alignItems: 'center'}}>
                                             <PlayArrowIcon sx={{
                                                 width: '3rem',
                                                 height: '3rem',
@@ -132,7 +136,8 @@ function CourseActive(props) {
                                             }}/>
                                             <span className={cx('number-study')}>{data.viewed}</span>
                                         </Typography>
-                                        <Typography variant='body1' className={cx('wrapper', 'col-5')}>
+                                        <Typography variant='body1' className='col-7'
+                                                    sx={{display: 'flex', alignItems: 'center'}}>
                                             <StarIcon sx={{
                                                 width: '3rem',
                                                 height: '3rem',
@@ -145,22 +150,19 @@ function CourseActive(props) {
                                         <Typography variant='body1' className={cx('wrapper', 'col-4')}>
                                         <span
                                             className={cx('lesson-create')}>Thời gian tạo bài:
-                                            {lesson.createdDate
-                                            }
+                                            <br/> {lesson.createdDate}
                                         </span>
                                         </Typography>
                                         <Typography variant='body1' className={cx('wrapper', 'col-4')}>
                                         <span
-                                            className={cx('lesson-update')}>Thời gian cập nhật: {lesson.modifierDate}</span>
+                                            className={cx('lesson-update')}>Thời gian cập nhật: <br/> {lesson.modifierDate}</span>
                                         </Typography>
-                                        <Typography variant='body1' className={cx('wrapper', 'col-4')}>
-                                            <span className={cx('lesson-evolution')}>Chia sẻ đánh giá của bạn</span>
-                                        </Typography>
+                                        <Feedback course={data}/>
                                     </div>
                                 </Box>
 
                                 {/*tabs*/}
-                                <TabDetail data={data}/>
+                                <TabDetail data={data} lesson={lesson}/>
 
                                 <Grid className={cx('benefit')}>
                                     <div className={cx('benefit-wrapper')}>
@@ -297,13 +299,13 @@ function CourseActive(props) {
                                                                                       maxWidth: '350px'
                                                                                   }
                                                                               }}/>
-                                                                <ListItemText primary={"time"} className='col-2'
-                                                                              primaryTypographyProps={{
-                                                                                  style: {
-                                                                                      fontSize: '1.8rem',
-                                                                                      color: '#757575'
-                                                                                  }
-                                                                              }}/>
+                                                                {/*<ListItemText primary={"time"} className='col-2'*/}
+                                                                {/*              primaryTypographyProps={{*/}
+                                                                {/*                  style: {*/}
+                                                                {/*                      fontSize: '1.8rem',*/}
+                                                                {/*                      color: '#757575'*/}
+                                                                {/*                  }*/}
+                                                                {/*              }}/>*/}
                                                             </Box>
                                                         ))
                                                     }

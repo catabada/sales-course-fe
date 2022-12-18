@@ -2,9 +2,8 @@ import style from './Payment.module.scss'
 import classNames from "classnames/bind";
 import SubNav from "~/components/sub-nav";
 import {Avatar, Box, Button, Container, Divider, Typography} from "@mui/material";
-
-import {CourseList} from '~/services/fakeData'
 import {useState} from "react";
+import {useSelector} from "react-redux";
 
 const cx = classNames.bind(style);
 
@@ -12,9 +11,10 @@ function Payment() {
 
     const data = {name: 'Thanh toán', slug: ''}
     const [disable, setDisable] = useState(true)
-    const price = CourseList.reduce((accumulator, currentValue) => accumulator + currentValue.price, 0)
-    const salePrice = CourseList.reduce((accumulator, currentValue) => accumulator + currentValue.salesPrice, 0)
-
+    const cart = useSelector(state => state.cartReducer.cart);
+    const price = cart.reduce((accumulator, currentValue) => accumulator + currentValue.price, 0)
+    const salePrice = cart.reduce((accumulator, currentValue) => accumulator + (currentValue.price - currentValue.price * currentValue.discount), 0)
+    const decrement = price - salePrice;
 
     const handleChange = (e) => {
         const inputChecked = e.target
@@ -24,14 +24,12 @@ function Payment() {
 
     }
 
-    const decrement = price - salePrice;
-
     return <Box className={cx('payment')}>
         <Container sx={{paddingTop: '3rem'}}>
             <SubNav data={data}/>
 
             <Box sx={{display: "flex"}}>
-                <Box sx={{width: '60%', marginRight: '3rem'}}>
+                <Box sx={{width: '50%', marginRight: '3rem'}}>
                     <Typography variant='h5' className={cx('title')}>Thanh toán</Typography>
                     <Box>
                         <Typography variant='h4' className={cx('sub-title')}>Phương thức thanh toán</Typography>
@@ -94,6 +92,57 @@ function Payment() {
                                 </Typography>
                             </Box>
                         </Box>
+                    </Box>
+
+                    <Box>
+                        <Typography variant="h5" className={cx('title-courses')}>Đơn hàng của bạn</Typography>
+                        {
+                            cart.map((item, index) => (
+                                <Box key={index} sx={{marginTop: '5rem'}}>
+                                    <Box sx={{display: 'flex', alignItems: 'center'}}>
+                                        <Typography variant="body1"
+                                                    sx={{fontSize: '2rem', fontWeight: 'bold'}}
+                                        >
+                                            {item.name}
+                                        </Typography>
+                                        <Typography variant="body2"
+                                                    sx={{
+                                                        fontSize: '1.6rem',
+                                                        textDecoration: 'line-through',
+                                                        marginLeft: 'auto'
+                                                    }}
+                                        >
+                                            {Intl.NumberFormat('vi-VN', {
+                                                style: 'currency',
+                                                currency: 'VND'
+                                            }).format(item.price)}
+                                        </Typography>
+                                    </Box>
+                                    <Box sx={{display: 'flex', alignItems: 'center'}}>
+                                        <Typography variant="body1"
+                                                    sx={{
+                                                        fontSize: '1.6rem',
+                                                    }}
+                                        >
+                                            {item.lecturer.name}
+                                        </Typography>
+                                        <Typography variant="body2"
+                                                    sx={{
+                                                        fontSize: '1.6rem',
+                                                        color: '#FCCF00',
+                                                        marginLeft: 'auto',
+                                                        fontWeight: 'bold',
+                                                    }}
+                                        >
+                                            {Intl.NumberFormat('vi-VN', {
+                                                style: 'currency',
+                                                currency: 'VND'
+                                            }).format(item.price - item.price * item.discount)}
+                                        </Typography>
+                                    </Box>
+                                </Box>
+                            ))
+                        }
                     </Box>
                 </Box>
                 <Box sx={{flex: 1}}>

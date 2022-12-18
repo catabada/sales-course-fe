@@ -17,9 +17,9 @@ import {Link} from "react-router-dom";
 import {getCategoriesSearch, getCategoryByCode} from "~/redux/category/categorySlice";
 
 const cx = classNames.bind(styles);
-export default function Filter({codeCategory}) {
+export default function Filter(props) {
+    const {codeCategory} = props
     const dispatch = useDispatch();
-
     const subCategories = useSelector(state => state.categoryReducer.categories);
 
     useEffect(() => {
@@ -29,6 +29,7 @@ export default function Filter({codeCategory}) {
             }
         }))
     }, [dispatch, codeCategory])
+
     return (
         <Box sx={{width: '100%'}}>
             <Box className={cx('wrapper')}>
@@ -100,58 +101,62 @@ export default function Filter({codeCategory}) {
                                     margin: '0 7px',
                                     fontSize: '1.6rem'
                                 }}
-                                variant='h5'>Thời lượng khóa</Typography>
+                                variant='h5'>Giá khoá học</Typography>
                             <FormGroup sx={{marginTop: '5px'}}>
                                 <MenuItem className={cx('sub-menu-item')}>
-                                    <FormControlLabel control={<Checkbox size='large'/>}
-                                                      label={<Typography sx={{width: '100%'}} variant="body1">Dưới 1
-                                                          giờ</Typography>}/>
+                                    <FormControlLabel
+                                        control={<Checkbox size='large' value="0" name="price-filter"
+                                                           onChange={props.parentCallback}/>}
+                                        label={<Typography sx={{width: '100%'}} variant="body1"> Miễn phí</Typography>}
+                                    />
                                 </MenuItem>
                                 <Divider/>
                                 <MenuItem className={cx('sub-menu-item')}>
-                                    <FormControlLabel control={<Checkbox size='large'/>}
-                                                      label={<Typography sx={{width: '100%'}} variant="body1">1-2
-                                                          giờ</Typography>}/>
+                                    <FormControlLabel
+                                        control={<Checkbox size='large' value="200" name="price-filter"
+                                                           onChange={props.parentCallback}/>}
+                                        label={<Typography sx={{width: '100%'}} variant="body1"> Dưới 200k</Typography>}
+                                    />
                                 </MenuItem>
                                 <Divider/>
                                 <MenuItem className={cx('sub-menu-item')}>
-                                    <FormControlLabel control={<Checkbox size='large'/>}
-                                                      label={<Typography sx={{width: '100%'}} variant="body1">2-4
-                                                          giờ</Typography>}/>
+                                    <FormControlLabel
+                                        control={<Checkbox size='large' value="500" name="price-filter"
+                                                           onChange={props.parentCallback}/>}
+                                        label={<Typography sx={{width: '100%'}} variant="body1"> Từ 200k -
+                                            500k</Typography>}
+                                    />
                                 </MenuItem>
                                 <Divider/>
                                 <MenuItem className={cx('sub-menu-item')}>
-                                    <FormControlLabel control={<Checkbox size='large'/>}
-                                                      label={<Typography sx={{width: '100%'}} variant="body1">4-6
-                                                          giờ</Typography>}/>
-                                </MenuItem>
-                                <Divider/>
-                                <MenuItem className={cx('sub-menu-item')}>
-                                    <FormControlLabel control={<Checkbox size='large'/>}
-                                                      label={<Typography sx={{width: '100%'}} variant="body1">6 giờ trở
-                                                          lên</Typography>}/>
+                                    <FormControlLabel
+                                        control={<Checkbox size='large' value="501" name="price-filter"
+                                                           onChange={props.parentCallback}/>}
+                                        label={<Typography sx={{width: '100%'}} variant="body1"> Trên
+                                            500k</Typography>}
+                                    />
                                 </MenuItem>
                                 <Divider/>
                             </FormGroup>
                         </MenuList>
-                        <MenuList className={cx('sub-menu-list')}>
-                            <Typography
-                                sx={{
-                                    color: '#C89F65',
-                                    fontWeight: 'bold',
-                                    margin: '0 7px',
-                                    fontSize: '1.6rem'
-                                }}
-                                variant='h5'>Khác</Typography>
-                            <FormGroup sx={{marginTop: '5px'}}>
-                                <MenuItem className={cx('sub-menu-item')}>
-                                    <FormControlLabel control={<Checkbox size='large'/>}
-                                                      label={<Typography sx={{width: '100%'}} variant="body1">Đang giảm
-                                                          giá</Typography>}/>
-                                </MenuItem>
-                                <Divider/>
-                            </FormGroup>
-                        </MenuList>
+                        {/*<MenuList className={cx('sub-menu-list')}>*/}
+                        {/*    <Typography*/}
+                        {/*        sx={{*/}
+                        {/*            color: '#C89F65',*/}
+                        {/*            fontWeight: 'bold',*/}
+                        {/*            margin: '0 7px',*/}
+                        {/*            fontSize: '1.6rem'*/}
+                        {/*        }}*/}
+                        {/*        variant='h5'>Khác</Typography>*/}
+                        {/*    <FormGroup sx={{marginTop: '5px'}}>*/}
+                        {/*        <MenuItem className={cx('sub-menu-item')}>*/}
+                        {/*            <FormControlLabel control={<Checkbox size='large'/>}*/}
+                        {/*                              label={<Typography sx={{width: '100%'}} variant="body1">Đang giảm*/}
+                        {/*                                  giá</Typography>}/>*/}
+                        {/*        </MenuItem>*/}
+                        {/*        <Divider/>*/}
+                        {/*    </FormGroup>*/}
+                        {/*</MenuList>*/}
                     </MenuList>
                 </Paper>
 

@@ -10,16 +10,15 @@ import {getCoursesSearch} from "~/redux/course/courseSlice";
 
 const cx = classNames.bind(styles);
 
-export default function ListCourse({courses}) {
+export default function ListCourse(props) {
     // State
-    const [sort, setSort] = useState(0);
+
     const [page, setPage] = useState(1);
     const [search, setSearch] = useSearchParams()
-
     const navigate = useNavigate();
-    const handleSort = (newSort) => {
-        setSort(newSort)
-    }
+    const [courseSort, setCourseSort] = useState([]);
+
+    const {courses} = props
 
     const handlePagination = (event, value) => {
         setSearch({page: value})
@@ -27,31 +26,41 @@ export default function ListCourse({courses}) {
     }
 
     useEffect(() => {
-
         let pageUrl = Number.parseInt(search.get("page") === null ? 1 : search.get("page"))
         setPage(pageUrl)
-
-
     }, [search.get("page")])
     return (
         <>
             <Container className={cx('wrapper')} maxWidth={false}>
                 <Box className={cx('header-sort')} sx={{display: 'flex'}}>
-                    <Button onClick={() => handleSort(0)} className={cx(sort === 0 ? 'active' : '')} variant="outlined">Liên
-                        quan nhất</Button>
-                    <Button onClick={() => handleSort(1)} className={cx(sort === 1 ? 'active' : '')} variant="outlined">Phổ
-                        biến nhất</Button>
-                    <Button onClick={() => handleSort(2)} className={cx(sort === 2 ? 'active' : '')} variant="outlined">Mới
-                        nhất</Button>
-                    <Button onClick={() => handleSort(3)} className={cx(sort === 3 ? 'active' : '')} variant="outlined">Cũ
-                        nhất</Button>
-                    <Button onClick={() => handleSort(4)} className={cx(sort === 4 ? 'active' : '')} variant="outlined">Giá
-                        tăng dần</Button>
-                    <Button onClick={() => handleSort(5)} className={cx(sort === 5 ? 'active' : '')} variant="outlined">Giá
-                        giảm dần</Button>
-
-                    <SubPagination/>
-
+                    {/*<Button onClick={() => handleSort(0)} className={cx(sort === 0 ? 'active' : '')} variant="outlined">Liên*/}
+                    {/*    quan nhất</Button>*/}
+                    <Button onClick={(e) => props.parentCallback(e, 0)}
+                            className={cx(props.params === 0 ? 'active' : '')}
+                            variant="outlined">
+                        Phổ biến nhất
+                    </Button>
+                    <Button onClick={(e) => props.parentCallback(e, 1)}
+                            className={cx(props.params === 1 ? 'active' : '')}
+                            variant="outlined">
+                        Mới nhất
+                    </Button>
+                    <Button onClick={(e) => props.parentCallback(e, 2)}
+                            className={cx(props.params === 2 ? 'active' : '')}
+                            variant="outlined">
+                        Cũ nhất
+                    </Button>
+                    <Button onClick={(e) => props.parentCallback(e, 3)}
+                            className={cx(props.params === 3 ? 'active' : '')}
+                            variant="outlined">
+                        Giá tăng dần
+                    </Button>
+                    <Button onClick={(e) => props.parentCallback(e, 4)}
+                            className={cx(props.params === 4 ? 'active' : '')}
+                            variant="outlined">
+                        Giá giảm dần
+                    </Button>
+                    {/*<SubPagination/>*/}
                 </Box>
 
                 <Box className={cx('list-course')}>
