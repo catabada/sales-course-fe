@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { authApi } from "~/apis/authApi";
-import { USER_GET_PROFILE, USER_LOGOUT } from "./userType";
+import MySwal from "~/constants/MySwal";
+import { USER_GET_PROFILE, USER_LOGOUT, USER_SAVE_PROFILE } from "./userType";
 
 const initialState = {
     users: [],
@@ -24,6 +25,16 @@ export const requestLogoutUser = createAsyncThunk(USER_LOGOUT, async (params, th
     return thunkApi.fulfillWithValue(params);
 })
 
+export const requestSaveProfile = createAsyncThunk((USER_SAVE_PROFILE), async (params, thunkApi) => {
+    try {
+        const response = await authApi.saveProfile(params.userInfo, params.accessToken);
+        return !response.success ? thunkApi.rejectWithValue(response) : thunkApi.fulfillWithValue(response);
+    } catch (error) {
+        return thunkApi.rejectWithValue(error.response.data);
+    }
+})
+
+
 export const userSlice = createSlice({
     name: "user",
     initialState,
@@ -45,6 +56,39 @@ export const userSlice = createSlice({
             .addCase(requestLogoutUser.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.user = null;
+                return state;
+            })
+
+            .addCase(requestSaveProfile.pending, (state, action) => {
+                state.isLoading = true;
+                return state;
+            })
+            .addCase(requestSaveProfile.fulfilled, (state, action) => {
+                state.isLoading = false;
+                MySwal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Thành công!',
+                    text: `Thay đổi thông tin thành công!`,
+                    showConfirmButton: false,
+                    timer: 2500,
+                    showClass: {
+                        popup: 'animate__animated animate__backInRight'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__backOutRight'
+                    }
+                });
+                return state;
+            })
+            .addCase(requestSaveProfile.rejected, (state, action) => {
+                state.isLoading = false;
+                MySwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: action.payload.message,
+                });
                 return state;
             })
     }

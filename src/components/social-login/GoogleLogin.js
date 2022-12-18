@@ -9,7 +9,7 @@ const GoogleLogin = () => {
 
     const responseGoogle = (response) => {
         console.log(response);
-        dispatch(requestLoginGoogle({code: response.code}))
+        dispatch(requestLoginGoogle({ accessToken: response.access_token }))
     }
 
     const errorGoogle = (error) => {
@@ -19,9 +19,7 @@ const GoogleLogin = () => {
     const login = useGoogleLogin({
         onSuccess: responseGoogle,
         onError: errorGoogle,
-        flow: 'auth-code',
-        
-    })
+    })  
 
     return <Button
         onClick={() => login()}
@@ -36,9 +34,9 @@ const GoogleLogin = () => {
         }}
     >
         <GoogleIcon />
-        <Typography 
-            sx={{fontSize: '1.7rem', textTransform: 'none', color: '#000', marginLeft: '1rem'}}
-            >Đăng nhập bằng Google</Typography>
+        <Typography
+            sx={{ fontSize: '1.7rem', textTransform: 'none', color: '#000', marginLeft: '1rem' }}
+        >Đăng nhập bằng Google</Typography>
     </Button>
 
 }

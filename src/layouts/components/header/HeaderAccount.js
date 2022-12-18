@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { requestLogout } from "~/redux/auth/authSlice";
 import { requestLogoutUser } from "~/redux/user/userSlice";
 
-function HeaderAccount({ user }) {
+function HeaderAccount({ image }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ function HeaderAccount({ user }) {
     const id = open ? 'simple-popover' : undefined;
     return <Box>
         <Avatar
-            src={user.imageUrl}
+            src={image}
             alt="avatar"
             sx={{ width: 56, height: 56, cursor: 'pointer', marginLeft: '1rem' }}
             onClick={handleClick}>

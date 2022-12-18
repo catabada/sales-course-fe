@@ -7,9 +7,9 @@ import MySwal from "~/constants/MySwal";
 
 const initialState = {
     userId: 0,
-    username: '',
+    firstName: '',
     accessToken: '',
-    urlImage: '',
+    imageUrl: '',
     isLoading: false,
 }
 
@@ -56,7 +56,7 @@ export const requestLoginFacebook = createAsyncThunk(AUTH_LOGIN_FB, async (param
 })
 export const requestLoginGoogle = createAsyncThunk(AUTH_LOGIN_GG, async (params, thunkApi) => {
     try {
-        const response = await authApi.loginGoogle(params.code);
+        const response = await authApi.loginGoogle(params.accessToken);
         if (!response.success) {
             return thunkApi.rejectWithValue(response);
         }
@@ -79,8 +79,9 @@ export const authSlice = createSlice({
             .addCase(requestLogin.fulfilled, (state, action) => {
                 const data = action.payload.data;
                 state.userId = data.userId;
-                state.username = data.username;
+                state.firstName = data.firstName;
                 state.accessToken = data.token;
+                state.imageUrl = data.imageUrl;
                 state.isLoading = false;
                 MySwal.fire({
                     toast: true,
@@ -117,9 +118,26 @@ export const authSlice = createSlice({
             .addCase(requestLoginFacebook.fulfilled, (state, action) => {
                 const data = action.payload.data;
                 state.userId = data.userId;
-                state.username = data.username;
+                state.firstName = data.firstName;
                 state.accessToken = data.token;
+                state.imageUrl = data.imageUrl;
                 state.isLoading = false;
+                MySwal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Thành công!',
+                    text: `Chào mừng ${state.firstName} đến với website`,
+                    showConfirmButton: false,
+                    timer: 2500,
+                    showClass: {
+                        popup: 'animate__animated animate__backInRight'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__backOutRight'
+                    }
+                });
+                return state;
             })
             .addCase(requestLoginFacebook.rejected, (state, action) => {
                 state.isLoading = false;
@@ -139,9 +157,26 @@ export const authSlice = createSlice({
             .addCase(requestLoginGoogle.fulfilled, (state, action) => {
                 const data = action.payload.data;
                 state.userId = data.userId;
-                state.username = data.username;
+                state.firstName = data.firstName;
                 state.accessToken = data.token;
+                state.imageUrl = data.imageUrl;
                 state.isLoading = false;
+                MySwal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Thành công!',
+                    text: `Chào mừng ${state.username} đến với website`,
+                    showConfirmButton: false,
+                    timer: 2500,
+                    showClass: {
+                        popup: 'animate__animated animate__backInRight'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__backOutRight'
+                    }
+                });
+                return state;
             })
             .addCase(requestLoginGoogle.rejected, (state, action) => {
                 state.isLoading = false;

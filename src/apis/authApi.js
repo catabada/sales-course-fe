@@ -44,7 +44,18 @@ export const authApi = {
     },
 
     async loginFacebook(accessToken) {
-        return await axiosClient.post('/user/login-facebook', {
+        return await axiosClient.post('/user/login-facebook', null, {
+            params: {
+                access_token: accessToken
+            }
+        })
+            .then((response) => {
+                console.log(response)
+                return response;
+            }).catch((err) => err.response.data)
+    },
+    async loginGoogle(accessToken) {
+        return await axiosClient.post('/user/login-google', null, {
             params: {
                 access_token: accessToken
             }
@@ -53,18 +64,26 @@ export const authApi = {
                 return response;
             }).catch((err) => err.response.data)
     },
-    async loginGoogle(code) {
-        return await axiosClient.post('/user/login-google', {
-            params: {
-                code: code
+
+    async saveProfile(userInfo, accessToken) {
+        return await axiosClient.put('/user/profile', {
+            userId: userInfo.userId,
+            phone: userInfo.phone,
+            firstName: userInfo.firstName,
+            lastName: userInfo.lastName,
+            dateOfBirth: userInfo.dateOfBirth,
+            isMale: userInfo.isMale,
+            email: userInfo.email,
+            fullName: userInfo.email,
+        }, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
             }
-        })
-            .then((response) => {
-                return response;
-            }).catch((err) => err.response.data)
-    },
-
-
+        }
+        ).then((response) => {
+            return response;
+        }).catch((err) => err.response.data)
+    }
 
 
 }
