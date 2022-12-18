@@ -11,7 +11,9 @@ import {Form, useForm} from '~/hooks/useForm';
 import {useDispatch, useSelector} from 'react-redux';
 import {requestLogin} from '~/redux/auth/authSlice';
 import Loading from '~/components/loading';
-import FacebookLogin from '~/components/facebook-login';
+import { FACEBOOK_APP_ID, GOOGLE_APP_ID } from '~/constants/LoginConstant';
+import FacebookLogin from '~/components/social-login/FacebookLogin';
+import GoogleLogin from '~/components/social-login/GoogleLogin';
 
 
 const cx = classNames.bind(styles);
@@ -20,8 +22,10 @@ function SignIn() {
     const [show, setShow] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate()
+    const google = window.google;
 
-    const {isLoading, accessToken, isSuccess} = useSelector(state => state.authReducer)
+    const { isLoading, accessToken } = useSelector(state => state.authReducer)
+
     const handleClick = (e) => {
         e.preventDefault();
         setShow(!show);
@@ -94,22 +98,8 @@ function SignIn() {
 
                     <div className={cx('content-social')}>
                         <div className={cx('social-list')}>
-                            <Box>
-                                {/*<FacebookLogin/>*/}
-                            </Box>
-                            {/*<button className={cx('social-item', 'fb-background')}>*/}
-                            {/*<FacebookIcon />*/}
-
-                            {/*<Typography className={cx('social-lable', 'fb-color')}>*/}
-                            {/*    Continue with Facebook*/}
-                            {/*</Typography>*/}
-                            {/*</button>*/}
-
-                            <button className={cx('social-item')}>
-                                <GoogleIcon/>
-                                <Typography className={cx('social-lable')}>Continue with Google</Typography>
-                            </button>
-
+                            <FacebookLogin />
+                            <GoogleLogin />
                             <button className={cx('social-item')}>
                                 <AppleIcon/>
                                 <Typography className={cx('social-lable')}>Continue with Apple</Typography>

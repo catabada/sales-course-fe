@@ -40,8 +40,31 @@ export const authApi = {
         }).then((response) => {
             return response;
         }).catch((err) => err.response.data)
-        
-    }
+
+    },
+
+    async loginFacebook(accessToken) {
+        return await axiosClient.post('/user/login-facebook', {
+            params: {
+                access_token: accessToken
+            }
+        })
+            .then((response) => {
+                return response;
+            }).catch((err) => err.response.data)
+    },
+    async loginGoogle(code) {
+        return await axiosClient.post('/user/login-google', {
+            params: {
+                code: code
+            }
+        })
+            .then((response) => {
+                return response;
+            }).catch((err) => err.response.data)
+    },
+
+
 
 
 }
