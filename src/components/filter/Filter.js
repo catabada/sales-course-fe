@@ -19,7 +19,6 @@ import { getCategoriesSearch, getCategoryByCode } from "~/redux/category/categor
 const cx = classNames.bind(styles);
 export default function Filter({ codeCategory }) {
     const dispatch = useDispatch();
-
     const subCategories = useSelector(state => state.categoryReducer.categories);
 
     useEffect(() => {
@@ -29,6 +28,7 @@ export default function Filter({ codeCategory }) {
             }
         }))
     }, [dispatch, codeCategory])
+
     return (
         <Box sx={{ width: '100%' }}>
             <Box className={cx('wrapper')}>
@@ -113,6 +113,8 @@ export default function Filter({ codeCategory }) {
                                         label={<Typography sx={{ width: '100%' }} variant="body1">1-2
                                             giờ</Typography>} />
                                 </MenuItem>
+                                <MenuItem className={cx('sub-menu-item')}>
+                                </MenuItem>
                                 <Divider />
                                 <MenuItem className={cx('sub-menu-item')}>
                                     <FormControlLabel control={<Checkbox size='large' />}
@@ -152,6 +154,24 @@ export default function Filter({ codeCategory }) {
                                 <Divider />
                             </FormGroup>
                         </MenuList>
+                        {/*<MenuList className={cx('sub-menu-list')}>*/}
+                        {/*    <Typography*/}
+                        {/*        sx={{*/}
+                        {/*            color: '#C89F65',*/}
+                        {/*            fontWeight: 'bold',*/}
+                        {/*            margin: '0 7px',*/}
+                        {/*            fontSize: '1.6rem'*/}
+                        {/*        }}*/}
+                        {/*        variant='h5'>Khác</Typography>*/}
+                        {/*    <FormGroup sx={{marginTop: '5px'}}>*/}
+                        {/*        <MenuItem className={cx('sub-menu-item')}>*/}
+                        {/*            <FormControlLabel control={<Checkbox size='large'/>}*/}
+                        {/*                              label={<Typography sx={{width: '100%'}} variant="body1">Đang giảm*/}
+                        {/*                                  giá</Typography>}/>*/}
+                        {/*        </MenuItem>*/}
+                        {/*        <Divider/>*/}
+                        {/*    </FormGroup>*/}
+                        {/*</MenuList>*/}
                     </MenuList>
                 </Paper>
 

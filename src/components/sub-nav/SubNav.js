@@ -32,7 +32,7 @@ function SubNav({data, breadcrumbCourse}) {
     return <Breadcrumbs
         separator={<NavigateNextIcon fontSize="medium" className={cx('next-icon')}/>}
         aria-label="breadcrumb"
-        className={cx(`${breadcrumbCourse}`)}
+        sx={{paddingTop:'2rem'}}
     >
         <Link color="inherit" href="/" className={cx('sub-item')}>
             Trang chủ

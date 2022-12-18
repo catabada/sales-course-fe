@@ -1,15 +1,15 @@
-import { Backdrop, Box, Button, CircularProgress, Container, TextField, Typography } from '@mui/material';
+import {Box, Button, Container, TextField, Typography} from '@mui/material';
 import classNames from 'classnames/bind';
 
-import { Link, useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import styles from './Auth.module.scss';
 
 
-import { useEffect, useState } from 'react';
-import { FacebookIcon, GoogleIcon, AppleIcon, EyeUnshowIcon, EyeShowIcon } from '~/components/icons';
-import { Form, useForm } from '~/hooks/useForm';
-import { useDispatch, useSelector } from 'react-redux';
-import { requestLogin } from '~/redux/auth/authSlice';
+import {useEffect, useState} from 'react';
+import {FacebookIcon, GoogleIcon, AppleIcon, EyeUnshowIcon, EyeShowIcon} from '~/components/icons';
+import {Form, useForm} from '~/hooks/useForm';
+import {useDispatch, useSelector} from 'react-redux';
+import {requestLogin} from '~/redux/auth/authSlice';
 import Loading from '~/components/loading';
 import { FACEBOOK_APP_ID, GOOGLE_APP_ID } from '~/constants/LoginConstant';
 import FacebookLogin from '~/components/social-login/FacebookLogin';
@@ -25,6 +25,7 @@ function SignIn() {
     const google = window.google;
 
     const { isLoading, accessToken } = useSelector(state => state.authReducer)
+
     const handleClick = (e) => {
         e.preventDefault();
         setShow(!show);
@@ -35,8 +36,8 @@ function SignIn() {
         password: ''
     }
     const validate = (fieldValues = values) => {
-        let temp = { ...errors }
-        let tempEnable = { ...errorsEnable }
+        let temp = {...errors}
+        let tempEnable = {...errorsEnable}
         if ('username' in fieldValues) {
             if (fieldValues.username === '') {
                 tempEnable.username = true;
@@ -87,15 +88,11 @@ function SignIn() {
     }
 
 
-
-
-
-
     return (
         <Container maxWidth={false}>
             <div className={cx('wrapper')}>
                 <div className={cx('content')}>
-                    <Typography sx={{ marginBottom: '3rem' }} className={cx('title')}>
+                    <Typography sx={{marginBottom: '3rem'}} className={cx('title')}>
                         Đăng nhập
                     </Typography>
 
@@ -104,7 +101,7 @@ function SignIn() {
                             <FacebookLogin />
                             <GoogleLogin />
                             <button className={cx('social-item')}>
-                                <AppleIcon />
+                                <AppleIcon/>
                                 <Typography className={cx('social-lable')}>Continue with Apple</Typography>
                             </button>
                         </div>
@@ -112,29 +109,29 @@ function SignIn() {
                         <div className={cx('divider')}>Hoặc tiếp tục với</div>
                     </div>
 
-                    <Form onSubmit={handleSubmit} sx={{ width: '100%' }}>
-                        <Box sx={{ position: 'relative' }}>
+                    <Form onSubmit={handleSubmit} sx={{width: '100%'}}>
+                        <Box sx={{position: 'relative'}}>
                             <TextField
                                 label="Tên đăng nhập"
                                 autoComplete='off'
                                 InputProps={{
-                                    style: { fontSize: '1.5rem' },
+                                    style: {fontSize: '1.5rem'},
                                 }}
-                                sx={{ marginTop: '1rem' }}
+                                sx={{marginTop: '1rem'}}
                                 variant="outlined"
                                 fullWidth
                                 name="username"
                                 onChange={handleInputChange}
-                                FormHelperTextProps={{ style: { fontSize: 12 } }}
+                                FormHelperTextProps={{style: {fontSize: 12}}}
                                 error={errorsEnable.username}
                                 value={values.username}
                                 helperText={errors.username}
                                 placeholder="username"
-                                InputLabelProps={{ style: { fontSize: '1.6rem' } }}
+                                InputLabelProps={{style: {fontSize: '1.6rem'}}}
                             />
                         </Box>
 
-                        <Box sx={{ position: 'relative', marginBottom: '15px' }}>
+                        <Box sx={{position: 'relative', marginBottom: '15px'}}>
                             <TextField
                                 sx={{
                                     position: 'relative',
@@ -149,20 +146,20 @@ function SignIn() {
                                 size="medium"
                                 name="password"
                                 onChange={handleInputChange}
-                                FormHelperTextProps={{ style: { fontSize: 12 } }}
+                                FormHelperTextProps={{style: {fontSize: 12}}}
                                 error={errorsEnable.password}
                                 value={values.password}
                                 helperText={errors.password}
                                 InputProps={{
-                                    style: { fontSize: '1.5rem' },
+                                    style: {fontSize: '1.5rem'},
                                 }}
-                                InputLabelProps={{ style: { fontSize: '1.6rem' } }}
+                                InputLabelProps={{style: {fontSize: '1.6rem'}}}
                             />
                             <button className={cx('btn-show')} onClick={handleClick}>
                                 {show ? (
-                                    <EyeUnshowIcon className={cx('icon-von')} />
+                                    <EyeUnshowIcon className={cx('icon-von')}/>
                                 ) : (
-                                    <EyeShowIcon className={cx('icon-von')} />
+                                    <EyeShowIcon className={cx('icon-von')}/>
                                 )}
                             </button>
                         </Box>
@@ -172,23 +169,21 @@ function SignIn() {
                     </Form>
 
                     <Typography
-                        component={Link}
-                        to={'/auth/forget'}
+                        onClick={() => navigate('/auth/forget')}
                         className={cx('custom-link')}
-                        sx={{ display: 'block' }}
+                        sx={{display: 'block', cursor: 'pointer'}}
                     >
                         Quên mật khẩu?
                     </Typography>
 
 
                     <div className={cx('flex')}>
-                        <Typography sx={{ color: '#00459F', fontSize: '1.5rem' }}>
+                        <Typography sx={{color: '#00459F', fontSize: '1.5rem'}}>
                             Bạn chưa có tài khoản?
                             <Typography
-                                component={Link}
-                                to={'/auth/signup'}
+                                onClick={() => navigate('/auth/signup')}
                                 className={cx('custom-link')}
-                                sx={{ marginLeft: '10px!important', fontWeight: 'bold' }}
+                                sx={{marginLeft: '10px!important', fontWeight: 'bold', cursor: 'pointer'}}
                             >
                                 Đăng ký
                             </Typography>
@@ -196,7 +191,7 @@ function SignIn() {
                     </div>
                 </div>
             </div>
-            <Loading open={isLoading} />
+            <Loading open={isLoading}/>
         </Container>
     );
 }

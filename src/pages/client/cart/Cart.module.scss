@@ -1,4 +1,27 @@
 .cart {
+  .cart-empty {
+    border: 1px solid #082346;
+    height: 432px;
+    margin-top: 50px;
+    text-align: center;
+    padding-top: 146px;
+    margin-bottom: 72px;
+
+    .cart-empty-text {
+      font-size: 2rem;
+    }
+
+    .btn-back {
+      font-size: 2rem;
+      height: 10rem;
+      width: 50%;
+      box-shadow: none;
+      &:hover{
+        background-color: #FCCF00;
+      }
+    }
+  }
+
 
   .detail-bill {
     background-color: rgba(252, 207, 0, 0.2);

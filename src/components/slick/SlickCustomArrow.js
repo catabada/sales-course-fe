@@ -3,6 +3,7 @@ import {Box} from "@mui/material";
 import CardCourse from "~/components/card-course";
 import NextIcon from '@mui/icons-material/ChevronRight';
 import PrevIcon from '@mui/icons-material/ChevronLeft';
+import './_Custom.scss'
 
 function NextArrow(props) {
     const {className, style, onClick} = props;
@@ -45,11 +46,14 @@ function SlickCustomArrow({data}) {
     };
 
     return <Slider {...settings}>
-        {data.map((item, index) => (
-            <Box sx={{padding: '1rem'}} key={index}>
-                <CardCourse key={item.id} data={item}/>
-            </Box>
-        ))}
+        {data.map((item, index) => {
+            if (index <= 8)
+                return (
+                    <Box sx={{padding: '1rem'}} key={index}>
+                        <CardCourse key={item.id} data={item}/>
+                    </Box>
+                )
+        })}
     </Slider>
 }
 

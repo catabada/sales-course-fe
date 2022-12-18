@@ -19,12 +19,27 @@ import FavoriteIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import ShareIcon from '@mui/icons-material/ShareOutlined';
 import BackDropVideo from "~/components/back-drop";
 import {TabScroll} from "~/components/tabs";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate, useParams} from "react-router-dom";
+import {addToCart} from "~/redux/cart/cartSlice";
+import {useEffect} from "react";
+import {requestFeedbackSearch} from "~/redux/feedback/feedbackSlice";
 
 const cx = classNames.bind(style);
 
 function CourseInactive(props) {
-
     const {data} = props
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleAddCart = () => {
+        dispatch(addToCart({...data}))
+    }
+    const handleBuyNow = () => {
+        dispatch(addToCart({...data}))
+        navigate('/payment')
+    }
+
 
     return (
         <div className={cx('wrapper')}>
@@ -32,7 +47,7 @@ function CourseInactive(props) {
             <Grid container>
                 <Grid container justifyContent="center">
                     <Grid item md={8}>
-                        <TabScroll data={data}/>
+                        {data && <TabScroll data={data}/>}
                     </Grid>
 
                     <Grid
@@ -42,7 +57,7 @@ function CourseInactive(props) {
                             position: 'relative',
                             display: 'flex',
                             justifyContent: 'center',
-                            zIndex: 1000,
+                            zIndex: 800,
                             marginTop: '-300px',
                         }}
                     >
@@ -74,16 +89,23 @@ function CourseInactive(props) {
                                     {/*    <span>06:40:59</span>*/}
                                     {/*</div>*/}
                                     <div className={cx('add-cart')}>
-                                        <Button variant="outlined" className={cx('btn-add')}
-                                                startIcon={<CartIcon
-                                                    sx={{height: '2.4rem', width: '2.4rem'}}/>}> Thêm
-                                            vào giỏ hàng</Button>
+                                        <Button
+                                            onClick={() => handleAddCart()}
+                                            variant="outlined" className={cx('btn-add')}
+                                            startIcon={<CartIcon
+                                                sx={{height: '2.4rem', width: '2.4rem'}}/>}>
+                                            Thêm vào giỏ hàng
+                                        </Button>
                                     </div>
                                     <div className={cx('buy-now')}>
-                                        <Button variant="contained" className={cx('btn-buy-now')}> Mua ngay</Button>
+                                        <Button
+                                            onClick={() => handleBuyNow()}
+                                            variant="contained" className={cx('btn-buy-now')}>
+                                            Mua ngay
+                                        </Button>
                                     </div>
                                     <div className={cx('tool')}>
-                                        <div className={cx('wish-list')}>
+                                        <div className={cx('wish-list')} onClick={() => props.parentCallback(data)}>
                                             <FavoriteIcon sx={{height: '2.4rem', width: '2.4rem'}}/>
                                             <span>Lưu vào Yêu thích</span>
                                         </div>
