@@ -1,21 +1,21 @@
-import {Avatar, Box, Button, Divider, Popover, TextField, Typography} from '@mui/material';
+import { Avatar, Box, Button, Divider, Popover, TextField, Typography } from '@mui/material';
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
 import SearchIcon from '@mui/icons-material/Search';
-import {Link} from "react-router-dom";
-import {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {getCoursesSearch} from "~/redux/course/courseSlice";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getCoursesSearch } from "~/redux/course/courseSlice";
 
 const cx = classNames.bind(styles);
 
 
-function SearchItem({course}) {
+function SearchItem({ course }) {
     return <Box component={'li'}>
         <Box component={Link} to={`/course/${course.codeName}`}
-             sx={{display: 'flex', textDecoration: 'none', alignItems: 'center'}}>
-            <Avatar src={`/images/${course.image}`} alt="course-img" sx={{height: 70, width: 70, marginRight: '1rem'}}/>
-            <Box className={cx('course-item-content')} sx={{width: '100%'}}>
+            sx={{ display: 'flex', textDecoration: 'none', alignItems: 'center' }}>
+            <Avatar src={`/images/${course.image}`} alt="course-img" sx={{ height: 70, width: 70, marginRight: '1rem' }} />
+            <Box className={cx('course-item-content')} sx={{ width: '100%' }}>
                 <Box className={cx('course-item-name')}>
                     <Typography className={cx('course-name')} variant="body1">
                         {course.name}
@@ -35,38 +35,38 @@ function SearchItem({course}) {
                             :
                             course.discount === 0 ?
                                 <Typography variant="body1"
-                                            className={cx('price', 'current-price')}>{
-                                    Intl.NumberFormat('vi-VN', {
-                                        style: 'currency',
-                                        currency: 'VND'
-                                    }).format(course.price)}
+                                    className={cx('price', 'current-price')}>{
+                                        Intl.NumberFormat('vi-VN', {
+                                            style: 'currency',
+                                            currency: 'VND'
+                                        }).format(course.price)}
                                 </Typography>
                                 :
                                 <>
                                     <Typography variant="body1"
-                                                className={cx('price', 'current-price')}>
+                                        className={cx('price', 'current-price')}>
                                         {Intl.NumberFormat('vi-VN', {
                                             style: 'currency',
                                             currency: 'VND'
                                         }).format(course.price - (course.price * course.discount))}
                                     </Typography>
                                     <Typography variant="body1"
-                                                className={cx('price', 'old-price')}>{
-                                        Intl.NumberFormat('vi-VN', {
-                                            style: 'currency',
-                                            currency: 'VND'
-                                        }).format(course.price)}
+                                        className={cx('price', 'old-price')}>{
+                                            Intl.NumberFormat('vi-VN', {
+                                                style: 'currency',
+                                                currency: 'VND'
+                                            }).format(course.price)}
                                     </Typography>
                                 </>
                     }
                 </Box>
             </Box>
         </Box>
-        <Divider sx={{backgroundColor: '#E6E5E5', marginTop: '1rem', height: '0.2rem'}}/>
+        <Divider sx={{ backgroundColor: '#E6E5E5', marginTop: '1rem', height: '0.2rem' }} />
     </Box>
 }
 
-function Search({user}) {
+function Search({ user }) {
     const [focus, setFocus] = useState(false)
     const [search, setSearch] = useState('');
     const handleFocus = () => {
@@ -78,14 +78,14 @@ function Search({user}) {
     const dispatch = useDispatch();
 
     const coursesSearch = useSelector(state => state.courseReducer.courses)
-    useEffect(() => {
-        dispatch(getCoursesSearch({
-            name: search
-        }))
-    }, [dispatch, search])
+    // useEffect(() => {
+    //     dispatch(getCoursesSearch({
+    //         name: search
+    //     }))
+    // }, [dispatch, search])
     return (
         <Box className={cx('wrapper', `${(!!user) ? '' : 'full-width'}`)}
-             onClick={handleFocus}>
+            onClick={handleFocus}>
             <TextField
                 className={cx('search-input')}
                 variant="standard"
@@ -122,7 +122,7 @@ function Search({user}) {
                                 {
                                     coursesSearch.map((course, index) => {
                                         if (index <= 2)
-                                            return <SearchItem key={index} course={course}/>
+                                            return <SearchItem key={index} course={course} />
                                     })
                                 }
                             </ul>

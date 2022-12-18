@@ -101,18 +101,7 @@ function SignIn() {
 
                     <div className={cx('content-social')}>
                         <div className={cx('social-list')}>
-                            {/* <button className={cx('social-item', 'fb-background')}>
-                                <FacebookIcon />
-                                
-                                <Typography className={cx('social-lable', 'fb-color')}>
-                                    Continue with Facebook
-                                </Typography>
-                            </button> */}
                             <FacebookLogin />
-                            {/* <button className={cx('social-item')}>
-                                <GoogleIcon />
-                                <Typography className={cx('social-lable')}>Continue with Google</Typography>
-                            </button> */}
                             <GoogleLogin />
                             <button className={cx('social-item')}>
                                 <AppleIcon />

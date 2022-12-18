@@ -9,6 +9,7 @@ import SocialLogin from "./SocialLogin";
 const FacebookLogin = () => {
     const dispatch = useDispatch();
     const responseFacebook = (response) => {
+        console.log(response)
         dispatch(requestLoginFacebook({accessToken: response._token.accessToken}))
     }
 
