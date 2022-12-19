@@ -11,7 +11,7 @@ import { Form, useForm } from '~/hooks/useForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { requestLogin } from '~/redux/auth/authSlice';
 import Loading from '~/components/loading';
-import { FACEBOOK_APP_ID, GOOGLE_APP_ID } from '~/constants/LoginConstant';
+import {FACEBOOK_APP_ID, GOOGLE_APP_ID} from '~/constants/LoginConstant';
 import FacebookLogin from '~/components/social-login/FacebookLogin';
 import GoogleLogin from '~/components/social-login/GoogleLogin';
 import { requestGetMyCourse } from '~/redux/my-course/myCourseSlice';
@@ -24,6 +24,9 @@ function SignIn() {
     const [show, setShow] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate()
+
+    // const google = window.google;
+
 
     const { isLoading, accessToken, userId } = useSelector(state => state.authReducer)
 
@@ -103,8 +106,8 @@ function SignIn() {
 
                     <div className={cx('content-social')}>
                         <div className={cx('social-list')}>
-                            <FacebookLogin />
-                            <GoogleLogin />
+                            <FacebookLogin/>
+                            <GoogleLogin/>
                             <button className={cx('social-item')}>
                                 <AppleIcon />
                                 <Typography className={cx('social-lable')}>Continue with Apple</Typography>

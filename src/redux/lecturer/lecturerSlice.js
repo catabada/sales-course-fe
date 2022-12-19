@@ -13,7 +13,7 @@ export const getLecturerById = createAsyncThunk(GET_LECTURER_BY_ID, async (param
     return lecturer;
 })
 export const getLecturerSearch = createAsyncThunk(GET_LECTURER_SEARCH, async (params, thunkAPI) => {
-    const lecturer = await lecturerApi.getLecturerById(params);
+    const lecturer = await lecturerApi.getLecturers(params);
     return lecturer;
 })
 
@@ -24,8 +24,13 @@ export const lecturerSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(getLecturerById.fulfilled, (state, action) => {
-                const lecture = action.payload.data;
-                state.lecture = lecture;
+                const lecturer = action.payload.data;
+                state.lecturer = lecturer;
+                return state;
+            })
+            .addCase(getLecturerSearch.fulfilled, (state, action) => {
+                const lecturers = action.payload.data;
+                state.lecturers = lecturers
                 return state;
             })
     }

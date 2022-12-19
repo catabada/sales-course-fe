@@ -22,17 +22,25 @@ const categoryApi = {
             .then((response) => response)
             .catch((err) => err.response)
     },
-    // createCategory(category) {
-    //     const url = `/category/create`
-    //     return axiosClient.post(url, category)
-    // },
-    // updateCategory() {
-
-    // },
-    // deleteCategory(id) {
-    //     const url = `/category/delete/${id}`
-    //     return axiosClient.get(url)
-    // },
+    async createCategory(category) {
+        return await axiosClient.post('/category/create', {
+            name: category.name,
+            type: category.type
+        })
+            .then((response) => response)
+            .catch((err) => err.response.data)
+    },
+    async updateCategory(category) {
+        return await axiosClient.put('/category/update', category)
+            .then((response) => response)
+            .catch((err) => err.response.data)
+    },
+    async deleteCategory(id) {
+        const url = `/category/${id}`
+        return axiosClient.delete(url)
+            .then((response) => response)
+            .catch((err) => err.response.data)
+    },
 }
 
 export default categoryApi

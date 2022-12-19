@@ -10,10 +10,10 @@ function AdminLayout({children}) {
     return (
         <div className={cx('app-content')}>
             <div className="row g-0">
-                <div className="col-3">
+                <div className="col-2">
                     <SideBar/>
                 </div>
-                <div className="col-9">
+                <div className="col-10">
                     <NavBar/>
                     <div className="container">{children}</div>
                 </div>
