@@ -21,11 +21,13 @@ import {wishlistReducer} from "~/redux/wishlist/wishlistSlice";
 import {cartReducer} from "~/redux/cart/cartSlice";
 import {feedbackReducer} from "~/redux/feedback/feedbackSlice";
 import {discussReducer} from "~/redux/discuss/discussSlice";
+import { myCourseReducer } from '~/redux/my-course/myCourseSlice';
+import { orderReducer } from '~/redux/order/orderSlice';
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['authReducer', 'cartReducer']
+    whitelist: ['authReducer', 'myCourseReducer', 'cartReducer']
 }
 
 const rootReducer = combineReducers({
@@ -40,6 +42,8 @@ const rootReducer = combineReducers({
     cartReducer: cartReducer,
     feedbackReducer: feedbackReducer,
     discussReducer: discussReducer,
+    myCourseReducer: myCourseReducer,
+    orderReducer: orderReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

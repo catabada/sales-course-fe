@@ -1,0 +1,1 @@
+export const MY_COURSE_USER = "MY_COURSE_USER";

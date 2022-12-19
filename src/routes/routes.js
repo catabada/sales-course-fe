@@ -82,7 +82,7 @@ const publicRoutes = [
         exact: true,
     },
     {
-        path: '/payment',
+        path: '/:type/payment',
         component: Payment,
         exact: true,
     },
