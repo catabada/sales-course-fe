@@ -183,15 +183,15 @@ function SignIn() {
 
 
                     <div className={cx('flex')}>
-                        <Typography sx={{ color: '#00459F', fontSize: '1.5rem' }}>
+                        <Typography  sx={{ color: '#00459F', fontSize: '1.5rem' }}>
                             Bạn chưa có tài khoản?
-                            <Typography
+                            <Box component={"span"}
                                 onClick={() => navigate('/auth/signup')}
                                 className={cx('custom-link')}
                                 sx={{ marginLeft: '10px!important', fontWeight: 'bold', cursor: 'pointer' }}
                             >
                                 Đăng ký
-                            </Typography>
+                            </Box>
                         </Typography>
                     </div>
                 </div>

@@ -2,6 +2,7 @@ import axiosClient from "~/apis/axiosClient";
 
 const initialSearch = {
     course: null,
+    userInfo: null,
     rating: 0,
 }
 
@@ -11,6 +12,7 @@ export const feedbackApi = {
         return await axiosClient.post("/feedback/search", {
             // params: {
             course: search.course,
+            userInfo: search.userInfo,
             rating: search.rating,
             // },
             // headers: {
@@ -20,17 +22,15 @@ export const feedbackApi = {
             .catch(err => err.response)
     },
     async createFeedback(feedback) {
-        return await axiosClient.post("/feedback/create", {
-            // params: {
-            content: feedback.content,
-            rating: feedback.rating,
-            userInfo: feedback.userInfo,
-            course: feedback.course
+        return await axiosClient.post("/feedback/create", feedback
             // },
             // headers: {
             //     Authorization: `Bearer ${feedback.token}`
             // }
-        }).then(response => response)
+        )
+            .then(response => response)
             .catch(err => err.response.data)
+
+
     }
 }
