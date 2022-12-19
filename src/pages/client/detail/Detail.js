@@ -11,10 +11,12 @@ import Loading from "~/components/loading/Loading";
 function Detail() {
     const {code} = useParams();
     const dispatch = useDispatch();
-    const coursesAllField = useSelector(state => state.courseReducer.coursesAllField)
+    const {coursesAllField, isLoading} = useSelector(state => state.courseReducer)
     const userId = useSelector(state => state.authReducer.userId)
-    const {user} = useSelector(state => state.userReducer)
-    const {myCourse, isLoading} = useSelector(state => state.myCourseReducer)
+
+    const { user } = useSelector(state => state.userReducer)
+    const { myCourse } = useSelector(state => state.myCourseReducer)
+
     const [active, setActive] = useState(!!myCourse ? !!myCourse.content.find(item => item.course.codeName === code) : false);
 
     useEffect(() => {
