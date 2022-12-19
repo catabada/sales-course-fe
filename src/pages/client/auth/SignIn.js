@@ -26,7 +26,7 @@ function SignIn() {
     const navigate = useNavigate()
     // const google = window.google;
 
-    const {isLoading, accessToken} = useSelector(state => state.authReducer)
+    const { isLoading, accessToken, userId } = useSelector(state => state.authReducer)
 
     const handleClick = (e) => {
         e.preventDefault();
