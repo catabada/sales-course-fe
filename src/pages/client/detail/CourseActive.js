@@ -28,7 +28,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import WebsiteIcon from "@mui/icons-material/LanguageOutlined";
 import StarOutlineIcon from "@mui/icons-material/StarOutlineOutlined";
 import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
-import Feedback from './Feedback'
+import Feedback from '~/components/feedback/Feedback'
 
 import {useDispatch, useSelector} from "react-redux";
 import {getLecturerById, lecturerReducer} from "~/redux/lecturer/lecturerSlice";

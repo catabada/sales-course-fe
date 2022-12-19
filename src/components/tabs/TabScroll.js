@@ -325,7 +325,7 @@ function TabScroll({data}) {
                                                 <div className={cx('evolution-student')}>
                                                     <Typography variant='body1'
                                                                 className={cx('evolution-student-name', 'col-4')}>
-                                                        {item.userInfo.username}
+                                                        {item.userInfo.fullName === null ? "Vô danh" : item.userInfo.fullName}
                                                     </Typography>
                                                     <div className='col-8'>
                                                         <RatingList rating={item.rating}/>

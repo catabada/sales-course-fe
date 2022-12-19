@@ -1,4 +1,5 @@
 import axiosClient from "~/apis/axiosClient";
+import data from "bootstrap/js/src/dom/data";
 
 const initialSearch = {
     codeName: '',
@@ -36,6 +37,22 @@ const courseApi = {
             .then((response) => response)
             .catch((err) => err.response)
     },
+    async createCourse(course) {
+        console.log(course)
+        return await axiosClient.post("/course/create", course)
+            .then((response) => response)
+            .catch((err) => err.response.data)
+    },
+    async updateCourse(course) {
+        return await axiosClient.put("/course/update", course)
+            .then((response) => response)
+            .catch((err) => err.response.data)
+    },
+    async deleteCourse(id) {
+        const url = `/course/${id}`;
+        return await axiosClient.delete(url).then((response) => response)
+            .catch((err) => err.response.data())
+    }
 }
 
 export default courseApi

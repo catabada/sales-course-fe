@@ -3,7 +3,6 @@ import classNames from "classnames/bind";
 import {Box, Typography} from "@mui/material";
 import SubNav from "~/components/sub-nav";
 import {TabProfile} from "~/components/tabs";
-import {CourseData} from '~/services/fakeData'
 import {useDispatch, useSelector} from "react-redux";
 import {requestGetProfile} from "~/redux/user/userSlice";
 import {useEffect} from "react";

@@ -17,8 +17,23 @@ const chapterApi = {
         }).then((response) => {
             return response;
         }).catch((err) => err.response)
-    }
-
+    },
+    async createChapter(chapter) {
+        return await axiosClient.post('/chapter/create', chapter)
+            .then((response) => response)
+            .catch((err) => err.response.data)
+    },
+    async updateChapter(chapter) {
+        return await axiosClient.put('/chapter/update', chapter)
+            .then((response) => response)
+            .catch((err) => err.response.data)
+    },
+    async deleteChapter(id) {
+        const url = `/chapter/${id}`
+        return axiosClient.delete(url)
+            .then((response) => response)
+            .catch((err) => err.response.data)
+    },
 }
 
 

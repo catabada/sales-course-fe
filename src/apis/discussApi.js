@@ -36,7 +36,6 @@ export const discussApi = {
             .catch(err => err.response.data)
     },
     async deleteDiscuss(id) {
-        console.log(id)
         const url = `/discuss/${id}`
         return await axiosClient.delete(url)
             .then(response => response)

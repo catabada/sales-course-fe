@@ -91,8 +91,9 @@ function TabDetail({data, lesson}) {
                                 discusses.map((item, index) => {
                                     return <Box key={index} sx={{marginBottom: '1.5rem'}}>
                                         <Box component={'li'} sx={{display: 'flex'}}>
-                                            <Avatar alt={`${item?.userInfo.username}`}
-                                                    src={`${item?.userInfo.imageUrl}`}/>
+                                            <Avatar alt={`${item?.userInfo.fullName}`}
+                                                    src={`${item?.userInfo.imageUrl}`}
+                                                    sx={{height: '5rem', width: '5rem'}}/>
                                             <Box sx={{
                                                 display: 'flex',
                                                 flexDirection: 'column',
@@ -115,10 +116,11 @@ function TabDetail({data, lesson}) {
                                                         <Typography variant="body1" sx={{
                                                             color: '#C89F65',
                                                             whiteSpace: 'break-spaces',
-                                                            fontSize: '1.4rem',
-                                                            marginRight: '0.4rem'
+                                                            fontSize: '2rem',
+                                                            marginRight: '0.4rem',
+                                                            fontWeight: 'bold'
                                                         }}>
-                                                            {item?.userInfo.username}:
+                                                            {item?.userInfo.fullName == null ? "Vô danh" : item?.userInfo.fullName}:
                                                         </Typography>
                                                         {
                                                             user.userId === item.userInfo.userId ?

@@ -15,7 +15,12 @@ import Payment from "~/pages/client/payment";
 // Admin
 import Dashboard from "~/pages/admin/dashboard";
 import User from "~/pages/admin/user";
+
 import CheckoutSuccess from '~/pages/client/payment/CheckoutSuccess';
+
+import AdminCourse from "~/pages/admin/course";
+import AdminCategory from "~/pages/admin/category";
+
 
 
 const publicRoutes = [
@@ -102,6 +107,18 @@ const publicRoutes = [
     {
         path: '/admin/user',
         component: User,
+        layout: AdminLayout,
+        exact: true,
+    },
+    {
+        path: '/admin/course',
+        component: AdminCourse,
+        layout: AdminLayout,
+        exact: true,
+    },
+    {
+        path: '/admin/category',
+        component: AdminCategory,
         layout: AdminLayout,
         exact: true,
     },
