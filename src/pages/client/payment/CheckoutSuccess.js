@@ -2,7 +2,7 @@ import { Box } from "@mui/system";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { Button, Grid, Typography } from "@mui/material";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { useEffect } from "react";
+import { StrictMode, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { requestCheckoutSuccess } from "~/redux/order/orderSlice";
 
@@ -15,11 +15,18 @@ const CheckoutSuccess = () => {
 
 
     useEffect(() => {
-        const capture = {};
-        searchParams.forEach((value, key) => {
-            capture[key] = value;
-        });
-        dispatch(requestCheckoutSuccess({capture: capture, accessToken: accessToken}))
+        const createCapture = setTimeout(() => {
+            const capture = {};
+            searchParams.forEach((value, key) => {
+                capture[key] = value;
+            });
+            dispatch(requestCheckoutSuccess({ capture: capture, accessToken: accessToken }))
+        }, 0) 
+           
+    
+        return () => {
+            clearTimeout(createCapture)
+        }
     })
 
     return (
