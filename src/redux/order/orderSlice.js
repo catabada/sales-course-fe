@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { checkoutApi } from "~/apis/checkoutApi";
-import { ORDER_PURCHASE } from "./orderType";
+import { CHECKOUT_SUCCESS, ORDER_PURCHASE } from "./orderType";
 
 const initialState = {
     order: null,
@@ -12,6 +12,15 @@ const initialState = {
 export const requestPurchase = createAsyncThunk(ORDER_PURCHASE, async (params, thunkApi) => {
     try {
         const response = await checkoutApi.purchase(params.purchase, params.accessToken);
+        return !response.success ? thunkApi.rejectWithValue(response) : thunkApi.fulfillWithValue(response);
+    } catch (error) {
+        return thunkApi.rejectWithValue(error.response.data);
+    }
+})
+
+export const requestCheckoutSuccess = createAsyncThunk(CHECKOUT_SUCCESS, async (params, thunkApi) => {
+    try {
+        const response = await checkoutApi.checkoutSuccess(params.capture, params.accessToken);
         return !response.success ? thunkApi.rejectWithValue(response) : thunkApi.fulfillWithValue(response);
     } catch (error) {
         return thunkApi.rejectWithValue(error.response.data);
@@ -36,6 +45,21 @@ export const orderSlice = createSlice({
                 return state;
             })
             .addCase(requestPurchase.rejected, (state, action) => {
+                state.isLoading = false;
+                state.response = action.payload;
+                return state;
+            })
+        
+            .addCase(requestCheckoutSuccess.pending, (state, action) => {
+                state.isLoading = true;
+                return state;
+            })
+            .addCase(requestCheckoutSuccess.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.response = action.payload;
+                return state;
+            })
+            .addCase(requestCheckoutSuccess.rejected, (state, action) => {
                 state.isLoading = false;
                 state.response = action.payload;
                 return state;

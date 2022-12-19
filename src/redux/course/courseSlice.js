@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
     GET_COURSE_ALL_FIELD_BY_CODE_NAME,
     GET_COURSE_ALL_FIELD_BY_ID,
@@ -33,19 +33,34 @@ export const courseSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
+            .addCase(getCoursesSearch.pending, (state, action) => {
+                state.isLoading = true;
+                return state;
+            })
             .addCase(getCoursesSearch.fulfilled, (state, action) => {
                 const courses = action.payload.data;
                 state.courses = courses;
+                state.isLoading = false;
+                return state;
+            })
+            .addCase(getCourseByCodeName.pending, (state, action) => {
+                state.isLoading = true;
                 return state;
             })
             .addCase(getCourseByCodeName.fulfilled, (state, action) => {
                 const course = action.payload.data;
                 state.course = course;
+                state.isLoading = false;
+                return state;
+            })
+            .addCase(getCoursesAllFieldByCodeName.pending, (state, action) => {
+                state.isLoading = true;
                 return state;
             })
             .addCase(getCoursesAllFieldByCodeName.fulfilled, (state, action) => {
                 const coursesAllField = action.payload.data;
                 state.coursesAllField = coursesAllField;
+                state.isLoading = false;
                 return state;
             })
     }

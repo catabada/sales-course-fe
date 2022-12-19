@@ -27,12 +27,18 @@ function Payment() {
     const courses = active ? [...cart] : [location.state.course];
     const { accessToken } = useSelector(state => state.authReducer)
     const { user } = useSelector(state => state.userReducer)
-    const { isLoading, response } = useSelector(state => state.orderReducer)
+    const { isLoading, order } = useSelector(state => state.orderReducer)
 
     const data = { name: 'Thanh toán', slug: '' }
     const initPrice = courses.reduce((accumulator, currentValue) => accumulator + currentValue.price, 0)
     const totalPrice = courses.reduce((accumulator, currentValue) => accumulator + (currentValue.price - currentValue.price * currentValue.discount), 0)
     const salePrice = initPrice - totalPrice;
+
+    useEffect(() => {
+        if (!!order && !isLoading)
+            window.location.replace(order.payUrl);
+    }, [order])
+
 
     const initialValues = {
         fullName: !!user ? user.lastName + ' ' + user.firstName : '',
@@ -89,11 +95,15 @@ function Payment() {
         const inputChecked = e.target
         setDisable(false)
     }
+    useEffect(() => {
+
+    }, [order])
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (validate()) {
             const items = []
             courses.forEach(course => {
+                console.log(course.id)
                 items.push({
                     course: {
                         id: course.id,
@@ -106,7 +116,7 @@ function Payment() {
                 name: values.fullName,
                 email: values.email,
                 order: {
-                    totalPrice: totalPrice,
+                    totalPrice: 10000,
                 },
                 items: items
             };
@@ -114,21 +124,6 @@ function Payment() {
             if (active) {
                 dispatch(removeAllCart())
             }
-            if (!!user) {
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Thành công!',
-                    text: `Bạn đã thanh toán thành công`,
-                });
-            } else {
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Thành công!',
-                    text: `Bạn đã thanh toán thành công. Vui lòng kiểm tra email lấy mã để kích hoạt khóa học`,
-                    timer: 5000,
-                })
-            }
-            if (response.success) navigate('/home')
 
         }
     }

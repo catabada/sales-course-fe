@@ -15,6 +15,7 @@ import Payment from "~/pages/client/payment";
 // Admin
 import Dashboard from "~/pages/admin/dashboard";
 import User from "~/pages/admin/user";
+import CheckoutSuccess from '~/pages/client/payment/CheckoutSuccess';
 
 
 const publicRoutes = [
@@ -85,6 +86,12 @@ const publicRoutes = [
         path: '/:type/payment',
         component: Payment,
         exact: true,
+    },
+    {
+        path: '/payment/success',
+        component: CheckoutSuccess,
+        exact: true,
+        layout: HeaderOnly,
     },
     {
         path: '/admin/dashboard',
