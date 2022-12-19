@@ -83,7 +83,31 @@ export const authApi = {
         ).then((response) => {
             return response;
         }).catch((err) => err.response.data)
-    }
+    },
 
+    async forgotPassword(email) {
+        return await axiosClient.post(`/user/forgot-password/${email}`)
+            .then((response) => response)
+            .catch((err) => err.response.data);
+    },
+
+    async myCourse(token) {
+        return await axiosClient.get(`/user/course`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response) => response)
+            .catch((err) => err.response.data);
+
+    },
+
+    async activeCourse(code, accessToken) {
+        return await axiosClient.post(`/user/active-course/${code}`, null, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        }).then((response) => response)
+            .catch((err) => err.response.data);
+    }
 
 }

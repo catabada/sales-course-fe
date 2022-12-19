@@ -18,9 +18,6 @@ function Profile() {
     const { isLoading} = useSelector(state => state.userReducer)
     const user = useSelector(state => state.userReducer.user)
 
-    useEffect(() => {
-        dispatch(requestGetProfile({userId: userId, accessToken: accessToken}))
-    }, [dispatch])
 
     return <Box className={cx('profile')}>
         <SubNav data={data}/>

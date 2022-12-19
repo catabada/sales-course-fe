@@ -8,7 +8,6 @@ const initialState = {
     isSuccess: false,
 }
 export const requestFeedbackSearch = createAsyncThunk(FEEDBACK_GET_SEARCH, (params, thunkApi) => {
-    console.log(params)
     const feedbacks = feedbackApi.getFeedbackSearch(params);
     return feedbacks;
 })

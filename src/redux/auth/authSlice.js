@@ -1,9 +1,9 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import {authApi} from "~/apis/authApi";
-import {AUTH_LOGIN, AUTH_LOGIN_FB, AUTH_LOGIN_GG, AUTH_LOGOUT, AUTH_REGISTER} from "./authType";
+import { authApi } from "~/apis/authApi";
+import { AUTH_LOGIN, AUTH_FORGOT_PASS, AUTH_LOGIN_FB, AUTH_LOGIN_GG, AUTH_LOGOUT, AUTH_REGISTER, AUTH_ACTIVE_COURSE } from "./authType";
 
-import MySwal from "~/constants/MySwal";
+import MySwal, { Toast } from "~/constants/MySwal";
 
 const initialState = {
     userId: 0,
@@ -11,16 +11,13 @@ const initialState = {
     accessToken: '',
     imageUrl: '',
     isLoading: false,
+    response: null,
 }
 
 export const requestLogin = createAsyncThunk(AUTH_LOGIN, async (params, thunkApi) => {
     try {
         const response = await authApi.login(params);
-        if (!response.success) {
-            return thunkApi.fulfillWithValue(response);
-        } else {
-            return thunkApi.rejectWithValue(response);
-        }
+        return response.success ? thunkApi.fulfillWithValue(response) : thunkApi.rejectWithValue(response);
     } catch (error) {
         return thunkApi.rejectWithValue(error);
     }
@@ -66,6 +63,29 @@ export const requestLoginGoogle = createAsyncThunk(AUTH_LOGIN_GG, async (params,
     }
 })
 
+export const requestForgotPassword = createAsyncThunk(AUTH_FORGOT_PASS, async (params, thunkApi) => {
+    try {
+        const response = await authApi.forgotPassword(params.email);
+        if (!response.success) {
+            return thunkApi.rejectWithValue(response);
+        }
+        return thunkApi.fulfillWithValue(response);
+    } catch (err) {
+        return thunkApi.rejectWithValue(err.response.data);
+    }
+})
+
+export const requestActiveCourse = createAsyncThunk(AUTH_ACTIVE_COURSE, async (params, thunkApi) => {
+    console.log(params)
+    try {
+        const response = await authApi.activeCourse(params.code, params.accessToken);
+        console.log(response)
+        return !response.success ? thunkApi.rejectWithValue(response) : thunkApi.fulfillWithValue(response);
+    } catch (error) {
+        return thunkApi.rejectWithValue(error.response.data);
+    }
+})
+
 export const authSlice = createSlice({
     name: "auth",
     initialState,
@@ -83,20 +103,10 @@ export const authSlice = createSlice({
                 state.accessToken = data.token;
                 state.imageUrl = data.imageUrl;
                 state.isLoading = false;
-                MySwal.fire({
-                    toast: true,
-                    position: 'top-end',
+                Toast.fire({
                     icon: 'success',
                     title: 'Thành công!',
                     text: `Chào mừng ${state.username} đến với website`,
-                    showConfirmButton: false,
-                    timer: 2500,
-                    showClass: {
-                        popup: 'animate__animated animate__backInRight'
-                    },
-                    hideClass: {
-                        popup: 'animate__animated animate__backOutRight'
-                    }
                 });
                 return state;
             })
@@ -122,20 +132,10 @@ export const authSlice = createSlice({
                 state.accessToken = data.token;
                 state.imageUrl = data.imageUrl;
                 state.isLoading = false;
-                MySwal.fire({
-                    toast: true,
-                    position: 'top-end',
+                Toast.fire({
                     icon: 'success',
                     title: 'Thành công!',
-                    text: `Chào mừng ${state.firstName} đến với website`,
-                    showConfirmButton: false,
-                    timer: 2500,
-                    showClass: {
-                        popup: 'animate__animated animate__backInRight'
-                    },
-                    hideClass: {
-                        popup: 'animate__animated animate__backOutRight'
-                    }
+                    text: `Chào mừng ${state.username} đến với website`,
                 });
                 return state;
             })
@@ -161,33 +161,24 @@ export const authSlice = createSlice({
                 state.accessToken = data.token;
                 state.imageUrl = data.imageUrl;
                 state.isLoading = false;
-                MySwal.fire({
-                    toast: true,
-                    position: 'top-end',
+                Toast.fire({
                     icon: 'success',
                     title: 'Thành công!',
                     text: `Chào mừng ${state.username} đến với website`,
-                    showConfirmButton: false,
-                    timer: 2500,
-                    showClass: {
-                        popup: 'animate__animated animate__backInRight'
-                    },
-                    hideClass: {
-                        popup: 'animate__animated animate__backOutRight'
-                    }
                 });
                 return state;
             })
             .addCase(requestLoginGoogle.rejected, (state, action) => {
                 state.isLoading = false;
-                // MySwal.fire({
-                //     icon: 'error',
-                //     title: 'Oops...',
-                //     text: action.payload.message,
-                // });
+                MySwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: action.payload.message,
+                });
                 return state;
             })
 
+            // Register
 
             .addCase(requestRegister.pending, (state, action) => {
                 state.isLoading = true;
@@ -195,20 +186,10 @@ export const authSlice = createSlice({
             })
             .addCase(requestRegister.fulfilled, (state, action) => {
                 state.isLoading = false;
-                MySwal.fire({
-                    toast: true,
-                    position: 'top-end',
+                Toast.fire({
                     icon: 'success',
                     title: 'Thành công!',
                     text: `Bạn đã đăng ký tài khoản thành công. Bạn hay kiểm tra email để kích hoạt tài khoản`,
-                    showConfirmButton: false,
-                    timer: 3500,
-                    showClass: {
-                        popup: 'animate__animated animate__backInRight'
-                    },
-                    hideClass: {
-                        popup: 'animate__animated animate__backOutRight'
-                    }
                 });
                 return state;
             })
@@ -225,6 +206,57 @@ export const authSlice = createSlice({
                 state.userId = 0;
                 state.username = '';
                 state.accessToken = '';
+                return state;
+            })
+
+
+            // Forgot Password
+            .addCase(requestForgotPassword.pending, (state, action) => {
+                state.isLoading = true;
+                return state;
+            })
+            .addCase(requestForgotPassword.fulfilled, (state, action) => {
+                state.isLoading = false;
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Thành công!',
+                    text: `Bạn đã đổi mật khẩu thành công. Bạn hay kiểm tra email để kích hoạt tài khoản`,
+                });
+                return state;
+            })
+            .addCase(requestForgotPassword.rejected, (state, action) => {
+                state.isLoading = false;
+                MySwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: action.payload.message,
+                });
+                return state;
+            })
+
+            // Active Course
+            .addCase(requestActiveCourse.pending, (state, action) => {
+                state.isLoading = true;
+                return state;
+            })
+            .addCase(requestActiveCourse.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.response = action.payload;
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Thành công!',
+                    text: `Bạn đã kích hoạt khóa học thành công`,
+                });
+                return state;
+            })
+            .addCase(requestActiveCourse.rejected, (state, action) => {
+                state.isLoading = false;
+                state.response = action.payload;
+                MySwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: action.payload.message,
+                });
                 return state;
             })
     }
