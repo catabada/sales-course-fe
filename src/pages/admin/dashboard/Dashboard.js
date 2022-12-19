@@ -4,7 +4,7 @@ import {CategoryData, RevenueData} from "~/services/fakeData";
 
 import style from './Dashboard.module.scss'
 import classNames from "classnames/bind";
-import BarCategory from "~/components/admin/chart/BarChart";
+import BarChart from "~/components/admin/chart/BarChart";
 import Widget from "~/components/admin/widget/Widget";
 
 const cx = classNames.bind(style);
@@ -38,7 +38,7 @@ function Dashboard() {
                 <PieChart chartData={categoryData} title="Doanh thu theo tháng của từng danh mục"/>
             </div>
             <div className={cx('bar-chart')}>
-                <BarCategory chartData={revenueData} title="Doanh thu theo thời gian"/>
+                <BarChart chartData={revenueData} title="Doanh thu theo thời gian"/>
             </div>
         </div>
     </div>

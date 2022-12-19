@@ -108,7 +108,8 @@ function SignUp() {
         handleInputChange,
         resetForm
     } = useForm(initialFieldValues, true, validate);
-    const handleSendEmail = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault()
         if (validate()) {
             await dispatch(requestRegister({userRegister: values}))
             if (!isLoading) {
@@ -121,11 +122,6 @@ function SignUp() {
         dispatch(requestRegister({userRegister: values}))
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (validate()) {
-        }
-    }
 
     return (
         <div className={cx('wrapper')}>
@@ -237,7 +233,6 @@ function SignUp() {
                         variant="contained"
                         fullWidth
                         className={cx('btn', 'btn-second')}
-                        onClick={handleSendEmail}
                     >
                         Tiếp theo
                     </Button>

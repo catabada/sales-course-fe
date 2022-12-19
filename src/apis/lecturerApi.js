@@ -21,7 +21,23 @@ const lecturerApi = {
             .then((response) => {
                 return response;
             }).catch((err) => err.response)
-    }
+    },
+    async createLecturer(lecturer) {
+        return await axiosClient.post('/lecturer/create', lecturer)
+            .then((response) => response)
+            .catch((err) => err.response.data)
+    },
+    async updateCategory(category) {
+        return await axiosClient.put('/lecturer/update', category)
+            .then((response) => response)
+            .catch((err) => err.response.data)
+    },
+    async deleteCategory(id) {
+        const url = `/lecturer/${id}`
+        return axiosClient.delete(url)
+            .then((response) => response)
+            .catch((err) => err.response.data)
+    },
 }
 
 

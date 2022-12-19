@@ -3,7 +3,6 @@ import classNames from "classnames/bind";
 import {Box, Typography} from "@mui/material";
 import SubNav from "~/components/sub-nav";
 import {TabProfile} from "~/components/tabs";
-import {CourseData} from '~/services/fakeData'
 import {useDispatch, useSelector} from "react-redux";
 import {requestGetProfile} from "~/redux/user/userSlice";
 import {useEffect} from "react";
@@ -18,9 +17,6 @@ function Profile() {
     const { isLoading} = useSelector(state => state.userReducer)
     const user = useSelector(state => state.userReducer.user)
 
-    useEffect(() => {
-        dispatch(requestGetProfile({userId: userId, accessToken: accessToken}))
-    }, [dispatch])
 
     return <Box className={cx('profile')}>
         <SubNav data={data}/>

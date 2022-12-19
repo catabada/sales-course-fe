@@ -1,89 +1,89 @@
 import classNames from "classnames/bind";
-import {Breadcrumb} from "~/components/breadcrumb";
+import { Breadcrumb } from "~/components/breadcrumb";
 import style from "./Course.module.scss"
-import {Box, Container, Grid, Paper} from "@mui/material";
+import { Box, Container, Grid, Paper } from "@mui/material";
 import Filter from "~/components/filter";
 import ListCourse from "~/components/list-course";
-import {useParams} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useMemo, useState} from "react";
-import {getCategoryByCode} from "~/redux/category/categorySlice";
-import {getCoursesSearch} from "~/redux/course/courseSlice";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useMemo, useState } from "react";
+import { getCategoryByCode } from "~/redux/category/categorySlice";
+import { getCoursesSearch } from "~/redux/course/courseSlice";
 
 
 const cx = classNames.bind(style);
 
-const filterCourseByPrice = (arrayPrice, courses, currentCourses) => {
+// const filterCourseByPrice = (arrayPrice, courses, currentCourses) => {
 
-    const result = []
-    if (arrayPrice.length == 0) {
-        return currentCourses;
-    } else if (arrayPrice.length == 1) {
-        switch (arrayPrice[0]) {
-            case "0":
-                result.push(...courses.slice().filter(item => {
-                    const salePrice = item.price - item.price * item.discount;
-                    return salePrice === 0
-                }));
-                break;
-            case "200":
-                result.push(...courses.slice().filter(item => {
-                    const salePrice = item.price - item.price * item.discount;
-                    return salePrice > 0 && salePrice <= 200000
-                }));
-                break;
-            case "500":
-                result.push(...courses.slice().filter(item => {
-                    const salePrice = item.price - item.price * item.discount;
-                    return salePrice <= 500000 && salePrice > 200000
-                }));
-                break;
-            case "501":
-                result.push(...courses.slice().filter(item => {
-                    const salePrice = item.price - item.price * item.discount;
-                    return salePrice > 500000
-                }));
-                break;
-        }
-        const currentCourse = result.filter((item, index) => result.indexOf(item) === index);
-        return currentCourse
-    } else {
-        arrayPrice.map((item) => {
-            switch (item) {
-                case "0":
-                    result.push(...currentCourses.slice().filter(item => {
-                        const salePrice = item.price - item.price * item.discount;
-                        return salePrice === 0
-                    }));
-                    break;
-                case "200":
-                    result.push(...currentCourses.slice().filter(item => {
-                        const salePrice = item.price - item.price * item.discount;
-                        return salePrice > 0 && salePrice <= 200000
-                    }));
-                    break;
-                case "500":
-                    result.push(...currentCourses.slice().filter(item => {
-                        const salePrice = item.price - item.price * item.discount;
-                        return salePrice <= 500000 && salePrice > 200000
-                    }));
-                    break;
-                case "501":
-                    result.push(...currentCourses.slice().filter(item => {
-                        const salePrice = item.price - item.price * item.discount;
-                        return salePrice > 500000
-                    }));
-                    break;
-            }
-        })
-        const currentCourse = result.filter((item, index) => result.indexOf(item) === index);
-        return currentCourse
-    }
+//         const result = []
+//         if (arrayPrice.length == 0) {
+//             return currentCourses;
+//         } else if (arrayPrice.length == 1) {
+//             switch (arrayPrice[0]) {
+//                 case "0":
+//                     result.push(...courses.slice().filter(item => {
+//                         const salePrice = item.price - item.price * item.discount;
+//                         return salePrice === 0
+//                     }));
+//                     break;
+//                 case "200":
+//                     result.push(...courses.slice().filter(item => {
+//                         const salePrice = item.price - item.price * item.discount;
+//                         return salePrice > 0 && salePrice <= 200000
+//                     }));
+//                     break;
+//                 case "500":
+//                     result.push(...courses.slice().filter(item => {
+//                         const salePrice = item.price - item.price * item.discount;
+//                         return salePrice <= 500000 && salePrice > 200000
+//                     }));
+//                     break;
+//                 case "501":
+//                     result.push(...courses.slice().filter(item => {
+//                         const salePrice = item.price - item.price * item.discount;
+//                         return salePrice > 500000
+//                     }));
+//                     break;
+//             }
+//             const currentCourse = result.filter((item, index) => result.indexOf(item) === index);
+//             return currentCourse
+//         } else {
+//             arrayPrice.map((item) => {
+//                 switch (item) {
+//                     case "0":
+//                         result.push(...currentCourses.slice().filter(item => {
+//                             const salePrice = item.price - item.price * item.discount;
+//                             return salePrice === 0
+//                         }));
+//                         break;
+//                     case "200":
+//                         result.push(...currentCourses.slice().filter(item => {
+//                             const salePrice = item.price - item.price * item.discount;
+//                             return salePrice > 0 && salePrice <= 200000
+//                         }));
+//                         break;
+//                     case "500":
+//                         result.push(...currentCourses.slice().filter(item => {
+//                             const salePrice = item.price - item.price * item.discount;
+//                             return salePrice <= 500000 && salePrice > 200000
+//                         }));
+//                         break;
+//                     case "501":
+//                         result.push(...currentCourses.slice().filter(item => {
+//                             const salePrice = item.price - item.price * item.discount;
+//                             return salePrice > 500000
+//                         }));
+//                         break;
+//                 }
+//             })
+//             const currentCourse = result.filter((item, index) => result.indexOf(item) === index);
+//             return currentCourse
+//         }
 
-}
+//     }
 
 function Course() {
-    const {codeCategory} = useParams();
+    const { codeCategory } = useParams();
     const dispatch = useDispatch();
     let courses = useSelector(state => state.courseReducer.courses)
     const category = useSelector(state => state.categoryReducer.category)
@@ -160,23 +160,23 @@ function Course() {
     }
 
     // get course filter
-    useEffect(() => {
-        setCourseFilter(filterCourseByPrice(priceFilter, courseFilter, currentCourses))
-    }, [priceFilter, currentCourses])
+    // useEffect(() => {
+    //     setCourseFilter(filterCourseByPrice(priceFilter, courseFilter, currentCourses))
+    // }, [priceFilter, currentCourses])
 
     return <Box className={cx('wrapper')}>
-        <Box sx={{width: '100%'}}>
-            {category && <Breadcrumb category={category}/>}
+        <Box sx={{ width: '100%' }}>
+            {category && <Breadcrumb category={category} />}
 
             <Container maxWidth={false}>
                 <Paper elevation={4}>
                     <Grid container className={cx('body')}>
-                        <Grid item lg={2} sx={{width: '100%'}}>
-                            <Filter codeCategory={codeCategory} parentCallback={handleSelectPrice}/>
+                        <Grid item lg={2} sx={{ width: '100%' }}>
+                            <Filter codeCategory={codeCategory} />
                         </Grid>
-                        <Grid item lg={10} sx={{width: '100%', position: 'relative'}}>
+                        <Grid item lg={10} sx={{ width: '100%', position: 'relative' }}>
                             {courseFilter &&
-                                <ListCourse courses={courseFilter} parentCallback={handleSort} params={sort}/>}
+                                <ListCourse courses={courseFilter} parentCallback={handleSort} params={sort} />}
                         </Grid>
                     </Grid>
                 </Paper>
@@ -184,7 +184,8 @@ function Course() {
         </Box>
 
     </Box>
-};
+}
 
 export default Course;
+
 

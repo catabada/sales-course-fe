@@ -27,6 +27,7 @@ const cx = classNames.bind(styles);
 function Header() {
     const dispatch = useDispatch()
     const { userId, accessToken, imageUrl, firstName } = useSelector(state => state.authReducer)
+    const {user} = useSelector(state => state.userReducer)
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -50,24 +51,15 @@ function Header() {
                         <Search />
                         <HeaderActive />
                         {
-                            (userId !== 0) &&
+                            (!!user) &&
                             <Box component={Link} to={'/my-courses'} className={cx('my-courses')}>
                                 <PlayIcon sx={{ height: '3rem', width: '3rem' }} />
                                 <Typography className={cx('text')}>Khoá học của tôi</Typography>
                             </Box>
                         }
-                        {/* <CartHeader data={user} /> */
-                            (userId !== 0) ?
-                                <Box onClick={() => navigate('/auth/my-courses')}
-                                    className={cx('my-courses')}>
-                                    <PlayIcon sx={{ height: '3rem', width: '3rem' }} />
-                                    <Typography className={cx('text')}>Khoá học của tôi</Typography>
-                                </Box>
-                                : ''
-                        }
                         <CartHeader />
                         {
-                            (userId !== 0) ?
+                            (!!user) ?
                                 <HeaderAccount image={imageUrl} />
                                 :
                                 <>

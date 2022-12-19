@@ -1,89 +1,97 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import style from './SideBar.module.scss';
 import classNames from "classnames/bind";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import StoreIcon from "@mui/icons-material/Store";
-import InsertChartIcon from "@mui/icons-material/InsertChart";
-import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
-import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-
+import {useDispatch, useSelector} from "react-redux";
+import {requestLogout} from "~/redux/auth/authSlice";
+import {requestGetProfile, requestLogoutUser} from "~/redux/user/userSlice";
+import {Avatar, Box, Typography} from "@mui/material";
+import {useEffect} from "react";
+import SchoolIcon from '@mui/icons-material/School';
+import CategoryIcon from '@mui/icons-material/Category';
+import AccessibilityIcon from '@mui/icons-material/Accessibility';
 const cx = classNames.bind(style);
 
 function SideBar() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const userId = useSelector(state => state.authReducer.userId)
+    const accessToken = useSelector(state => state.authReducer.accessToken)
+    const user = useSelector(state => state.userReducer.user)
+
+    useEffect(() => {
+        if (userId !== 0) {
+            dispatch(requestGetProfile({userId: userId, accessToken: accessToken}))
+        }
+
+    }, [dispatch, userId, accessToken])
+
+    const handleLogout = async () => {
+        await dispatch(requestLogout())
+        await dispatch(requestLogoutUser());
+        navigate('/auth/signin')
+    }
     return <div className={cx("sidebar")}>
         <div className={cx("top")}>
             <Link to="/admin/dashboard" style={{textDecoration: "none"}}>
-                <span className={cx("logo")}>lamadmin</span>
+                <span className={cx("logo")}>Sales Course Admin</span>
             </Link>
+            {
+                user &&
+                <Box className={cx('user')}>
+                    <Avatar  src={user?.imageUrl} alt={user.username} className={cx('avatar')}/>
+                    <Typography className={cx('text')}>Xin chào <strong>{user?.username}</strong>!</Typography>
+                </Box>
+            }
+
         </div>
         <hr/>
         <div className={cx("center")}>
             <ul>
-                <p className="title">MAIN</p>
+                <p className={cx('title')}>MAIN</p>
                 <Link to="/admin/dashboard" style={{textDecoration: "none"}}>
                     <li>
-                        <DashboardIcon className="icon"/>
+                        <DashboardIcon className={cx('icon')}/>
                         <span>Dashboard</span>
                     </li>
                 </Link>
 
-                <p className="title">LISTS</p>
+                <p className={cx('title')}>LISTS</p>
                 <Link to="/admin/user" style={{textDecoration: "none"}}>
                     <li>
-                        <PersonOutlineIcon className="icon"/>
+                        <PersonOutlineIcon className={cx('icon')}/>
                         <span>Users</span>
                     </li>
                 </Link>
                 <Link to="/admin/course" style={{textDecoration: "none"}}>
                     <li>
-                        <StoreIcon className="icon"/>
+                        <SchoolIcon className={cx('icon')}/>
                         <span>Courses</span>
                     </li>
                 </Link>
+                <Link to="/admin/category" style={{textDecoration: "none"}}>
+                    <li>
+                        <CategoryIcon className={cx('icon')}/>
+                        <span>Category</span>
+                    </li>
+                </Link>
+                <Link to="/admin/lecturer" style={{textDecoration: "none"}}>
+                    <li>
+                        <AccessibilityIcon className={cx('icon')}/>
+                        <span>Lecturer</span>
+                    </li>
+                </Link>
                 <li>
-                    <CreditCardIcon className="icon"/>
+                    <CreditCardIcon className={cx('icon')}/>
                     <span>Orders</span>
                 </li>
-                <li>
-                    <LocalShippingIcon className="icon"/>
-                    <span>Delivery</span>
-                </li>
-                <p className="title">USEFUL</p>
-                <li>
-                    <InsertChartIcon className="icon"/>
-                    <span>Stats</span>
-                </li>
-                <li>
-                    <NotificationsNoneIcon className="icon"/>
-                    <span>Notifications</span>
-                </li>
-                <p className="title">SERVICE</p>
-                <li>
-                    <SettingsSystemDaydreamOutlinedIcon className="icon"/>
-                    <span>System Health</span>
-                </li>
-                <li>
-                    <PsychologyOutlinedIcon className="icon"/>
-                    <span>Logs</span>
-                </li>
-                <li>
-                    <SettingsApplicationsIcon className="icon"/>
-                    <span>Settings</span>
-                </li>
-                <p className="title">USER</p>
-                <li>
-                    <AccountCircleOutlinedIcon className="icon"/>
-                    <span>Profile</span>
-                </li>
-                <li>
-                    <ExitToAppIcon className="icon"/>
+                <p className={cx('title')}>USER</p>
+                <li onClick={handleLogout}>
+                    <ExitToAppIcon className={cx('icon')}/>
                     <span>Logout</span>
                 </li>
             </ul>
