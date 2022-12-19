@@ -30,7 +30,23 @@ function CourseTrash() {
         >
             <DialogTitle sx={{fontSize: '5rem'}}> Chức năng thùng rác đang cập nhật</DialogTitle>
             <DialogActions>
-                <Button onClick={handleClose}>Huỷ</Button>
+                <Button onClick={handleClose}
+                        variant='outlined'
+                        sx={{
+                            marginLeft: "2rem",
+                            color: '#fff',
+                            backgroundColor: '#555',
+                            height: '3rem',
+                            boxShadow: 'none',
+                            border: 'none',
+                            "&:hover": {
+                                border: 'none',
+                                backgroundColor: '#555',
+                                color: '#fff'
+                            },
+                        }}>
+                    Huỷ
+                </Button>
             </DialogActions>
         </Dialog>
     </Box>

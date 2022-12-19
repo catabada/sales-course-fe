@@ -17,6 +17,7 @@ function countLesson(data) {
 
 function CardCourse(props) {
     const {data} = props
+    console.log(data)
     // const numberLesson = countLesson(data.chapters);
     // const currentLesson = data.currentLesson;
     // const percent = ((currentLesson / numberLesson) * 100).toFixed()

@@ -27,12 +27,12 @@ const lecturerApi = {
             .then((response) => response)
             .catch((err) => err.response.data)
     },
-    async updateCategory(category) {
-        return await axiosClient.put('/lecturer/update', category)
+    async updateLecturer(lecturer) {
+        return await axiosClient.put('/lecturer/update', lecturer)
             .then((response) => response)
             .catch((err) => err.response.data)
     },
-    async deleteCategory(id) {
+    async deleteLecturer(id) {
         const url = `/lecturer/${id}`
         return axiosClient.delete(url)
             .then((response) => response)

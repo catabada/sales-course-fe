@@ -38,6 +38,7 @@ const courseApi = {
             .catch((err) => err.response)
     },
     async createCourse(course) {
+        console.log(course)
         return await axiosClient.post("/course/create", course)
             .then((response) => response)
             .catch((err) => err.response.data)
