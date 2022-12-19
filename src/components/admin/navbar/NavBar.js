@@ -25,23 +25,6 @@ function NavBar() {
                     variant="outlined"
                 />
             </div>
-            <div className={cx("items")}>
-                <div className={cx("item")}>
-                    <NotificationsNoneOutlinedIcon className={cx("icon")}/>
-                    <div className={cx("counter")}>1</div>
-                </div>
-                <div className={cx("item")}>
-                    <ChatBubbleOutlineOutlinedIcon className={cx("icon")}/>
-                    <div className={cx("counter")}>2</div>
-                </div>
-                <div className={cx("item")}>
-                    <img
-                        src="https://images.pexels.com/photos/941693/pexels-photo-941693.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                        alt=""
-                        className={cx("avatar")}
-                    />
-                </div>
-            </div>
         </div>
     </div>
 }

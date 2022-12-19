@@ -5,15 +5,30 @@
   background-color: white;
 
   .top {
-    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 
     .logo {
       font-size: 20px;
       font-weight: bold;
       color: #6439ff;
+    }
+    .user{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .avatar{
+        width: 10rem;
+        height: 10rem;
+        border: 1px solid #ddd;
+      }
+      .text{
+        font-size: 2rem;
+        margin-top: 2rem;
+      }
     }
   }
 
@@ -31,7 +46,7 @@
       padding: 0;
 
       .title {
-        font-size: 10px;
+        font-size: 1.6rem;
         font-weight: bold;
         color: #999;
         margin-top: 15px;
@@ -41,7 +56,7 @@
       li {
         display: flex;
         align-items: center;
-        padding: 5px;
+        padding: 1rem;
         cursor: pointer;
 
         &:hover {

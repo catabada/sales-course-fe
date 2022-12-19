@@ -33,6 +33,9 @@ function Detail() {
     }
 
 
+    const isMyCourse = false;
+
+
     return (
         <>
             {
