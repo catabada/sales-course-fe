@@ -33,14 +33,30 @@ function CourseDelete(props) {
             onClose={handleClose}
             aria-describedby="alert-dialog-slide-description"
         >
-            <DialogTitle> Bạn có chắc muốn xoá?</DialogTitle>
+            <DialogTitle sx={{fontSize: '2rem', fontWeight:'bold'}}> Bạn có chắc muốn xoá?</DialogTitle>
             <DialogContent>
-                <DialogContentText id="alert-dialog-slide-description">
-                    Khoá học {props?.name} sẽ bị xoá ngay lập tức
+                <DialogContentText id="alert-dialog-slide-description" sx={{fontSize: '2rem'}}>
+                    Khoá học <strong>{props?.name}</strong> sẽ bị xoá ngay lập tức
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose}>Huỷ</Button>
+                <Button onClick={handleClose}
+                        variant='outlined'
+                        sx={{
+                            marginLeft: "2rem",
+                            color: '#fff',
+                            backgroundColor: '#555',
+                            height: '3rem',
+                            boxShadow: 'none',
+                            border: 'none',
+                            "&:hover": {
+                                border: 'none',
+                                backgroundColor: '#555',
+                                color: '#fff'
+                            },
+                        }}>
+                    Huỷ
+                </Button>
                 <Button onClick={() => handleAction(props.id)}
                         sx={{
                             marginLeft: "2rem",

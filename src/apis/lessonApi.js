@@ -17,7 +17,23 @@ const lessonApi = {
         }).then((response) => {
             return response;
         }).catch((err) => err.response)
-    }
+    },
+    async createLesson(lesson) {
+        return await axiosClient.post('/lesson/create', lesson)
+            .then((response) => response)
+            .catch((err) => err.response.data)
+    },
+    async updateLesson(lesson) {
+        return await axiosClient.put('/lesson/update', lesson)
+            .then((response) => response)
+            .catch((err) => err.response.data)
+    },
+    async deleteLesson(id) {
+        const url = `/lesson/${id}`
+        return axiosClient.delete(url)
+            .then((response) => response)
+            .catch((err) => err.response.data)
+    },
 
 }
 

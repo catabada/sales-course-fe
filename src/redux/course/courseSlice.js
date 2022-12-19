@@ -30,6 +30,7 @@ export const getCoursesAllFieldByCodeName = createAsyncThunk(GET_COURSE_ALL_FIEL
     return course;
 })
 export const requestCreateCourse = createAsyncThunk(CREATE_COURSE, async (params, thunkAPI) => {
+    console.log(params)
     try {
         const response = await courseApi.createCourse(params);
         if (!response.success) {

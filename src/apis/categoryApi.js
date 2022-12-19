@@ -23,10 +23,7 @@ const categoryApi = {
             .catch((err) => err.response)
     },
     async createCategory(category) {
-        return await axiosClient.post('/category/create', {
-            name: category.name,
-            type: category.type
-        })
+        return await axiosClient.post('/category/create', category)
             .then((response) => response)
             .catch((err) => err.response.data)
     },
