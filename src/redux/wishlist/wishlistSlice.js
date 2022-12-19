@@ -15,6 +15,7 @@ export const requestGetWishlist = createAsyncThunk(WISHLIST_GET_SEARCH, (params,
 })
 
 export const requestAddWishlist = createAsyncThunk(WISHLIST_ADD, async (params, thunkApi) => {
+    console.log(params)
     try {
         const response = await wishlistApi.addWishlist(params);
         if (!response.success) {

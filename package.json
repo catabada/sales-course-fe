@@ -29,6 +29,7 @@
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "react-scripts": "5.0.1",
+    "react-simple-star-rating": "^5.1.7",
     "react-slick": "^0.29.0",
     "react-social-login": "^3.4.16",
     "redux": "^4.2.0",

@@ -12,6 +12,7 @@ export const requestFeedbackSearch = createAsyncThunk(FEEDBACK_GET_SEARCH, (para
     return feedbacks;
 })
 export const requestFeedbackCreate = createAsyncThunk(FEEDBACK_CREATE, async (params, thunkApi) => {
+    console.log(params)
     const response = await feedbackApi.createFeedback(params);
     try {
         if (!response.success) {
