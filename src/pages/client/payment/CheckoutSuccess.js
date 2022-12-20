@@ -16,12 +16,12 @@ const CheckoutSuccess = () => {
     const orderId = searchParams.get("orderId");
 
     useEffect(() => {
-        const createCapture = setTimeout(() => {
+        const createCapture = setTimeout(async () => {
             const capture = {}
             searchParams.forEach((value, key) => {
                 capture[key] = value;
-                dispatch(requestCheckoutSuccess({ capture: capture, payment: payment, accessToken: accessToken }))
             })
+            await dispatch(requestCheckoutSuccess({ capture: capture, payment: payment, accessToken: accessToken }))
         }, 0)
         return () => {
             clearTimeout(createCapture)
