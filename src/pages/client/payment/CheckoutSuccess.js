@@ -23,11 +23,10 @@ const CheckoutSuccess = () => {
                 dispatch(requestCheckoutSuccess({ capture: capture, payment: payment, accessToken: accessToken }))
             })
         }, 0)
-
         return () => {
             clearTimeout(createCapture)
         }
-    })
+    }, [dispatch])
 
     return (
         <Box >
