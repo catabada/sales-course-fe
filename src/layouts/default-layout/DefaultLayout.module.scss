@@ -1,0 +1,13 @@
+.wrapper {
+    .container {
+        // width: 1150px;
+        margin: 0 auto;
+        justify-content: center;
+        align-items: center;
+        margin-top: var(--layout-height-header);
+        .content {
+            position: relative;
+            width: 100%;
+        }
+    }
+}

@@ -1,0 +1,3 @@
+export const USER_GET_PROFILE = 'USER_GET_PROFILE';
+export const USER_LOGOUT = 'USER_LOGOUT';
+export const USER_SAVE_PROFILE = 'USER_SAVE_PROFILE';

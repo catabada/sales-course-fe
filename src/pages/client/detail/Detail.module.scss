@@ -1,0 +1,364 @@
+// khoá học chưa mua
+
+.wrapper {
+  position: relative;
+  width: 100%;
+
+  .sale {
+    position: fixed;
+    z-index: 900;
+    bottom: 0;
+
+    .sale-wrapper {
+      width: 350px;
+      background: #ffffff;
+      box-shadow: 15px 15px 28px 10px rgb(159 141 91 / 20%);
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+
+      .sale-detail {
+        padding: 0 3rem 1rem;
+
+        .price-info {
+          display: flex;
+          margin-top: 1rem;
+          align-items: center;
+          justify-content: center;
+
+          .old-price {
+            font-size: 1.6rem;
+            color: #000000;
+            text-decoration: line-through;
+          }
+
+          .current-price {
+            font-size: 3rem;
+            color: #c89f65;
+            font-weight: bold;
+            margin-left: .2rem;
+          }
+        }
+
+        .sale-offer {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #e85c4a;
+          margin-bottom: 1rem;
+
+          span {
+            font-weight: bold;
+            margin-left: .5rem;
+            font-size: 1.6rem;
+          }
+        }
+
+        .add-cart {
+          margin: 1rem 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .btn-add {
+            width: 100%;
+            outline: none;
+            border: 1px solid #000;
+            color: #000000;
+            font-weight: 700;
+            font-size: 1.8rem;
+            border-radius: 20px;
+          }
+        }
+
+        .buy-now {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .btn-buy-now {
+            width: 100%;
+            background-color: #FCCF00;
+            border-radius: 20px;
+            color: #000000;
+            font-size: 1.8rem;
+
+          }
+        }
+
+        .tool {
+          display: flex;
+          align-items: center;
+          margin-top: 1.8rem;
+          padding-bottom: 2rem;
+
+          .share,
+          .wish-list {
+            color: #c89f65;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            span {
+              margin-left: .5rem;
+              font-size: 1.6rem;
+            }
+          }
+
+          .share {
+            margin-left: auto;
+          }
+
+        }
+      }
+
+      .sale-image {
+        width: 100%;
+        position: relative;
+
+        .sale-image-wrapper {
+          display: flex;
+          opacity: 0.7;
+          align-items: center;
+          flex-direction: column;
+          justify-content: center;
+
+          .sale-banner {
+            width: 100%;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+          }
+        }
+      }
+
+      .sale-detail {
+
+      }
+    }
+
+  }
+}
+
+// khoá học đã mua
+
+.study-wrapper {
+
+  .sub-nav {
+    padding: 2rem 0 2rem 4rem;
+
+  }
+
+  .content {
+
+
+    .lesson-detail {
+      width: 100%;
+      position: relative;
+
+      .benefit {
+        margin-top: 2rem;
+        margin-bottom: 2.4rem;
+
+        .benefit-wrapper {
+          .benefit-title {
+            font-size: 3rem;
+            margin: 2rem 0;
+            color: #082346;
+          }
+
+          .benefit-content {
+            .benefit-item {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              .benefit-icon {
+                height: 2.2rem;
+                width: 2.2rem;
+                margin-right: 1.2rem;
+              }
+
+              .benefit-text {
+                font-size: 1.4rem;
+                line-height: 1.5;
+                font-weight: 400;
+                margin: 0;
+              }
+            }
+          }
+        }
+      }
+
+      .author {
+        padding: .5rem 1.5rem 2.5rem;
+        margin: 2rem 0;
+
+        .author-title {
+          font-size: 2.4rem;
+          margin: 2rem 0;
+          color: #082346;
+        }
+
+        .author-wrapper {
+          display: flex;
+
+          .author-image {
+
+          }
+
+          .author-info {
+            margin-left: 4rem;
+
+            .author-header {
+              display: flex;
+              flex-direction: column;
+
+              .author-profile {
+                display: flex;
+                align-items: center;
+
+                .author-link {
+                  text-decoration: none;
+                  color: #feda6a;
+                  font-size: 2rem;
+                  font-weight: 700;
+
+                }
+
+                .author-social {
+                  height: 2.4rem;
+                  width: 2.4rem;
+                  margin-left: .5rem;
+                }
+              }
+
+              .author-evolution {
+                display: flex;
+                align-items: center;
+                margin-top: 1.6rem;
+
+                p {
+                  margin-bottom: 0;
+                  margin-left: .5rem;
+                  font-size: 1.4rem;
+                }
+
+                svg {
+                  height: 2rem;
+                  width: 2rem;
+                  margin-left: .4rem;
+                }
+
+                .text {
+                  font-weight: 700;
+                }
+              }
+            }
+
+            .author-body {
+              .author-text {
+                display: flex;
+                color: #000000;
+                padding-top: 1.5rem;
+                font-size: 1.4rem;
+
+                &.hidden {
+                  display: none;
+                }
+              }
+
+
+              .author-more {
+                color: #e3ba00;
+                cursor: pointer;
+                font-size: 1.4rem;
+                font-weight: 700;
+              }
+            }
+          }
+        }
+      }
+
+      .lesson-name {
+        padding: 1.5rem;
+        font-weight: 600;
+        font-size: 3.6rem;
+      }
+
+      .lesson-tag {
+        text-decoration: none;
+        padding: 1rem 2rem;
+        color: #000000;
+        background-color: #FEEC99;
+        border-radius: 20px;
+        font-size: 2rem;
+        text-transform: uppercase;
+        display: inline-block;
+      }
+
+      .evolution,
+      .number-study,
+      .lesson-time {
+        font-size: 1.4rem;
+        margin-left: 1rem;
+        display: inline-block;
+      }
+
+      .wrapper {
+        display: flex;
+        align-items: center;
+        width: 33.3333%;
+
+
+        .lesson-create,
+        .lesson-update {
+          font-size: 1.4rem;
+          text-align: center;
+        }
+      }
+
+    }
+
+    .lesson-control {
+
+      .chapters {
+        padding: 1rem 0;
+
+        &.active {
+          color: #cca800;
+        }
+      }
+
+      .chapters.active {
+        .icon-next {
+          display: none;
+        }
+
+        .icon-more {
+          display: block;
+        }
+      }
+
+      .lesson-item {
+        height: 6rem;
+
+        &.active {
+          background-color: #eee;
+        }
+      }
+
+      .icon {
+        height: 3rem;
+        width: 3rem;
+
+        &.icon-next {
+          display: block;
+        }
+
+        &.icon-more {
+          display: none;
+        }
+      }
+
+    }
+  }
+}

@@ -1,0 +1,4 @@
+export const CART_GET_ALL = "CART_GET_ALL"
+export const CART_ADD_COURSE = "CART_ADD_COURSE"
+export const CART_DELETE_COURSE = "CART_DELETE_COURSE"
+

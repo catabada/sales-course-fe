@@ -1,0 +1,23 @@
+.card-category {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+
+  .image-bg {
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+    background-size: contain;
+    
+    .card-wrapper {
+      position: absolute;
+      width:100%;
+      height: 100%;
+      top: 100%;
+      transform: translateY(-100%);
+      background-color: unset;
+      display: flex;
+      align-items: flex-end
+    }
+  }
+}

@@ -1,0 +1,42 @@
+.breadcrumb {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    .image-bg {
+        min-height: 350px;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 3rem 8rem;
+        box-shadow: none;
+        .content {
+            text-align: left;
+        }
+    }
+
+    li {
+        a {
+            font-size: 1.6rem;
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+
+            &:hover {
+                color: var(--primary-color);
+            }
+        }
+        &:last-child {
+            a:hover {
+                color: #000;
+            }
+        }
+    }
+    .evaluate-wrapper {
+        padding: 1rem 0;
+        .text {
+            font-size: 1.8rem;
+            margin: 0 0 0 1rem;
+            font-weight: 700;
+        }
+    }
+}
