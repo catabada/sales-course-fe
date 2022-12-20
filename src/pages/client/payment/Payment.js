@@ -37,7 +37,10 @@ function Payment() {
 
     useEffect(() => {
         if (!!order && !isLoading)
-            window.location.replace(order.payUrl);
+            if (payment === 'vnpay')
+                window.location.replace(order);
+            else if (payment === 'momo')
+                window.location.replace(order.payUrl);
     }, [order])
 
 
@@ -98,9 +101,6 @@ function Payment() {
         const inputChecked = e.target
         setDisable(false)
     }
-    useEffect(() => {
-
-    }, [order])
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (validate()) {
