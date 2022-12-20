@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/sales-course-fe/static/css/main.4c65cc4b.css",
+    "main.js": "/sales-course-fe/static/js/main.88050f37.js",
+    "static/js/787.e7c47c1e.chunk.js": "/sales-course-fe/static/js/787.e7c47c1e.chunk.js",
+    "index.html": "/sales-course-fe/index.html",
+    "main.4c65cc4b.css.map": "/sales-course-fe/static/css/main.4c65cc4b.css.map",
+    "main.88050f37.js.map": "/sales-course-fe/static/js/main.88050f37.js.map",
+    "787.e7c47c1e.chunk.js.map": "/sales-course-fe/static/js/787.e7c47c1e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4c65cc4b.css",
+    "static/js/main.88050f37.js"
+  ]
+}
