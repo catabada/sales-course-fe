@@ -106,7 +106,6 @@ function Payment() {
         if (validate()) {
             const items = []
             courses.forEach(course => {
-                console.log(course.id)
                 items.push({
                     course: {
                         id: course.id,
@@ -123,7 +122,7 @@ function Payment() {
                 },
                 items: items
             };
-            await dispatch(requestPurchase({ purchase: purchase, payment: payment, accessToken: accessToken }))
+            await dispatch(requestPurchase({ purchase: purchase, payment: values.payment, accessToken: accessToken }))
             if (active) {
                 dispatch(removeAllCart())
             }
