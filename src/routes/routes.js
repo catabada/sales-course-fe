@@ -93,7 +93,7 @@ const publicRoutes = [
         exact: true,
     },
     {
-        path: '/payment/success',
+        path: '/payment/success/:payment',
         component: CheckoutSuccess,
         exact: true,
         layout: HeaderOnly,

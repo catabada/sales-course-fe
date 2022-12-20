@@ -104,8 +104,7 @@ export default function Filter({ codeCategory }) {
                             <FormGroup sx={{ marginTop: '5px' }}>
                                 <MenuItem className={cx('sub-menu-item')}>
                                     <FormControlLabel control={<Checkbox size='large' />}
-                                        label={<Typography sx={{ width: '100%' }} variant="body1">Dưới 1
-                                            giờ</Typography>} />
+                                        label={<Typography sx={{ width: '100%' }} variant="body1">Dưới 100k</Typography>} />
                                 </MenuItem>
                                 <Divider />
                                 <MenuItem className={cx('sub-menu-item')}>
