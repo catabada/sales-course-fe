@@ -36,11 +36,12 @@ function Payment() {
     const salePrice = initPrice - totalPrice;
 
     useEffect(() => {
-        if (!!order && !isLoading)
-            if (payment === 'vnpay')
+        if (!!order && !isLoading) {
+            if (values.payment === 'vnpay')
                 window.location.replace(order);
-            else if (payment === 'momo')
+            else if (values.payment === 'momo')
                 window.location.replace(order.payUrl);
+        }
     }, [order])
 
 
