@@ -15,7 +15,7 @@ const courseApi = {
     async getCoursesSearchPagination(search = initialSearch, pageParam) {
         return await axiosClient.post('/course/course-pagination', {
             codeName: search.codeName,
-            price: search.price,
+            priceBetween: search.priceBetween,
             name: search.name,
             sku: search.sku,
             discount: search.discount,

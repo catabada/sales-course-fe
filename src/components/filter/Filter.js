@@ -17,9 +17,10 @@ import { Link } from "react-router-dom";
 import { getCategoriesSearch, getCategoryByCode } from "~/redux/category/categorySlice";
 
 const cx = classNames.bind(styles);
-export default function Filter({ codeCategory }) {
+export default function Filter({ codeCategory, callBackParentFilterPrice }) {
     const dispatch = useDispatch();
     const subCategories = useSelector(state => state.categoryReducer.categories);
+    const [active, setActive] = React.useState(0);
 
     useEffect(() => {
         dispatch(getCategoriesSearch({
@@ -28,6 +29,11 @@ export default function Filter({ codeCategory }) {
             }
         }))
     }, [dispatch, codeCategory])
+
+    const handleChangePrice = (from, to, active) => {
+        callBackParentFilterPrice(from, to)
+        setActive(active)
+    }
 
     return (
         <Box sx={{ width: '100%' }}>
@@ -103,34 +109,30 @@ export default function Filter({ codeCategory }) {
                                 variant='h5'>Thời lượng khóa</Typography>
                             <FormGroup sx={{ marginTop: '5px' }}>
                                 <MenuItem className={cx('sub-menu-item')}>
-                                    <FormControlLabel control={<Checkbox size='large' />}
+                                    <FormControlLabel control={<Checkbox checked={active === 0} onClick={() => handleChangePrice(0, 0, 0)} size='large' />}
+                                        label={<Typography sx={{ width: '100%' }} variant="body1">Tất cả</Typography>} />
+                                </MenuItem>
+                                <Divider />
+                                <MenuItem className={cx('sub-menu-item')}>
+                                    <FormControlLabel control={<Checkbox checked={active === 1} onClick={() => handleChangePrice(0, 100000, 1)} size='large' />}
                                         label={<Typography sx={{ width: '100%' }} variant="body1">Dưới 100k</Typography>} />
                                 </MenuItem>
                                 <Divider />
                                 <MenuItem className={cx('sub-menu-item')}>
-                                    <FormControlLabel control={<Checkbox size='large' />}
-                                        label={<Typography sx={{ width: '100%' }} variant="body1">1-2
-                                            giờ</Typography>} />
+                                    <FormControlLabel control={<Checkbox checked={active === 2} onClick={() => handleChangePrice(100000, 300000, 2)} size='large' />}
+                                        label={<Typography sx={{ width: '100%' }} variant="body1">Từ 100k - 300k</Typography>} />
                                 </MenuItem>
                                 <MenuItem className={cx('sub-menu-item')}>
                                 </MenuItem>
                                 <Divider />
                                 <MenuItem className={cx('sub-menu-item')}>
-                                    <FormControlLabel control={<Checkbox size='large' />}
-                                        label={<Typography sx={{ width: '100%' }} variant="body1">2-4
-                                            giờ</Typography>} />
+                                    <FormControlLabel control={<Checkbox checked={active === 3} onClick={() => handleChangePrice(300000, 500000, 3)} size='large' />}
+                                        label={<Typography sx={{ width: '100%' }} variant="body1">Từ 300k - 500k</Typography>} />
                                 </MenuItem>
                                 <Divider />
                                 <MenuItem className={cx('sub-menu-item')}>
-                                    <FormControlLabel control={<Checkbox size='large' />}
-                                        label={<Typography sx={{ width: '100%' }} variant="body1">4-6
-                                            giờ</Typography>} />
-                                </MenuItem>
-                                <Divider />
-                                <MenuItem className={cx('sub-menu-item')}>
-                                    <FormControlLabel control={<Checkbox size='large' />}
-                                        label={<Typography sx={{ width: '100%' }} variant="body1">6 giờ trở
-                                            lên</Typography>} />
+                                    <FormControlLabel control={<Checkbox checked={active === 4} onClick={() => handleChangePrice(500000, 0, 4)} size='large' />}
+                                        label={<Typography sx={{ width: '100%' }} variant="body1">Từ 500k trở lên</Typography>} />
                                 </MenuItem>
                                 <Divider />
                             </FormGroup>

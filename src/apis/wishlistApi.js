@@ -1,21 +1,19 @@
 import axiosClient from "~/apis/axiosClient";
 
 const initialSearch = {
-    appUser: null,
+    userInfo: null,
     course: null,
 }
 
 const wishlistApi = {
     async getWishlist(search = initialSearch, token) {
         return await axiosClient.post("/wish-list/search", {
-                param: {
-                    appUser: search.appUser,
-                    course: search.course,
-                },
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+            userInfo: search.userInfo,
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`
             }
+        }
         ).then((response) => {
             return response;
         }).catch((err) => err.response)
@@ -23,10 +21,9 @@ const wishlistApi = {
 
     async addWishlist(wishlist, token) {
         return await axiosClient.post("/wish-list/create", {
-            params: {
-                appUser: wishlist.appUser,
-                course: wishlist.course
-            },
+            userInfo: wishlist.userInfo,
+            course: wishlist.course
+        }, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

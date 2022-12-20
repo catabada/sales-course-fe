@@ -19,9 +19,8 @@ function Course() {
     const [searchParams, setSearchParams] = useSearchParams();
     const { isLoading, page } = useSelector(state => state.courseReducer)
     const category = useSelector(state => state.categoryReducer.category)
-    const [priceFilter, setPriceFilter] = useState([]);
+    const [priceBetween, setPriceBetween] = useState(null)
     const [pageNumber, setPageNumber] = useState(searchParams.get("page-number"))
-    const [currentCourses, setCurrentCourses] = useState([]);
     const [sort, setSort] = useState("name");
     const [asc, setAsc] = useState(1);
 
@@ -36,7 +35,8 @@ function Course() {
             search: {
                 category: {
                     id: category.id
-                }
+                },
+                priceBetween: priceBetween
             },
             pageParam: {
                 "page-number": pageNumber - 1,
@@ -45,7 +45,7 @@ function Course() {
                 "asc": asc
             }
         }));
-    }, [dispatch, category, pageNumber, sort, asc])
+    }, [dispatch, category, pageNumber, sort, asc, priceBetween])
 
 
     const callBackParentPageNumber = (pageNumber) => {
@@ -54,6 +54,13 @@ function Course() {
     const callBackParentSortBy = (sortBy, asc) => {
         setSort(sortBy)
         setAsc(asc)
+    }
+    const callBackParentFilterPrice = (from, to) => {
+        if (from === 0 && to === 0) {
+            setPriceBetween(null)
+        } else if (to === 0)
+            setPriceBetween({ from: from })
+        else setPriceBetween({ from: from, to: to })
     }
 
     return <Box className={cx('wrapper')}>
@@ -64,7 +71,7 @@ function Course() {
                 <Paper elevation={4}>
                     <Grid container className={cx('body')}>
                         <Grid item lg={2} sx={{ width: '100%' }}>
-                            <Filter codeCategory={codeCategory} />
+                            <Filter codeCategory={codeCategory} callBackParentFilterPrice={callBackParentFilterPrice} />
                         </Grid>
                         <Grid item lg={10} sx={{ width: '100%', position: 'relative' }}>
                             {!!page &&

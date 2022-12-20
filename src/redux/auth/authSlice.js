@@ -76,10 +76,8 @@ export const requestForgotPassword = createAsyncThunk(AUTH_FORGOT_PASS, async (p
 })
 
 export const requestActiveCourse = createAsyncThunk(AUTH_ACTIVE_COURSE, async (params, thunkApi) => {
-    console.log(params)
     try {
         const response = await authApi.activeCourse(params.code, params.accessToken);
-        console.log(response)
         return !response.success ? thunkApi.rejectWithValue(response) : thunkApi.fulfillWithValue(response);
     } catch (error) {
         return thunkApi.rejectWithValue(error.response.data);

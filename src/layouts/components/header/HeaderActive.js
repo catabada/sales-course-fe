@@ -85,11 +85,8 @@ function HeaderActive() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         await dispatch(requestActiveCourse({ code: values.code, accessToken: accessToken }))
-        if (response.success) {
-            setOpen(false)
-            resetForm()
-        } else
-            setOpen(true)
+        handleClose()
+        resetForm()
     }
 
     return <Box component="form" onSubmit={handleSubmit}>
