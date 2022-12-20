@@ -10,6 +10,7 @@ import { requestPurchase } from '~/redux/order/orderSlice';
 import Loading from '~/components/loading/Loading';
 import { removeAllCart } from '~/redux/cart/cartSlice';
 import { Toast } from '~/constants/MySwal';
+import payment from '.';
 
 const cx = classNames.bind(style);
 
@@ -43,6 +44,7 @@ function Payment() {
     const initialValues = {
         fullName: !!user ? user.lastName + ' ' + user.firstName : '',
         email: !!user ? user.email : '',
+        payment: "",
     }
     const validate = (fieldValues = values) => {
         let temp = { ...errors }
@@ -92,6 +94,7 @@ function Payment() {
     } = useForm(initialValues, true, validate);
 
     const handleChange = (e) => {
+        handleInputChange(e)
         const inputChecked = e.target
         setDisable(false)
     }
@@ -120,7 +123,7 @@ function Payment() {
                 },
                 items: items
             };
-            await dispatch(requestPurchase({ purchase: purchase, accessToken: accessToken }))
+            await dispatch(requestPurchase({ purchase: purchase, payment: payment, accessToken: accessToken }))
             if (active) {
                 dispatch(removeAllCart())
             }
@@ -178,7 +181,7 @@ function Payment() {
                     <Box>
                         <Typography variant='h4' className={cx('sub-title')}>Phương thức thanh toán</Typography>
                         <Box sx={{ display: 'flex' }}>
-                            <input type='radio' name='payment' id='vn-pay' hidden
+                            <input type='radio' name='payment' value={"vnpay"} id='vn-pay' hidden
                                 onChange={(e) => handleChange(e)} />
                             <Box
                                 component={'label'}
@@ -207,7 +210,7 @@ function Payment() {
                                 </Typography>
                             </Box>
 
-                            <input type='radio' name='payment' id='momo' hidden onChange={(e) => handleChange(e)} />
+                            <input type='radio' name='payment' id='momo' value="momo" hidden onChange={(e) => handleChange(e)} />
                             <Box
                                 htmlFor='momo'
                                 component={'label'}

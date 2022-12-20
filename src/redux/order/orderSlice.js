@@ -11,7 +11,7 @@ const initialState = {
 
 export const requestPurchase = createAsyncThunk(ORDER_PURCHASE, async (params, thunkApi) => {
     try {
-        const response = await checkoutApi.purchase(params.purchase, params.accessToken);
+        const response = await checkoutApi.purchase(params.purchase, params.payment, params.accessToken);
         return !response.success ? thunkApi.rejectWithValue(response) : thunkApi.fulfillWithValue(response);
     } catch (error) {
         return thunkApi.rejectWithValue(error.response.data);
@@ -20,7 +20,7 @@ export const requestPurchase = createAsyncThunk(ORDER_PURCHASE, async (params, t
 
 export const requestCheckoutSuccess = createAsyncThunk(CHECKOUT_SUCCESS, async (params, thunkApi) => {
     try {
-        const response = await checkoutApi.checkoutSuccess(params.capture, params.accessToken);
+        const response = await checkoutApi.checkoutSuccess(params.capture, params.payment, params.accessToken);
         return !response.success ? thunkApi.rejectWithValue(response) : thunkApi.fulfillWithValue(response);
     } catch (error) {
         return thunkApi.rejectWithValue(error.response.data);
@@ -49,7 +49,7 @@ export const orderSlice = createSlice({
                 state.response = action.payload;
                 return state;
             })
-        
+
             .addCase(requestCheckoutSuccess.pending, (state, action) => {
                 state.isLoading = true;
                 return state;

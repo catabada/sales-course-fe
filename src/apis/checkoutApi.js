@@ -1,9 +1,9 @@
 import axiosClient from "./axiosClient";
 
 export const checkoutApi = {
-    async purchase(purchase, accessToken) {
+    async purchase(purchase, payment, accessToken) {
 
-        return await axiosClient.post('/checkout/purchase/momo', { ...purchase }
+        return await axiosClient.post(`/checkout/purchase/${payment}`, { ...purchase }
             , {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
@@ -17,8 +17,8 @@ export const checkoutApi = {
                 return error.response.data
             })
     },
-    async checkoutSuccess(capture, accessToken) {
-        return await axiosClient.post('/checkout/momo/success', null
+    async checkoutSuccess(capture, payment, accessToken) {
+        return await axiosClient.post(`/checkout/${payment}/success`, null
             , {
                 params: {...capture},
                 headers: {
