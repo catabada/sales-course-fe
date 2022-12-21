@@ -140,11 +140,11 @@ export const authSlice = createSlice({
             })
             .addCase(requestLoginFacebook.rejected, (state, action) => {
                 state.isLoading = false;
-                // MySwal.fire({
-                //     icon: 'error',
-                //     title: 'Oops...',
-                //     text: action.payload.message,
-                // });
+                MySwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: action.payload.message,
+                });
                 return state;
             })
 
