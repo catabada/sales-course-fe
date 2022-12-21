@@ -2,18 +2,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import style from './SideBar.module.scss';
 import classNames from 'classnames/bind';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import CreditCardIcon from '@mui/icons-material/CreditCard';
-import StoreIcon from '@mui/icons-material/Store';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { useDispatch, useSelector } from 'react-redux';
 import { requestLogout } from '~/redux/auth/authSlice';
 import { requestGetProfile, requestLogoutUser } from '~/redux/user/userSlice';
 import { Avatar, Box, Typography } from '@mui/material';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import SchoolIcon from '@mui/icons-material/School';
-import CategoryIcon from '@mui/icons-material/Category';
-import AccessibilityIcon from '@mui/icons-material/Accessibility';
+import MySwal from '~/constants/MySwal';
 const cx = classNames.bind(style);
 
 function SideBar() {
@@ -22,23 +18,33 @@ function SideBar() {
     const userId = useSelector((state) => state.authReducer.userId);
     const accessToken = useSelector((state) => state.authReducer.accessToken);
     const user = useSelector((state) => state.userReducer.user);
-
     useEffect(() => {
         if (userId !== 0) {
             dispatch(requestGetProfile({ userId: userId, accessToken: accessToken }));
         }
     }, [dispatch, userId, accessToken]);
 
-    const handleLogout = async () => {
-        await dispatch(requestLogout());
-        await dispatch(requestLogoutUser());
-        navigate('/auth/signin');
+    const handleLogout = () => {
+        MySwal.fire({
+            title: 'Bạn có chắc muốn đăng xuất hay không',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Đăng xuất',
+            cancelButtonText: 'Hủy',
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                await dispatch(requestLogout());
+                await dispatch(requestLogoutUser());
+                navigate('/auth/signin');
+            }
+        });
     };
+
     return (
         <div className={cx('sidebar')}>
             <div className={cx('top')}>
                 <Link to="/admin/dashboard" style={{ textDecoration: 'none' }}>
-                    <span className={cx('logo')}>Sales Course Admin</span>
+                    <span className={cx('logo')}>Baha Mall Admin</span>
                 </Link>
                 {user && (
                     <Box className={cx('user')}>
@@ -92,7 +98,7 @@ function SideBar() {
                     <p className={cx('title')}>USER</p>
                     <li onClick={handleLogout}>
                         <ExitToAppIcon className={cx('icon')} />
-                        <span>Logout</span>
+                        <span>Đăng xuất</span>
                     </li>
                 </ul>
             </div>

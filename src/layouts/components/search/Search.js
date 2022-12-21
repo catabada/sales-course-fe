@@ -89,8 +89,6 @@ function Search({ user }) {
         );
     }, [dispatch, search]);
 
-    console.log(coursesSearch);
-
     return (
         <Box className={cx('wrapper', 'full-width')} onClick={handleFocus}>
             <TextField
