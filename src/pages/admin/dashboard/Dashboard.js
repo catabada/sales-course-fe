@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PieChart from '~/components/admin/chart/PieChart';
 import { CategoryData, RevenueData } from '~/services/fakeData';
 
@@ -8,6 +8,7 @@ import BarChart from '~/components/admin/chart/BarChart';
 import Widget from '~/components/admin/widget/Widget';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { getRevenueDay } from '~/redux/statistics/statisticSlice';
 
 const cx = classNames.bind(style);
 
@@ -15,7 +16,15 @@ function Dashboard() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { userId, accessToken } = useSelector((state) => state.authReducer);
-    if (accessToken) navigate('/auth/signin');
+    const statistic = useSelector(state => state.statisticReducer.statistic);
+    // if (accessToken) navigate('/auth/signin');
+
+    
+    useEffect(() => {
+        dispatch(getRevenueDay(10))
+    }, [dispatch])
+
+    console.log(statistic);
 
     const [categoryData, setCategoryData] = useState({
         labels: CategoryData.map((data) => data.name),
@@ -38,7 +47,7 @@ function Dashboard() {
     });
 
     const handleInputChange = (e) => {
-        console.log(e.target.value)        
+        console.log(e.target.value)
     };
 
     return (
