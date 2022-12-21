@@ -72,6 +72,11 @@ const publicRoutes = [
         component: Cart,
         exact: true,
     },
+    {
+        path: '/:type/payment',
+        component: Payment,
+        exact: true,
+    },
    
 ];
 
@@ -89,11 +94,6 @@ const privateRoutes = [
     {
         path: '/profile',
         component: Profile,
-        exact: true,
-    },
-    {
-        path: '/:type/payment',
-        component: Payment,
         exact: true,
     },
     {
