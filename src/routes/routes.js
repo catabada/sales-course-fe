@@ -20,6 +20,8 @@ import CheckoutSuccess from '~/pages/client/payment/CheckoutSuccess';
 
 import AdminCourse from "~/pages/admin/course";
 import AdminCategory from "~/pages/admin/category";
+import NotFoundPage from '~/pages/error/404/NotFoundPage';
+import AuthorizationPage from '~/pages/error/403/AuthorizationPage';
 
 
 
@@ -77,6 +79,19 @@ const publicRoutes = [
         component: Payment,
         exact: true,
     },
+    {
+        path: '/error/403',
+        component: AuthorizationPage,
+        layout: HeaderOnly,
+        exact: true,
+    },
+    {
+        path: '*',
+        component: NotFoundPage,
+        layout: HeaderOnly,
+
+    },
+    
    
 ];
 
@@ -130,6 +145,7 @@ const adminRoutes = [
         layout: AdminLayout,
         exact: true,
     },
+    
 ];
 
 export {publicRoutes, privateRoutes, adminRoutes};

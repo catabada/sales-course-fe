@@ -77,7 +77,7 @@ function App() {
                                     ? <Layout>
                                         <Page />
                                     </Layout>
-                                    : <Navigate to="/auth/signin" />
+                                    : <Navigate to="/error/403" />
                             }
                         />
                     )
