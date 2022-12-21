@@ -97,7 +97,7 @@ const privateRoutes = [
         exact: true,
     },
     {
-        path: '/payment/success/:payment',
+        path: '/payment/response/:payment',
         component: CheckoutSuccess,
         exact: true,
         layout: HeaderOnly,
