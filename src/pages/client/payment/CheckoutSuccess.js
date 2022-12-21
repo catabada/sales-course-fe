@@ -15,10 +15,10 @@ const CheckoutSuccess = () => {
     const { accessToken } = useSelector(state => state.authReducer)
     const [searchParams, setSearchParams] = useSearchParams();
 
+    const vnp_ResponseCode = searchParams.get("vnp_ResponseCode");
     const orderId = searchParams.get("orderId");
     const resultCode = searchParams.get("resultCode");
     const message = searchParams.get("message");
-    const orderInfo = searchParams.get("orderInfo");
 
     useEffect(() => {
         if (resultCode === 0) dispatch(removeAllCart())
@@ -34,6 +34,37 @@ const CheckoutSuccess = () => {
         }
     }, [dispatch])
 
+    const handleResponse = () => {
+        if (resultCode === "0" || vnp_ResponseCode === "00") {
+            return (
+                <Grid item lg={12}>
+                    <Typography sx={{
+                        fontSize: '3rem',
+                        fontWeight: 'bold',
+                        color: '#fccf00'
+                    }}>Cảm ơn bạn đã thanh toán</Typography>
+                    <Typography sx={{ fontSize: '1.8rem' }}>Mã hóa đơn của bạn: {orderId}</Typography>
+                    <Typography sx={{ fontSize: '1.8rem' }}>Note: Nếu bạn mua không đăng nhập thì bạn hãy kiểm tra email lấy mã để kích hoạt khóa học.</Typography>
+                    <Button onClick={() => navigate("/")} sx={{ padding: '10px 15px', fontSize: '1.4rem', marginTop: '20px' }} variant="contained" className="btn-primary">Trở về trang chủ</Button>
+                </Grid>
+            );
+        }
+
+        if (resultCode === "1006" || vnp_ResponseCode === "24") {
+            return (
+                <Grid item lg={12}>
+                    <Typography sx={{
+                        fontSize: '3rem',
+                        fontWeight: 'bold',
+                        color: '#fccf00'
+                    }}>Thanh toán không thành công</Typography>
+                    <Typography sx={{ fontSize: '1.8rem' }}>Mã hóa đơn của bạn: {orderId}</Typography>
+                    <Button onClick={() => navigate("/")} sx={{ padding: '10px 15px', fontSize: '1.4rem', marginTop: '20px' }} variant="contained" className="btn-primary">Trở về trang chủ</Button>
+                </Grid>
+            );
+        }
+    }
+
     return (
         <Box >
             <Grid sx={{ height: '400px' }} container textAlign={"center"} alignContent={"center"} justifyContent="center" alignItems="center">
@@ -42,28 +73,7 @@ const CheckoutSuccess = () => {
                         ? <CheckCircleOutlineIcon sx={{ fontSize: '14rem', color: '#fccf00' }} />
                         : <HighlightOffSharpIcon sx={{ fontSize: '14rem', color: '#fccf00' }} />}
                 </Grid>
-                {resultCode === 0
-                    ? <Grid item lg={12}>
-                        <Typography sx={{
-                            fontSize: '3rem',
-                            fontWeight: 'bold',
-                            color: '#fccf00'
-                        }}>Cảm ơn bạn đã thanh toán</Typography>
-                        <Typography sx={{ fontSize: '1.8rem' }}>Mã hóa đơn của bạn: {orderId}</Typography>
-                        <Typography sx={{ fontSize: '1.8rem' }}>Note: Nếu bạn mua không đăng nhập thì bạn hãy kiểm tra email lấy mã để kích hoạt khóa học.</Typography>
-                        <Button onClick={() => navigate("/")} sx={{ padding: '10px 15px', fontSize: '1.4rem', marginTop: '20px' }} variant="contained" className="btn-primary">Trở về trang chủ</Button>
-                    </Grid>
-                    : <Grid item lg={12}>
-                        <Typography sx={{
-                            fontSize: '3rem',
-                            fontWeight: 'bold',
-                            color: '#fccf00'
-                        }}>Thanh toán thất bại</Typography>
-                        <Typography sx={{ fontSize: '2rem' }}>Mã hoá đơn: {orderId}</Typography>
-                        <Typography sx={{ fontSize: '1.8rem' }}>Lý do: {message}</Typography>
-                        <Button onClick={() => navigate("/")} sx={{ padding: '10px 15px', fontSize: '1.4rem', marginTop: '20px' }} variant="contained" className="btn-primary">Trở về trang chủ</Button>
-                    </Grid>
-                }
+                {handleResponse()}
             </Grid>
         </Box>
     );

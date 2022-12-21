@@ -12,7 +12,6 @@ function App() {
     const { isLogin } = useSelector(state => state.authReducer)
     const { accessToken } = useSelector(state => state.authReducer)
     const { decodedToken, isExpired } = useJwt(accessToken)
-    console.log(decodedToken, isExpired)
 
     return (
         <div className="App">
