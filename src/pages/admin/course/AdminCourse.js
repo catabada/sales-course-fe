@@ -15,9 +15,9 @@ function AdminCourse() {
     }, [dispatch]);
 
     console.log(courses);
-    if (isLoading) {
-        dispatch(getCoursesSearch({}));
-    }
+    // if (isLoading) {
+    //     dispatch(getCoursesSearch({}));
+    // }
     const columns = [
         {
             name: 'Tên khoá học',

@@ -3,10 +3,10 @@ import data from "bootstrap/js/src/dom/data";
 
 const initialSearch = {
     codeName: '',
-    price: 0,
+    priceBetween: null,
     name: '',
     sku: '',
-    discount: 0,
+    discount: null,
     lecturer: null,
     category: null,
 }
