@@ -1,37 +1,36 @@
 .sub-nav {
+    .sub-last-item,
+    .sub-item {
+        text-decoration: none !important;
+        font-size: 1.6rem !important;
+        color: #fff !important;
 
-  .sub-last-item,
-  .sub-item {
-    text-decoration: none !important;
-    font-size: 1.6rem !important;
-    color: #fff !important;
-
-    &:hover {
-      color: #fff !important;
+        &:hover {
+            color: #fff !important;
+        }
     }
-  }
 
-  .sub-last-item {
-    cursor: pointer;
-  }
+    .sub-last-item {
+        cursor: pointer;
+    }
 
-  .next-icon {
-    color: #fff !important;
-  }
+    .next-icon {
+        color: #fff !important;
+    }
 }
 
 .next-icon,
 .sub-last-item,
 .sub-item {
-  text-decoration: none !important;
-  font-size: 1.6rem !important;
-  color: #082346 !important;
+    text-decoration: none !important;
+    font-size: 1.6rem !important;
+    color: #fff !important;
 
-  &:hover {
-    color: #082346 !important;
-  }
+    &:hover {
+        color: #fff !important;
+    }
 }
 
 .sub-last-item {
-  cursor: pointer;
+    cursor: pointer;
 }

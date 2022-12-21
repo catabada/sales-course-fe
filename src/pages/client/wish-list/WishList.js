@@ -40,7 +40,7 @@ function WishList() {
             <div className={cx('title')}>
                 <Typography sx={{ fontSize: "3rem", fontWeight: 'bold' }}>Đã thích</Typography>
             </div>
-            <div className="row">
+            <Box className="row" sx={{minHeight:'100px'}}>
                 {
                     wishlist.map((item, index) => (
                         <Box sx={{ padding: '1rem' }} key={index} className={cx('col-3', 'active')}>
@@ -49,7 +49,7 @@ function WishList() {
                         </Box>
                     ))
                 }
-            </div>
+            </Box>
         </div>
         <Loading open={isLoading} />
     </div>
