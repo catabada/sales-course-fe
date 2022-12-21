@@ -68,6 +68,15 @@ const publicRoutes = [
         exact: true,
     },
     {
+        path: '/cart',
+        component: Cart,
+        exact: true,
+    },
+   
+];
+
+const privateRoutes = [
+    {
         path: '/my-courses',
         component: MyCourse,
         exact: true,
@@ -83,21 +92,20 @@ const publicRoutes = [
         exact: true,
     },
     {
-        path: '/cart',
-        component: Cart,
-        exact: true,
-    },
-    {
         path: '/:type/payment',
         component: Payment,
         exact: true,
     },
     {
-        path: '/payment/success/:payment',
+        path: '/payment/response/:payment',
         component: CheckoutSuccess,
         exact: true,
         layout: HeaderOnly,
     },
+    
+];
+
+const adminRoutes = [
     {
         path: '/admin/dashboard',
         component: Dashboard,
@@ -124,6 +132,4 @@ const publicRoutes = [
     },
 ];
 
-const privateRoutes = [];
-
-export {publicRoutes, privateRoutes};
+export {publicRoutes, privateRoutes, adminRoutes};
