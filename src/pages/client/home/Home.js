@@ -1,20 +1,21 @@
 import styles from './Home.module.scss';
 import classNames from 'classnames/bind';
 
-import {SlideShow} from '~/services/fakeData';
-import {SlickCustomDot, SlickCustomArrow} from "~/components/slick";
+import { SlideShow } from '~/services/fakeData';
+import { SlickCustomDot, SlickCustomArrow } from "~/components/slick";
 
 
-import {Grid, Typography} from '@mui/material';
-import {useDispatch, useSelector} from 'react-redux';
-import {useEffect} from 'react';
-import {getCoursesSearch} from "~/redux/course/courseSlice";
+import { Grid, Typography } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getCoursesSearch } from "~/redux/course/courseSlice";
 
 const cx = classNames.bind(styles);
 
 
 function Home() {
     const dispatch = useDispatch()
+    
     const courses = useSelector(state => state.courseReducer.courses)
     useEffect(() => {
         dispatch(getCoursesSearch({}))
@@ -34,7 +35,7 @@ function Home() {
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
                 <div className={cx("slide-show")}>
-                    <SlickCustomDot data={SlideShow}/>
+                    <SlickCustomDot data={SlideShow} />
                 </div>
                 {/* ban chay*/}
                 <section id='bestseller'>
@@ -46,7 +47,7 @@ function Home() {
                         </div>
                     </div>
                     <div className={cx("section-content")}>
-                        <SlickCustomArrow data={priceArray}/>
+                        <SlickCustomArrow data={priceArray} />
                     </div>
                 </section>
 
@@ -61,7 +62,7 @@ function Home() {
                         </div>
                     </div>
                     <div className={cx("section-content")}>
-                        <SlickCustomArrow data={createdDateArray}/>
+                        <SlickCustomArrow data={createdDateArray} />
                     </div>
                 </section>
 
@@ -75,7 +76,7 @@ function Home() {
                         </div>
                     </div>
                     <div className={cx("section-content")}>
-                        <SlickCustomArrow data={viewedArray}/>
+                        <SlickCustomArrow data={viewedArray} />
                     </div>
                 </section>
             </div>

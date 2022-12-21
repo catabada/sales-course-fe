@@ -12,6 +12,7 @@ const initialState = {
     accessToken: '',
     imageUrl: '',
     isLoading: false,
+    isLogin: false,
     response: null,
 }
 
@@ -102,6 +103,8 @@ export const authSlice = createSlice({
                 state.accessToken = data.token;
                 state.imageUrl = data.imageUrl;
                 state.isLoading = false;
+                state.isLogin = true;
+
                 Toast.fire({
                     icon: 'success',
                     title: 'Thành công!',
@@ -131,6 +134,7 @@ export const authSlice = createSlice({
                 state.accessToken = data.token;
                 state.imageUrl = data.imageUrl;
                 state.isLoading = false;
+                state.isLogin = true;
                 Toast.fire({
                     icon: 'success',
                     title: 'Thành công!',
@@ -160,6 +164,7 @@ export const authSlice = createSlice({
                 state.accessToken = data.token;
                 state.imageUrl = data.imageUrl;
                 state.isLoading = false;
+                state.isLogin = true;
                 Toast.fire({
                     icon: 'success',
                     title: 'Thành công!',
@@ -207,6 +212,7 @@ export const authSlice = createSlice({
                 state.userId = 0;
                 state.username = '';
                 state.accessToken = '';
+                state.isLogin = false;
                 storage.removeItem('persist:root')
                 return state;
             })
