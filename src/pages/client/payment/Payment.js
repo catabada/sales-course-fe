@@ -8,9 +8,6 @@ import { useLocation, useNavigate, useParams, useSearchParams } from 'react-rout
 import { Form, useForm } from '~/hooks/useForm';
 import { requestPurchase } from '~/redux/order/orderSlice';
 import Loading from '~/components/loading/Loading';
-import { removeAllCart } from '~/redux/cart/cartSlice';
-import { Toast } from '~/constants/MySwal';
-import payment from '.';
 
 const cx = classNames.bind(style);
 
@@ -124,10 +121,6 @@ function Payment() {
                 items: items
             };
             await dispatch(requestPurchase({ purchase: purchase, payment: values.payment, accessToken: accessToken }))
-            if (active) {
-                dispatch(removeAllCart())
-            }
-
         }
     }
 

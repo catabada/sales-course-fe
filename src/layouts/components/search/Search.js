@@ -76,6 +76,10 @@ function Search({ user }) {
         setFocus(!focus);
     };
     const handleChange = (value) => {
+        if (value === '')
+            setFocus(false);
+        else 
+            setFocus(true);
         setSearch(value);
     };
     const dispatch = useDispatch();
@@ -84,9 +88,12 @@ function Search({ user }) {
     useEffect(() => {
         dispatch(
             getCoursesSearch({
-                name: search,
+                search: {
+                    name: search,
+                }
             }),
         );
+
     }, [dispatch, search]);
 
     return (

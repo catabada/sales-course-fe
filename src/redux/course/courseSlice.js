@@ -19,8 +19,12 @@ const initialState = {
 }
 
 export const getCoursesSearch = createAsyncThunk(GET_COURSES_SEARCH, async (params, thunkAPI) => {
-    const courses = await courseApi.getCourse(params.search);
-    return courses;
+    try {
+        const response = await courseApi.getCourse(params.search);
+        return response.success ? thunkAPI.fulfillWithValue(response) : thunkAPI.rejectWithValue(response)
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data)
+    }
 })
 export const getCoursesSearchPagination = createAsyncThunk(GET_COURSES_SEARCH_PAGINATION, async (params, thunkAPI) => {
     try {

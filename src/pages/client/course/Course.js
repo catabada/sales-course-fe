@@ -23,6 +23,7 @@ function Course() {
     const [pageNumber, setPageNumber] = useState(searchParams.get("page-number"))
     const [sort, setSort] = useState("name");
     const [asc, setAsc] = useState(1);
+    const [querySearch, setQuerySearch] = useState(searchParams.get("search"))
 
     // get category when codeCategory change
     useEffect(() => {
@@ -36,7 +37,8 @@ function Course() {
                 category: {
                     id: category.id
                 },
-                priceBetween: priceBetween
+                priceBetween: priceBetween,
+                name: querySearch,
             },
             pageParam: {
                 "page-number": pageNumber - 1,
@@ -45,7 +47,7 @@ function Course() {
                 "asc": asc
             }
         }));
-    }, [dispatch, category, pageNumber, sort, asc, priceBetween])
+    }, [dispatch, category, pageNumber, sort, asc, priceBetween, querySearch])
 
 
     const callBackParentPageNumber = (pageNumber) => {
@@ -62,6 +64,9 @@ function Course() {
             setPriceBetween({ from: from })
         else setPriceBetween({ from: from, to: to })
     }
+    const callBackParentQuerySearch = (querySearch) => {
+        setQuerySearch(querySearch)
+    }
 
     return <Box className={cx('wrapper')}>
         <Box sx={{ width: '100%' }}>
@@ -71,7 +76,7 @@ function Course() {
                 <Paper elevation={4}>
                     <Grid container className={cx('body')}>
                         <Grid item lg={2} sx={{ width: '100%' }}>
-                            <Filter codeCategory={codeCategory} callBackParentFilterPrice={callBackParentFilterPrice} />
+                            <Filter codeCategory={codeCategory} callBackParentFilterPrice={callBackParentFilterPrice} callBackParentQuerySearch={callBackParentQuerySearch} />
                         </Grid>
                         <Grid item lg={10} sx={{ width: '100%', position: 'relative' }}>
                             {!!page &&

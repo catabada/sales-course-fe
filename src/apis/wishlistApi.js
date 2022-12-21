@@ -43,6 +43,24 @@ const wishlistApi = {
             .then((response) => {
                 return response;
             }).catch((err) => err.response.data)
+    },
+    async deleteWishlistByUserIdAndCourseId(wishlist, token) {
+        const url = `/wish-list/delete`
+        return await axiosClient.post(url, {
+            userInfo: {
+                userId: wishlist.userInfo.userId
+            },
+            course: {
+                id: wishlist.course.id
+            }
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+            .then((response) => {
+                return response;
+            }).catch((err) => err.response.data)
     }
 }
 
