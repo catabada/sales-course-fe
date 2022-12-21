@@ -14,7 +14,6 @@ function AdminCourse() {
         dispatch(getCoursesSearch({}));
     }, [dispatch]);
 
-    console.log(courses);
     // if (isLoading) {
     //     dispatch(getCoursesSearch({}));
     // }

@@ -4,36 +4,113 @@ import style from './Chart.module.scss';
 import classNames from 'classnames/bind';
 import { Box, TextField } from '@mui/material';
 import { CategoryData, RevenueData } from '~/services/fakeData';
+import { useState } from 'react';
 const cx = classNames.bind(style);
 
 function BarChart(props) {
+    const [filter, setFilter] = useState('day');
+
+    const handleChangeInput = (e) => {
+        setFilter(e.target.value);
+    };
+
     return (
         <div className={cx('chart')}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <div className={cx('title')}>{props.title}</div>
-                <TextField
-                    select
-                    autoComplete="off"
-                    InputProps={{
-                        style: { fontSize: '1.5rem' },
-                    }}
-                    sx={{ marginTop: '1rem' }}
-                    variant="outlined"
-                    name="category"
-                    onChange={(e) => props.parentCallback(e)}
-                    FormHelperTextProps={{ style: { fontSize: 12 } }}
-                    InputLabelProps={{ style: { fontSize: '1.6rem' } }}
-                    SelectProps={{
-                        native: true,
-                        style: { fontSize: '1.6rem' },
-                    }}
-                    label="Chọn thời gian"
-                >
-                    <option value="day-10">10 ngày trở lại đây</option>
-                    <option value="month-3">3 tháng trở lại đây</option>
-                    <option value="month-6">6 tháng trở lại đây</option>
-                    <option value="year-1">1 năm</option>
-                </TextField>
+                <Box>
+                    <TextField
+                        select
+                        autoComplete="off"
+                        InputProps={{
+                            style: { fontSize: '1.5rem' },
+                        }}
+                        sx={{ marginTop: '1rem', marginRight: '2rem' }}
+                        variant="outlined"
+                        name="category"
+                        onChange={(e) => handleChangeInput(e)}
+                        FormHelperTextProps={{ style: { fontSize: 12 } }}
+                        InputLabelProps={{ style: { fontSize: '1.6rem' } }}
+                        SelectProps={{
+                            native: true,
+                            style: { fontSize: '1.6rem' },
+                        }}
+                        label="Chọn thời gian"
+                    >
+                        <option value="day">Theo ngày</option>
+                        <option value="month">Theo tháng</option>
+                        <option value="year">Theo năm</option>
+                    </TextField>
+                   {
+                    filter==="day"?
+                    <TextField
+                        select
+                        autoComplete="off"
+                        InputProps={{
+                            style: { fontSize: '1.5rem' },
+                        }}
+                        sx={{ marginTop: '1rem' }}
+                        variant="outlined"
+                        name="category"
+                        onChange={(e) => props.parentCallback(e)}
+                        FormHelperTextProps={{ style: { fontSize: 12 } }}
+                        InputLabelProps={{ style: { fontSize: '1.6rem' } }}
+                        SelectProps={{
+                            native: true,
+                            style: { fontSize: '1.6rem' },
+                        }}
+                        label="Chọn thời gian"
+                    >
+                        <option value="day-ten">10 ngày trở lại đây</option>
+                        <option value="day-thirty">30 ngày trở lại đây</option>
+                    </TextField>
+                    : filter=="month"?
+                    <TextField
+                        select
+                        autoComplete="off"
+                        InputProps={{
+                            style: { fontSize: '1.5rem' },
+                        }}
+                        sx={{ marginTop: '1rem' }}
+                        variant="outlined"
+                        name="category"
+                        onChange={(e) => props.parentCallback(e)}
+                        FormHelperTextProps={{ style: { fontSize: 12 } }}
+                        InputLabelProps={{ style: { fontSize: '1.6rem' } }}
+                        SelectProps={{
+                            native: true,
+                            style: { fontSize: '1.6rem' },
+                        }}
+                        label="Chọn thời gian"
+                    >
+                        <option value="month-march">3 tháng trở lại đây</option>
+                        <option value="month-june">6 tháng trở lại đây</option>
+                    </TextField>
+                    :
+                    <TextField
+                        select
+                        autoComplete="off"
+                        InputProps={{
+                            style: { fontSize: '1.5rem' },
+                        }}
+                        sx={{ marginTop: '1rem' }}
+                        variant="outlined"
+                        name="category"
+                        onChange={(e) => props.parentCallback(e)}
+                        FormHelperTextProps={{ style: { fontSize: 12 } }}
+                        InputLabelProps={{ style: { fontSize: '1.6rem' } }}
+                        SelectProps={{
+                            native: true,
+                            style: { fontSize: '1.6rem' },
+                        }}
+                        label="Chọn thời gian"
+                    >
+                        <option value="year-five">5 năm trở lại đây</option>
+                    
+                    </TextField>
+                   }
+                   
+                </Box>
             </Box>
             <Bar
                 data={{

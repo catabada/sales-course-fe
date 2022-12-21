@@ -1,0 +1,8 @@
+.course-name {
+    font-size: 1.6rem !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}

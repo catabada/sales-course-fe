@@ -16,6 +16,30 @@
             height: 80px;
             justify-content: center;
 
+            .header-account {
+                position: relative;
+                &:hover .header-drop {
+                    display: block;
+                }
+
+                .header-drop {
+                    display: none;
+                    position: absolute;
+                    background-color: #fff;
+                    width: 250px;
+                    right: 20px;
+                    box-shadow: 1px 1px #888888;
+
+                    &::after {
+                        content: '';
+                        height: 20px;
+                        top: -10px;
+                        width: 100%;
+                        position: absolute;
+                        display: block;
+                    }
+                }
+            }
             .my-courses {
                 display: flex;
                 text-decoration: none;

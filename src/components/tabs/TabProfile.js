@@ -7,17 +7,17 @@ import {
     Tab,
     Tabs,
     TextField,
-    Typography,
-    Select,
-    InputLabel
+
 } from "@mui/material";
 import PropTypes from "prop-types";
-import {TabContext, TabList, TabPanel} from "@mui/lab";
-import {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {Form, useForm} from "~/hooks/useForm";
-import {requestSaveProfile} from "~/redux/user/userSlice";
+import { TabPanel } from "@mui/lab";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "~/hooks/useForm";
+import { requestSaveProfile } from "~/redux/user/userSlice";
 import moment from "moment"
+import DataTable from "react-data-table-component";
+import TabOrderDetail from "./TabOrderDetail";
 
 
 TabPanel.propTypes = {
@@ -34,7 +34,7 @@ function a11yProps(index) {
 }
 
 function TabPanels(props) {
-    const {children, value, index, ...other} = props;
+    const { children, value, index, ...other } = props;
 
     return (
         <div
@@ -45,7 +45,7 @@ function TabPanels(props) {
             {...other}
         >
             {value === index && (
-                <Box sx={{p: 3}}>
+                <Box sx={{ p: 3 }}>
                     <Box>{children}</Box>
                 </Box>
             )}
@@ -54,18 +54,61 @@ function TabPanels(props) {
 }
 
 
-function TabProfile({user}) {
+function TabProfile({ user }) {
     const [value, setValue] = useState(0);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
     const dispatch = useDispatch();
-    const {accessToken} = useSelector(state => state.authReducer)
+    const { accessToken } = useSelector(state => state.authReducer)
+    const { orders } = useSelector(state => state.orderReducer)
 
-    useEffect(() => {
+    const data = [
+        {
+            id: '12321',
+            state: 'Thành công',
+            price: 123000,
+            payment: 'vnpay',
+            createdDate: '21/12/2022',
+            option: <TabOrderDetail />
+        }
+    ]
+    const columns = [
+        {
+            name: 'Order Tracking',
+            selector: (row) => row.id,
+            width: '200px',
+        },
+        {
+            name: 'Trạng thái',
+            selector: (row) => row.state,
+            sortable: true,
+            width: '120px',
+        },
+        {
+            name: 'Thanh toán',
+            selector: (row) => row.payment,
+            sortable: true,
+            width: '120px',
+        },
+        {
+            name: 'Tổng giá',
+            selector: (row) => Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(row.price),
+            width: '120px',
+        },
+        {
+            name: 'Ngày ghi nhận',
+            selector: (row) => row.createdDate,
+            width: '150px',
+        },
+        {
+            name: 'Chức năng',
+            selector: (row) => row.option,
+            width: '150px',
+        },
+    ]
 
-    }, [dispatch])
     const handleChangeFile = (e) => {
         console.log(e.target.value);
     }
@@ -82,8 +125,8 @@ function TabProfile({user}) {
     }
 
     const validate = (fieldValues = values) => {
-        let temp = {...errors}
-        let tempEnable = {...errorsEnable}
+        let temp = { ...errors }
+        let tempEnable = { ...errorsEnable }
         if ('firstName' in fieldValues) {
             if (fieldValues.firstName !== '' && fieldValues.firstName !== null) {
                 temp.firstName = ''
@@ -158,32 +201,32 @@ function TabProfile({user}) {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validate()) {
-            dispatch(requestSaveProfile({userInfo: values, accessToken: accessToken}))
+            dispatch(requestSaveProfile({ userInfo: values, accessToken: accessToken }))
         }
     }
 
     return (
         <Box>
-            <Box sx={{paddingLeft: 0}}>
+            <Box sx={{ paddingLeft: 0 }}>
                 <Tabs value={value} onChange={handleChange} aria-label="full width tabs example"
-                      TabIndicatorProps={{
-                          style: {
-                              height: '0.5rem'
-                          }
-                      }}
-                      variant="fullWidth"
+                    TabIndicatorProps={{
+                        style: {
+                            height: '0.5rem'
+                        }
+                    }}
+                    variant="fullWidth"
                 >
-                    <Tab label="Thông tin cơ bản" {...a11yProps(0)} sx={{fontSize: '2rem'}}/>
-                    <Tab label="Lịch sử đăng ký" {...a11yProps(1)} sx={{fontSize: '2rem'}}/>
-                    <Tab label="Hoạt động gần đây" {...a11yProps(2)} sx={{fontSize: '2rem'}}/>
+                    <Tab label="Thông tin cơ bản" {...a11yProps(0)} sx={{ fontSize: '2rem' }} />
+                    <Tab label="Lịch sử mua hàng" {...a11yProps(1)} sx={{ fontSize: '2rem' }} />
+                    <Tab label="Hoạt động gần đây" {...a11yProps(2)} sx={{ fontSize: '2rem' }} />
                 </Tabs>
             </Box>
             <TabPanels value={value} index={0}>
-                <Box sx={{display: 'flex'}}>
+                <Box sx={{ display: 'flex' }}>
                     <Box component="form" onSubmit={handleSubmit}
-                         sx={{width: '70%', display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
-                        <Box sx={{width: '50%', padding: '2% 5% 0 0'}}>
-                            <FormControl sx={{width: '100%'}}>
+                        sx={{ width: '70%', display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+                        <Box sx={{ width: '50%', padding: '2% 5% 0 0' }}>
+                            <FormControl sx={{ width: '100%' }}>
                                 <TextField
                                     id="standard-required"
                                     label="Tên"
@@ -194,7 +237,7 @@ function TabProfile({user}) {
                                     variant="standard"
                                     name='firstName'
                                     onChange={handleInputChange}
-                                    FormHelperTextProps={{style: {fontSize: 12}}}
+                                    FormHelperTextProps={{ style: { fontSize: 12 } }}
                                     InputLabelProps={{
                                         style: {
                                             fontSize: '2rem'
@@ -209,8 +252,8 @@ function TabProfile({user}) {
                                 />
                             </FormControl>
                         </Box>
-                        <Box sx={{width: '50%', padding: '2% 5% 0 0'}}>
-                            <FormControl sx={{width: '100%'}}>
+                        <Box sx={{ width: '50%', padding: '2% 5% 0 0' }}>
+                            <FormControl sx={{ width: '100%' }}>
                                 <TextField
                                     id="standard-required"
                                     label="Họ"
@@ -220,7 +263,7 @@ function TabProfile({user}) {
                                     helperText={errors.lastName}
                                     variant="standard"
                                     name='lastName'
-                                    FormHelperTextProps={{style: {fontSize: 12}}}
+                                    FormHelperTextProps={{ style: { fontSize: 12 } }}
                                     onChange={handleInputChange}
                                     InputLabelProps={{
                                         style: {
@@ -236,8 +279,8 @@ function TabProfile({user}) {
                                 />
                             </FormControl>
                         </Box>
-                        <Box sx={{width: '50%', padding: '2% 5% 0 0'}}>
-                            <FormControl sx={{width: '100%'}}>
+                        <Box sx={{ width: '50%', padding: '2% 5% 0 0' }}>
+                            <FormControl sx={{ width: '100%' }}>
                                 <TextField
                                     label="Giới tính"
                                     id="isMale"
@@ -246,7 +289,7 @@ function TabProfile({user}) {
                                     select
                                     name='isMale'
                                     onChange={handleInputChange}
-                                    FormHelperTextProps={{style: {fontSize: 12}}}
+                                    FormHelperTextProps={{ style: { fontSize: 12 } }}
                                     InputLabelProps={{
                                         style: {
                                             fontSize: '2rem',
@@ -262,17 +305,17 @@ function TabProfile({user}) {
                                         }
                                     }}
                                 >
-                                    <MenuItem value={true} sx={{fontSize: '1.8rem'}}>
+                                    <MenuItem value={true} sx={{ fontSize: '1.8rem' }}>
                                         Nam
                                     </MenuItem>
-                                    <MenuItem value={false} sx={{fontSize: '1.8rem'}}>
+                                    <MenuItem value={false} sx={{ fontSize: '1.8rem' }}>
                                         Nữ
                                     </MenuItem>
                                 </TextField>
                             </FormControl>
                         </Box>
-                        <Box sx={{width: '50%', padding: '2% 5% 0 0'}}>
-                            <FormControl sx={{width: '100%'}}>
+                        <Box sx={{ width: '50%', padding: '2% 5% 0 0' }}>
+                            <FormControl sx={{ width: '100%' }}>
                                 <TextField
                                     id="standard-required"
                                     label="Ngày sinh"
@@ -284,7 +327,7 @@ function TabProfile({user}) {
                                     value={values.dateOfBirth}
                                     error={errorsEnable.dateOfBirth}
                                     helperText={errors.dateOfBirth}
-                                    FormHelperTextProps={{style: {fontSize: 12}}}
+                                    FormHelperTextProps={{ style: { fontSize: 12 } }}
                                     InputLabelProps={{
                                         style: {
                                             fontSize: '2rem',
@@ -301,8 +344,8 @@ function TabProfile({user}) {
                                 />
                             </FormControl>
                         </Box>
-                        <Box sx={{width: '50%', padding: '2% 5% 0 0'}}>
-                            <FormControl sx={{width: '100%'}}>
+                        <Box sx={{ width: '50%', padding: '2% 5% 0 0' }}>
+                            <FormControl sx={{ width: '100%' }}>
                                 <TextField
                                     id="standard-required"
                                     label="Số điện thoại"
@@ -314,7 +357,7 @@ function TabProfile({user}) {
                                     helperText={errors.phone}
                                     name='phone'
                                     onChange={handleInputChange}
-                                    FormHelperTextProps={{style: {fontSize: 12}}}
+                                    FormHelperTextProps={{ style: { fontSize: 12 } }}
                                     InputLabelProps={{
                                         style: {
                                             fontSize: '2rem',
@@ -341,7 +384,7 @@ function TabProfile({user}) {
                                 height: '54px',
                                 borderRadius: '50px',
                                 fontSize: '2rem',
-                                '&:hover': {backgroundColor: '#C89F65', color: '#fff',}
+                                '&:hover': { backgroundColor: '#C89F65', color: '#fff', }
                             }}
                         >
                             Lưu
@@ -356,9 +399,9 @@ function TabProfile({user}) {
                         alignItems: 'center',
                         flexDirection: 'column'
                     }}>
-                        <Box sx={{width: 120, height: 120}}>
+                        <Box sx={{ width: 120, height: 120 }}>
                             <Avatar alt='user-image' src={user.imageUrl}
-                                    sx={{width: '100%', height: '100%', border: '1px solid #ccc'}}/>
+                                sx={{ width: '100%', height: '100%', border: '1px solid #ccc' }} />
                         </Box>
                         <Box
                             component={"label"}
@@ -382,14 +425,25 @@ function TabProfile({user}) {
                 </Box>
             </TabPanels>
             <TabPanels value={value} index={1}>
-                Chức năng đang cập nhật
+                <Box>
+                    <DataTable
+                        columns={columns}
+                        data={data}
+                        pagination={true}
+                        pointerOnHover={true}
+                        highlightOnHover={true}
+                        responsive={true}
+                        fixedHeader={true}
+                        fixedHeaderScrollHeight={'65vh'}
+                    />
+                </Box>
             </TabPanels>
             <TabPanels value={value} index={2}>
                 Chức năng đang cập nhật
             </TabPanels>
 
 
-        </Box>
+        </Box >
     )
 }
 
