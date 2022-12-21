@@ -4,6 +4,7 @@ import { authApi } from "~/apis/authApi";
 import { AUTH_LOGIN, AUTH_FORGOT_PASS, AUTH_LOGIN_FB, AUTH_LOGIN_GG, AUTH_LOGOUT, AUTH_REGISTER, AUTH_ACTIVE_COURSE } from "./authType";
 
 import MySwal, { Toast } from "~/constants/MySwal";
+import storage from "redux-persist/lib/storage";
 
 const initialState = {
     userId: 0,
@@ -200,10 +201,13 @@ export const authSlice = createSlice({
                 });
                 return state;
             })
+
+            //Logout
             .addCase(requestLogout.fulfilled, (state, action) => {
                 state.userId = 0;
                 state.username = '';
                 state.accessToken = '';
+                storage.removeItem('persist:root')
                 return state;
             })
 

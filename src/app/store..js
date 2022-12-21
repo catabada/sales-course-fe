@@ -23,6 +23,7 @@ import {feedbackReducer} from "~/redux/feedback/feedbackSlice";
 import {discussReducer} from "~/redux/discuss/discussSlice";
 import { myCourseReducer } from '~/redux/my-course/myCourseSlice';
 import { orderReducer } from '~/redux/order/orderSlice';
+import { AUTH_LOGOUT } from '~/redux/auth/authType';
 
 const persistConfig = {
     key: 'root',
@@ -46,7 +47,15 @@ const rootReducer = combineReducers({
     orderReducer: orderReducer,
 })
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+const appReducer = (state, action) => {
+    if (action.type === AUTH_LOGOUT + '/fulfilled') {
+        return rootReducer(undefined, action)
+      }
+    
+      return rootReducer(state, action)
+  }
+
+const persistedReducer = persistReducer(persistConfig, appReducer)
 
 export const store = configureStore({
     reducer: persistedReducer,
@@ -56,6 +65,7 @@ export const store = configureStore({
         },
     }),
 });
+
 
 export const persistor = persistStore(store);
 
