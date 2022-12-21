@@ -17,6 +17,8 @@ const CheckoutSuccess = () => {
 
     const orderId = searchParams.get("orderId");
     const resultCode = searchParams.get("resultCode");
+    const message = searchParams.get("message");
+    const orderInfo = searchParams.get("orderInfo");
 
     useEffect(() => {
         if (resultCode === 0) dispatch(removeAllCart())
@@ -57,7 +59,8 @@ const CheckoutSuccess = () => {
                             fontWeight: 'bold',
                             color: '#fccf00'
                         }}>Thanh toán thất bại</Typography>
-                        <Typography sx={{ fontSize: '1.8rem' }}>Mã lỗi: {resultCode}</Typography>
+                        <Typography sx={{ fontSize: '2rem' }}>Mã hoá đơn: {orderId}</Typography>
+                        <Typography sx={{ fontSize: '1.8rem' }}>Lý do: {message}</Typography>
                         <Button onClick={() => navigate("/")} sx={{ padding: '10px 15px', fontSize: '1.4rem', marginTop: '20px' }} variant="contained" className="btn-primary">Trở về trang chủ</Button>
                     </Grid>
                 }
