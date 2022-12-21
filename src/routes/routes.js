@@ -1,9 +1,9 @@
 //Layouts
-import {HeaderOnly, AdminLayout} from '~/layouts';
+import { HeaderOnly, AdminLayout } from '~/layouts';
 // Pages
 import Home from '~/pages/client/home';
 import Category from '~/pages/client/category';
-import {Forget, SignIn, SignUp} from '~/pages/client/auth';
+import { Forget, SignIn, SignUp } from '~/pages/client/auth';
 import Course from '~/pages/client/course';
 import Detail from '~/pages/client/detail';
 import MyCourse from "~/pages/client/my-course";
@@ -90,9 +90,9 @@ const publicRoutes = [
         component: NotFoundPage,
         layout: HeaderOnly,
 
-    },
-    
-   
+    }, 
+
+
 ];
 
 const privateRoutes = [
@@ -117,7 +117,7 @@ const privateRoutes = [
         exact: true,
         layout: HeaderOnly,
     },
-    
+
 ];
 
 const adminRoutes = [
@@ -145,7 +145,13 @@ const adminRoutes = [
         layout: AdminLayout,
         exact: true,
     },
-    
+    {
+        path: '/admin/dashboard',
+        component: Dashboard,
+        layout: AdminLayout,
+        exact: true,
+    },
+
 ];
 
-export {publicRoutes, privateRoutes, adminRoutes};
+export { publicRoutes, privateRoutes, adminRoutes };
