@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { requestLogout } from '~/redux/auth/authSlice';
 import { requestLogoutUser } from '~/redux/user/userSlice';
+import MySwal from '~/constants/MySwal';
 
 function HeaderAccount({ image }) {
     const dispatch = useDispatch();
@@ -14,34 +15,46 @@ function HeaderAccount({ image }) {
 
     const [anchorEl, setAnchorEl] = useState(null);
 
-    const handleClick = (event) => {
+    const handlePopoverOpen = (event) => {
         setAnchorEl(event.currentTarget);
     };
 
-    const handleClose = () => {
+    const handlePopoverClose = () => {
         setAnchorEl(null);
     };
     const handleLogout = async () => {
-        await dispatch(requestLogout());
-        await dispatch(requestLogoutUser());
-        navigate({ pathname: '/auth/signin' });
+        MySwal.fire({
+            title: 'Bạn có chắc muốn đăng xuất hay không',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Đăng xuất',
+            cancelButtonText: 'Hủy',
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                await dispatch(requestLogout());
+                await dispatch(requestLogoutUser());
+                navigate({ pathname: '/auth/signin' });
+            }
+        });
     };
 
     const open = Boolean(anchorEl);
-    const id = open ? 'simple-popover' : undefined;
+    const id = open ? 'mouse-over-popover' : undefined;
     return (
         <Box className="col-1">
             <Avatar
                 src={image}
                 alt="avatar"
                 sx={{ width: 56, height: 56, cursor: 'pointer', marginLeft: '1rem' }}
-                onClick={handleClick}
+                aria-owns={open ? 'mouse-over-popover' : undefined}
+                aria-haspopup="true"
+                onClick={handlePopoverOpen}
             ></Avatar>
             <Popover
                 id={id}
                 open={open}
                 anchorEl={anchorEl}
-                onClose={handleClose}
+                onClose={handlePopoverClose}
                 anchorOrigin={{
                     vertical: 'bottom',
                     horizontal: 'left',

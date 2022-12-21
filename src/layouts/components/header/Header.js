@@ -35,9 +35,7 @@ function Header() {
                 <Toolbar className={cx('inner')}>
                     <div className={cx('header')}>
                         <Box onClick={() => navigate('/')} className={cx('logo', 'col-1')}>
-                            <p>
-                                <span>S</span>Course
-                            </p>
+                            <p>Baha Mall</p>
                         </Box>
                         <Category />
 

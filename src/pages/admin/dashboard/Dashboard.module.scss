@@ -1,19 +1,19 @@
 .dashboard {
-  //display: flex;
+    //display: flex;
 
-  .pie-chart {
-    width: 300px;
-  }
+    .pie-chart {
+        width: 20%;
+    }
 
-  .bar-chart {
-    width: 600px;
-    height: 500px;
-  }
+    .bar-chart {
+        width: 80%;
+        height: 500px;
+    }
 
-  .widgets,
-  .charts {
-    display: flex;
-    padding: 20px;
-    gap: 20px;
-  }
+    .widgets,
+    .charts {
+        display: flex;
+        padding: 20px;
+        gap: 20px;
+    }
 }
