@@ -19,7 +19,7 @@ import { Link } from 'react-router-dom';
 import { getCategoriesSearch, getCategoryByCode } from '~/redux/category/categorySlice';
 
 const cx = classNames.bind(styles);
-export default function Filter({ codeCategory, callBackParentFilterPrice }) {
+export default function Filter({ codeCategory, callBackParentFilterPrice, callBackParentQuerySearch }) {
     const dispatch = useDispatch();
     const subCategories = useSelector((state) => state.categoryReducer.categories);
     const [active, setActive] = React.useState(0);
@@ -38,6 +38,10 @@ export default function Filter({ codeCategory, callBackParentFilterPrice }) {
         callBackParentFilterPrice(from, to);
         setActive(active);
     };
+    const handleChangeQuerySearch = (e) => {
+        const query = e.target.value;
+        callBackParentQuerySearch(query)
+    }
 
     return (
         <Box sx={{ width: '100%' }}>
@@ -49,6 +53,7 @@ export default function Filter({ codeCategory, callBackParentFilterPrice }) {
                         name="query"
                         placeholder="Tìm kiếm khóa học"
                         fullWidth
+                        onChange={handleChangeQuerySearch}
                         InputProps={{
                             style: {
                                 fontSize: '1.6rem',

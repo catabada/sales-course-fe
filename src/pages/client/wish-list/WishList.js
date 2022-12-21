@@ -43,7 +43,7 @@ function WishList() {
             <Box className="row" sx={{minHeight:'100px'}}>
                 {
                     wishlist.map((item, index) => (
-                        <Box sx={{ padding: '1rem' }} key={index} className={cx('col-3', 'active')}>
+                        <Box sx={{ padding: '1rem' }} key={index} className={cx('col-4', 'active')}>
                             <CardCourse data={item.course} />
 
                         </Box>

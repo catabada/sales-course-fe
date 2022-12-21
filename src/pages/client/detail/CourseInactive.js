@@ -36,7 +36,7 @@ function CourseInactive(props) {
     const navigate = useNavigate();
     const { wishlist } = useSelector(state => state.wishlistReducer)
     const { userId, accessToken } = useSelector(state => state.authReducer)
-    const [active, setActive] = useState(wishlist.find(item => item.course.id === data.id) ? true : false)
+    const check = wishlist.find(item => item.course.codeName === code)
 
     useEffect(() => {
         dispatch(requestGetWishlist({
@@ -47,7 +47,7 @@ function CourseInactive(props) {
             },
             accessToken: accessToken
         }))
-    }, [dispatch, active])
+    }, [dispatch])
 
     const handleAddCart = () => {
         dispatch(addToCart({ ...data }))
@@ -121,8 +121,8 @@ function CourseInactive(props) {
                                     </div>
                                     <div className={cx('tool')}>
                                         <div className={cx('wish-list')} onClick={() => callBackParentWish(data)}>
-                                            {active && <FavoriteIcon sx={{ height: '2.4rem', width: '2.4rem' }} />}
-                                            {!active && <FavoriteBorderIcon sx={{ height: '2.4rem', width: '2.4rem' }} />}
+                                            {check && <FavoriteIcon sx={{ height: '2.4rem', width: '2.4rem' }} />}
+                                            {!check && <FavoriteBorderIcon sx={{ height: '2.4rem', width: '2.4rem' }} />}
                                             <span>Lưu vào Yêu thích</span>
                                         </div>
                                         <div className={cx('share')}>

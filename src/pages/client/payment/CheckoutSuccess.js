@@ -5,6 +5,7 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { requestCheckoutSuccess } from "~/redux/order/orderSlice";
+import { removeAllCart } from "~/redux/cart/cartSlice";
 
 const CheckoutSuccess = () => {
     const dispatch = useDispatch()
@@ -30,7 +31,7 @@ const CheckoutSuccess = () => {
 
     return (
         <Box >
-            <Grid sx={{ height: '400px !importance' }} container textAlign={"center"} alignContent={"center"} justifyContent="center" alignItems="center" sx={{ height: '100vh' }}>
+            <Grid sx={{ height: '400px' }} container textAlign={"center"} alignContent={"center"} justifyContent="center" alignItems="center">
                 <Grid item lg={12}>
                     <CheckCircleOutlineIcon sx={{ fontSize: '14rem', color: '#fccf00' }} />
                 </Grid>

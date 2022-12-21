@@ -25,18 +25,18 @@ export const requestAddWishlist = createAsyncThunk(WISHLIST_ADD, async (params, 
         if (!response.success) {
             return thunkApi.rejectWithValue(response);
         }
-        return thunkApi.fulfillWithValue(params);
+        return thunkApi.fulfillWithValue(params.wishlist);
     } catch (err) {
         return thunkApi.rejectWithValue(err.response.data);
     }
 })
 export const requestDeleteWishlist = createAsyncThunk(WISHLIST_DELETE, async (params, thunkApi) => {
     try {
-        const response = await wishlistApi.deleteWishlist(params);
+        const response = await wishlistApi.deleteWishlistByUserIdAndCourseId(params.wishlist, params.accessToken);
         if (!response.success) {
             return thunkApi.rejectWithValue(response);
         }
-        return thunkApi.fulfillWithValue(params);
+        return thunkApi.fulfillWithValue(params.wishlist);
     } catch (err) {
         return thunkApi.rejectWithValue(err.response.data);
     }
@@ -44,7 +44,7 @@ export const requestDeleteWishlist = createAsyncThunk(WISHLIST_DELETE, async (pa
 
 
 const wishlistSlice = createSlice({
-    name: 'wishlist',
+    name: 'wishList',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
@@ -82,10 +82,12 @@ const wishlistSlice = createSlice({
                 return state;
             })
             .addCase(requestAddWishlist.fulfilled, (state, action) => {
-                state.response = action.payload;
                 state.isLoading = false;
                 const data = action.payload
+                console.log(state.wishlist)
                 state.wishlist.push(data)
+                console.log(data, state.wishlist)
+                console.log(typeof state.wishlist)
                 Toast.fire({
                     icon: 'success',
                     title: 'Thành công!',
@@ -111,9 +113,9 @@ const wishlistSlice = createSlice({
             })
             .addCase(requestDeleteWishlist.fulfilled, (state, action) => {
                 state.response = action.payload;
-                state.isLoading = true;
+                state.isLoading = false;
                 const data = action.payload
-                state.wishlist.filter(item => item.id !== data)
+                state.wishlist = state.wishlist.filter(item => item.course.id !== data.course.id)
                 Toast.fire({
                     icon: 'success',
                     title: 'Thành công!',

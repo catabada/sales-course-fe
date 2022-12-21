@@ -40,14 +40,6 @@ function Detail() {
                 },
                 accessToken: accessToken
             }))
-            dispatch(requestGetWishlist({
-                search: {
-                    userInfo: {
-                        userId: userId
-                    }
-                },
-                accessToken: accessToken
-            }))
         } else {
             MySwal.fire({
                 title: 'Bạn cần đăng nhập để kích hoạt khóa học',
