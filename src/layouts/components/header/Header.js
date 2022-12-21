@@ -4,9 +4,8 @@ import styles from './Header.module.scss';
 import Search from '../search';
 import Category from '../category';
 import { AppBar, Box, Button, Container, Toolbar, Typography } from '@mui/material';
-import { LogoIcon } from '~/components/icons';
 import PlayIcon from '@mui/icons-material/PlayArrowOutlined';
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 // layouts
 import HeaderActive from '~/layouts/components/header/HeaderActive';

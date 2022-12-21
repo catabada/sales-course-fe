@@ -6,12 +6,16 @@ import style from './Dashboard.module.scss';
 import classNames from 'classnames/bind';
 import BarChart from '~/components/admin/chart/BarChart';
 import Widget from '~/components/admin/widget/Widget';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(style);
 
 function Dashboard() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { userId, accessToken } = useSelector((state) => state.authReducer);
+    if (accessToken) navigate('/auth/signin');
 
     const [categoryData, setCategoryData] = useState({
         labels: CategoryData.map((data) => data.name),
@@ -31,23 +35,10 @@ function Dashboard() {
                 data: RevenueData.map((data) => data.revenue),
             },
         ],
-        
     });
+
     const handleInputChange = (e) => {
-        switch (e.target.value) {
-            case 'month-3':
-                console.log('3thang');
-                break;
-            case 'month-6':
-                console.log('6thang');
-                break;
-            case 'year-1':
-                console.log('1nam');
-                break;
-            default:
-                console.log('10ngay');
-                break;
-        }
+        console.log(e.target.value)        
     };
 
     return (

@@ -3,12 +3,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import AccountIcon from '@mui/icons-material/AccountCircleOutlined';
 import FavoriteIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import LogoutIcon from '@mui/icons-material/LogoutOutlined';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { requestLogout } from '~/redux/auth/authSlice';
 import { requestLogoutUser } from '~/redux/user/userSlice';
 import MySwal from '~/constants/MySwal';
+import classNames from 'classnames/bind';
+import styles from './Header.module.scss';
 
+const cx = classNames.bind(styles);
 function HeaderAccount({ image }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -22,6 +25,8 @@ function HeaderAccount({ image }) {
     const handlePopoverClose = () => {
         setAnchorEl(null);
     };
+
+    const open = Boolean(anchorEl);
     const handleLogout = async () => {
         MySwal.fire({
             title: 'Bạn có chắc muốn đăng xuất hay không',
@@ -38,34 +43,20 @@ function HeaderAccount({ image }) {
         });
     };
 
-    const open = Boolean(anchorEl);
-    const id = open ? 'mouse-over-popover' : undefined;
     return (
-        <Box className="col-1">
+        <Box className={cx('col-1', 'header-account')}>
             <Avatar
                 src={image}
                 alt="avatar"
+                className={cx('avatar')}
                 sx={{ width: 56, height: 56, cursor: 'pointer', marginLeft: '1rem' }}
-                aria-owns={open ? 'mouse-over-popover' : undefined}
-                aria-haspopup="true"
-                onClick={handlePopoverOpen}
             ></Avatar>
-            <Popover
-                id={id}
-                open={open}
-                anchorEl={anchorEl}
-                onClose={handlePopoverClose}
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                }}
-                PaperProps={{
-                    style: {
-                        width: 250,
-                    },
-                }}
-            >
-                <Box component={'ul'} sx={{ listStyle: 'none', padding: '1rem 0 1rem 1rem' }}>
+            <Box className={cx('header-drop')}>
+                <Box
+                    component={'ul'}
+                    className={cx('account-content')}
+                    sx={{ listStyle: 'none', padding: '1rem 0 1rem 1rem' }}
+                >
                     <Box component={'li'} sx={{ marginBottom: '1rem', padding: '0.6rem 1.6rem' }}>
                         <Box
                             component={Link}
@@ -151,7 +142,26 @@ function HeaderAccount({ image }) {
                         </Box>
                     </Box>
                 </Box>
-            </Popover>
+            </Box>
+
+            {/* <Popover
+                id="mouse-over-popover"
+                open={open}
+                anchorEl={anchorEl}
+                onClose={handlePopoverClose}
+                disableRestoreFocus
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                }}
+                PaperProps={{
+                    style: {
+                        width: 250,
+                    },
+                }}
+            >
+               
+            </Popover> */}
         </Box>
     );
 }

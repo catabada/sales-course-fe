@@ -30,10 +30,6 @@ import StarOutlineIcon from "@mui/icons-material/StarOutlineOutlined";
 import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
 import Feedback from '~/components/feedback/Feedback'
 
-import {useDispatch, useSelector} from "react-redux";
-import {getLecturerById, lecturerReducer} from "~/redux/lecturer/lecturerSlice";
-import {getChapterSearch} from "~/redux/chapter/chapterSlice";
-import {getLessonSearch} from "~/redux/lesson/lessonSlice";
 
 const cx = classNames.bind(style);
 
@@ -64,32 +60,18 @@ function CourseActive(props) {
     const chapters = data && data.chapters;
     const [lesson, setLesson] = useState()
     const parentCategory = getCategoryParent(data);
+    const [lessonId, setLessonId] = useState();
 
     useEffect(() => {
         chapters && setLesson(chapters[0].lessons[0])
     }, [chapters])
-    let arrayIndex = [];
-    const handleClick = (index, event) => {
-        if (arrayIndex.includes(index)) {
-            const divActive = document.querySelector(`#button-${index}.Detail_active__3sav1`)
-            divActive.classList.remove("Detail_active__3sav1")
-            const newArray = arrayIndex.filter(item => item !== index);
-            arrayIndex = newArray;
-        } else {
-            arrayIndex.push(index)
-            const divElement = event.target.closest(".Detail_chapters__Mgpiu")
-            divElement.classList.add("Detail_active__3sav1")
-        }
-
+    const handleClick = (index, event) => {    
         const collapse = document.querySelector(`#chapter-${index}`)
         if (collapse.hidden) collapse.hidden = false;
         else collapse.hidden = true;
     }
-    const handleSelectLesson = (lesson, e) => {
-        const liActive = document.querySelector(".Detail_lesson-item__DWjah.Detail_active__3sav1 ")
-        liActive && liActive.classList.remove("Detail_active__3sav1")
-        const liElement = e.target.closest("li")
-        liElement.classList.add("Detail_active__3sav1");
+    const handleSelectLesson = (lesson) => {
+        setLessonId(lesson?.id)
         setLesson(lesson)
     }
 
@@ -275,8 +257,9 @@ function CourseActive(props) {
                                                     {
                                                         item.lessons && item.lessons.map((lesson, i) => (
                                                             <Box key={i}
-                                                                 className={cx('row', ' align-items-center', 'lesson-item')}
-                                                                 onClick={(e) => handleSelectLesson(lesson, e)}
+                                                                 className={cx('row', ' align-items-center', 'lesson-item',`${lessonId===lesson?.id?
+                                                                    'active':''}`)}
+                                                                 onClick={() => handleSelectLesson(lesson)}
                                                                  component={'li'}
                                                                  sx={{cursor: 'pointer', marginBottom: '1rem'}}>
                                                                 <ListItemIcon className='col-1' sx={{minWidth: '20px'}}>
