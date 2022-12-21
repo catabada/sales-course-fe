@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { authApi } from "~/apis/authApi";
 import MySwal from "~/constants/MySwal";
-import { USER_GET_PROFILE, USER_LOGOUT, USER_SAVE_PROFILE } from "./userType";
+import { USER_GET_PROFILE, USER_LOGOUT, USER_ORDER, USER_SAVE_PROFILE } from "./userType";
 
 const initialState = {
     users: [],
     user: null,
     isLoading: false,
+    orders: [],
 }
 
 export const requestGetProfile = createAsyncThunk(USER_GET_PROFILE, async (params, thunkApi) => {
@@ -33,6 +34,17 @@ export const requestSaveProfile = createAsyncThunk((USER_SAVE_PROFILE), async (p
         return thunkApi.rejectWithValue(error.response.data);
     }
 })
+
+
+export const requestUserOrder = createAsyncThunk((USER_ORDER), async (params, thunkApi) => {
+    try {
+        const response = await authApi.getOrder(params);
+        return !response.success ? thunkApi.rejectWithValue(response) : thunkApi.fulfillWithValue(response);
+    } catch (error) {
+        return thunkApi.rejectWithValue(error.response.data);
+    }
+})
+
 
 
 export const userSlice = createSlice({
@@ -89,6 +101,19 @@ export const userSlice = createSlice({
                     title: 'Oops...',
                     text: action.payload.message,
                 });
+                return state;
+            })
+
+            .addCase(requestUserOrder.pending, (state, action) => {
+                state.isLoading = true;
+            })
+            .addCase(requestUserOrder.fulfilled, (state, action) => {
+                const orders = action.payload.data;
+                state.isLoading = false;
+                state.orders = orders;
+                return state;
+            })
+            .addCase(requestUserOrder.rejected, (state, action) => {
                 return state;
             })
     }

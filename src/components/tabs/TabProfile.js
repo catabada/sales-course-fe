@@ -14,7 +14,7 @@ import { TabPanel } from "@mui/lab";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "~/hooks/useForm";
-import { requestSaveProfile } from "~/redux/user/userSlice";
+import { requestSaveProfile, requestUserOrder } from "~/redux/user/userSlice";
 import moment from "moment"
 import DataTable from "react-data-table-component";
 import TabOrderDetail from "./TabOrderDetail";
@@ -62,50 +62,70 @@ function TabProfile({ user }) {
     };
     const dispatch = useDispatch();
     const { accessToken } = useSelector(state => state.authReducer)
-    const { orders } = useSelector(state => state.orderReducer)
+    const { orders } = useSelector(state => state.userReducer)
 
-    const data = [
-        {
-            id: '12321',
-            state: 'Thành công',
-            price: 123000,
-            payment: 'vnpay',
-            createdDate: '21/12/2022',
-            option: <TabOrderDetail />
+    useEffect(() => {
+        dispatch(requestUserOrder(accessToken))
+    }, [dispatch])
+
+    const data = orders?.map((order) => {
+        return {
+            id: order?.orderTrackingNumber,
+            price: order?.totalPrice,
+            state: order?.state,
+            createdDate: order?.dateCreated,
+            option: <TabOrderDetail data={order} />
         }
-    ]
+    })
+    const customStyles = {
+        headCells: {
+            style: {
+                justifyContent: 'center',
+                fontSize: '1.8rem',
+            },
+        },
+        cells: {
+            style: {
+                fontSize: '1.4rem',
+            },
+        },
+    };
+
     const columns = [
         {
             name: 'Order Tracking',
             selector: (row) => row.id,
-            width: '200px',
-        },
-        {
-            name: 'Trạng thái',
-            selector: (row) => row.state,
-            sortable: true,
-            width: '120px',
-        },
-        {
-            name: 'Thanh toán',
-            selector: (row) => row.payment,
-            sortable: true,
-            width: '120px',
-        },
-        {
-            name: 'Tổng giá',
-            selector: (row) => Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(row.price),
-            width: '120px',
         },
         {
             name: 'Ngày ghi nhận',
             selector: (row) => row.createdDate,
-            width: '150px',
+            style: {
+                justifyContent: 'center'
+            }
+        },
+
+        {
+            name: 'Trạng thái',
+            selector: (row) => row.state,
+            style: {
+                justifyContent: 'center'
+            }
+        },
+        {
+            name: 'Tổng giá',
+            selector: (row) => Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(row.price),
+            style: {
+                justifyContent: 'flex-end',
+                width: "100px!important",
+            }
         },
         {
             name: 'Chức năng',
             selector: (row) => row.option,
-            width: '150px',
+            style: {
+                justifyContent: 'center',
+                width: "100px!important",
+            }
         },
     ]
 
@@ -218,7 +238,6 @@ function TabProfile({ user }) {
                 >
                     <Tab label="Thông tin cơ bản" {...a11yProps(0)} sx={{ fontSize: '2rem' }} />
                     <Tab label="Lịch sử mua hàng" {...a11yProps(1)} sx={{ fontSize: '2rem' }} />
-                    <Tab label="Hoạt động gần đây" {...a11yProps(2)} sx={{ fontSize: '2rem' }} />
                 </Tabs>
             </Box>
             <TabPanels value={value} index={0}>
@@ -425,7 +444,7 @@ function TabProfile({ user }) {
                 </Box>
             </TabPanels>
             <TabPanels value={value} index={1}>
-                <Box>
+                <Box >
                     <DataTable
                         columns={columns}
                         data={data}
@@ -435,12 +454,11 @@ function TabProfile({ user }) {
                         responsive={true}
                         fixedHeader={true}
                         fixedHeaderScrollHeight={'65vh'}
+                        customStyles={customStyles}
                     />
                 </Box>
             </TabPanels>
-            <TabPanels value={value} index={2}>
-                Chức năng đang cập nhật
-            </TabPanels>
+
 
 
         </Box >

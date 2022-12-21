@@ -116,7 +116,7 @@ function Payment() {
                 name: values.fullName,
                 email: values.email,
                 order: {
-                    totalPrice: 10000,
+                    totalPrice: totalPrice,
                 },
                 items: items
             };

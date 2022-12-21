@@ -107,6 +107,14 @@ export const authApi = {
             }
         }).then((response) => response)
             .catch((err) => err.response.data);
+    },
+    async getOrder(accessToken) {
+        return await axiosClient.get('/user/order', {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        }).then((response) => response)
+            .catch((err) => err.response.data);
     }
 
 }

@@ -10,6 +10,7 @@ import { Avatar, Box, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import SchoolIcon from '@mui/icons-material/School';
 import MySwal from '~/constants/MySwal';
+import CategoryIcon from '@mui/icons-material/Category';
 const cx = classNames.bind(style);
 
 function SideBar() {
@@ -79,22 +80,13 @@ function SideBar() {
                             <span>Courses</span>
                         </li>
                     </Link>
-                    {/* <Link to="/admin/category" style={{textDecoration: "none"}}>
-                    <li>
-                        <CategoryIcon className={cx('icon')}/>
-                        <span>Category</span>
-                    </li>
-                </Link>
-                <Link to="/admin/lecturer" style={{textDecoration: "none"}}>
-                    <li>
-                        <AccessibilityIcon className={cx('icon')}/>
-                        <span>Lecturer</span>
-                    </li>
-                </Link>
-                <li>
-                    <CreditCardIcon className={cx('icon')}/>
-                    <span>Orders</span>
-                </li> */}
+                    <Link to="/admin/category" style={{ textDecoration: "none" }}>
+                        <li>
+                            <CategoryIcon className={cx('icon')} />
+                            <span>Category</span>
+                        </li>
+                    </Link>
+
                     <p className={cx('title')}>USER</p>
                     <li onClick={handleLogout}>
                         <ExitToAppIcon className={cx('icon')} />

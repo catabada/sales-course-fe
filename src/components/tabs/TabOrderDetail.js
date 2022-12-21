@@ -4,9 +4,9 @@ import classNames from 'classnames/bind';
 import style from './TabsOrderDetail.module.scss';
 const cx = classNames.bind(style)
 
-function TabOrderDetail() {
+function TabOrderDetail(props) {
     const [open, setOpen] = useState(false)
-
+    const { data } = props
     const handleClose = () => {
         setOpen(!open);
     };
@@ -36,8 +36,8 @@ function TabOrderDetail() {
             }}
         >
             <DialogTitle>
-                <Typography variant="h5" sx={{ textDecoration: 'underline' }} >
-                    Order No: #1057053696
+                <Typography variant="h5" sx={{ textDecoration: 'underline', fontWeight: 'bold' }} >
+                    Order No: #{data.orderTrackingNumber}
                 </Typography>
 
             </DialogTitle>
@@ -61,44 +61,32 @@ function TabOrderDetail() {
                         </Grid>
                     </Grid>
                 </Box>
-                <Box sx={{ flexGrow: 1, marginBottom: '2rem' }}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={3}>
-                            <Avatar src="" variant="square" sx={{ width: '100%', height: '70px' }} />
-                        </Grid>
-                        <Grid item xs={3}>
-                            <Typography variant="body1" className={cx('course-name')}>Hiểu biết về digital marketing</Typography>
-                        </Grid>
-                        <Grid item xs={2}>
-                            <Typography variant="body1" sx={{ fontSize: "1.4rem" }}>399.000 ₫</Typography>
-                        </Grid>
-                        <Grid item xs={2}>
-                            <Typography variant="body1" sx={{ fontSize: "1.4rem" }}>0</Typography>
-                        </Grid>
-                        <Grid item xs={2}>
-                            <Typography variant="body1" sx={{ fontSize: "1.4rem" }}>399.000 ₫</Typography>
-                        </Grid>
-                    </Grid>
-                </Box>
-                <Box sx={{ flexGrow: 1, marginBottom: '2rem' }}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={3}>
-                            <Avatar src="" variant="square" sx={{ width: '100%', height: '70px' }} />
-                        </Grid>
-                        <Grid item xs={3}>
-                            <Typography variant="body1" className={cx('course-name')}>Hiểu biết về digital marketing</Typography>
-                        </Grid>
-                        <Grid item xs={2}>
-                            <Typography variant="body1" sx={{ fontSize: "1.4rem" }}>399.000 ₫</Typography>
-                        </Grid>
-                        <Grid item xs={2}>
-                            <Typography variant="body1" sx={{ fontSize: "1.4rem" }}>0</Typography>
-                        </Grid>
-                        <Grid item xs={2}>
-                            <Typography variant="body1" sx={{ fontSize: "1.4rem" }}>399.000 ₫</Typography>
-                        </Grid>
-                    </Grid>
-                </Box>
+                {
+                    data?.items.map((item, index) => {
+                        console.log(item);
+                        return <Box sx={{ flexGrow: 1, marginBottom: '2rem' }}>
+                            <Grid container spacing={2}>
+                                <Grid item xs={3}>
+                                    <Avatar src={`/images/${item?.course.image}`} variant="square" sx={{ width: '100%', height: '70px' }} />
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Typography variant="body1" className={cx('course-name')}>{item?.course.name}</Typography>
+                                </Grid>
+                                <Grid item xs={2}>
+                                    <Typography variant="body1" sx={{ fontSize: "1.4rem" }}> {Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(item?.course.price)}</Typography>
+                                </Grid>
+                                <Grid item xs={2}>
+                                    <Typography variant="body1" sx={{ fontSize: "1.4rem" }}> {item?.course.discount * 100}%</Typography>
+                                </Grid>
+                                <Grid item xs={2}>
+                                    <Typography variant="body1" sx={{ fontSize: "1.4rem" }}> {Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(item?.course.price - item?.course.price * item?.course.discount)}</Typography>
+                                </Grid>
+                            </Grid>
+                        </Box>
+                    })
+                }
+
+
                 <Box sx={{ flexGrow: 1 }}>
                     <Grid container spacing={2}>
                         <Grid item xs={8}></Grid>
@@ -106,7 +94,9 @@ function TabOrderDetail() {
                             <Typography variant="body1" sx={{ fontSize: "1.4rem", fontWeight: 'bold' }}>Tổng giá</Typography>
                         </Grid>
                         <Grid item xs={2}>
-                            <Typography variant="body1" sx={{ fontSize: "1.4rem" }}>399.000 ₫</Typography>
+                            <Typography variant="body1" sx={{ fontSize: "1.4rem" }}>
+                                {Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(data?.totalPrice)}
+                            </Typography>
                         </Grid>
                     </Grid>
                 </Box>
