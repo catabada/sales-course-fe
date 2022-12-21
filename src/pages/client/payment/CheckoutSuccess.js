@@ -16,10 +16,10 @@ const CheckoutSuccess = () => {
     const [searchParams, setSearchParams] = useSearchParams();
 
     const orderId = searchParams.get("orderId");
-    const errorCode = searchParams.get("errorCode");
+    const resultCode = searchParams.get("resultCode");
 
     useEffect(() => {
-        if (errorCode === 0) dispatch(removeAllCart())
+        if (resultCode === 0) dispatch(removeAllCart())
         const createCapture = setTimeout(async () => {
             const capture = {}
             searchParams.forEach((value, key) => {
@@ -36,11 +36,11 @@ const CheckoutSuccess = () => {
         <Box >
             <Grid sx={{ height: '400px' }} container textAlign={"center"} alignContent={"center"} justifyContent="center" alignItems="center">
                 <Grid item lg={12}>
-                    {errorCode === 0
+                    {resultCode === 0
                         ? <CheckCircleOutlineIcon sx={{ fontSize: '14rem', color: '#fccf00' }} />
                         : <HighlightOffSharpIcon sx={{ fontSize: '14rem', color: '#fccf00' }} />}
                 </Grid>
-                {errorCode === 0
+                {resultCode === 0
                     ? <Grid item lg={12}>
                         <Typography sx={{
                             fontSize: '3rem',
@@ -57,7 +57,7 @@ const CheckoutSuccess = () => {
                             fontWeight: 'bold',
                             color: '#fccf00'
                         }}>Thanh toán thất bại</Typography>
-                        <Typography sx={{ fontSize: '1.8rem' }}>Mã lỗi: {errorCode}</Typography>
+                        <Typography sx={{ fontSize: '1.8rem' }}>Mã lỗi: {resultCode}</Typography>
                         <Button onClick={() => navigate("/")} sx={{ padding: '10px 15px', fontSize: '1.4rem', marginTop: '20px' }} variant="contained" className="btn-primary">Trở về trang chủ</Button>
                     </Grid>
                 }
