@@ -8,7 +8,6 @@ import { useState } from 'react';
 const cx = classNames.bind(style);
 
 function BarChart(props) {
-    console.log(props.chartData);
     return (
         <div className={cx('chart')}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -59,8 +58,8 @@ function BarChart(props) {
                                 label="Chọn thời gian"
                             >
                                 <option selected>Chọn thời gian</option>
+                                <option value="3">3 ngày trở lại đây</option>
                                 <option value="10">10 ngày trở lại đây</option>
-                                <option value="30">30 ngày trở lại đây</option>
                             </TextField>
                             : props.parentParam === "month" ?
                                 <TextField

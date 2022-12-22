@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import statisticApi from '~/apis/statisticApi'
-import { STATISTIC_REVENUE_DAY, STATISTIC_REVENUE_YEAR, STATISTIC_REVENUE_MONTH } from './statisticType'
+import { STATISTIC_REVENUE_DAY, STATISTIC_REVENUE_YEAR, STATISTIC_REVENUE_MONTH, STATISTIC_REVENUE_CATEGORY } from './statisticType'
 
 const initialState = {
     statistic: [],
+    statisticCate: [],
     isLoading: false,
 }
 
@@ -18,6 +19,10 @@ export const getRevenueMonth = createAsyncThunk((STATISTIC_REVENUE_MONTH), async
 })
 export const getRevenueYear = createAsyncThunk((STATISTIC_REVENUE_YEAR), async (params, thunkApi) => {
     const statistic = statisticApi.getRevenueYear(params);
+    return statistic;
+})
+export const getRevenueCategory = createAsyncThunk((STATISTIC_REVENUE_CATEGORY), async (params, thunkApi) => {
+    const statistic = statisticApi.getRevenueCategory(params);
     return statistic;
 })
 
@@ -40,6 +45,11 @@ const statisticSlice = createSlice({
             .addCase(getRevenueYear.fulfilled, (state, action) => {
                 const statistic = action.payload.data;
                 state.statistic = statistic
+                return state;
+            })
+            .addCase(getRevenueCategory.fulfilled, (state, action) => {
+                const statisticCate = action.payload.data;
+                state.statisticCate = statisticCate
                 return state;
             })
     }

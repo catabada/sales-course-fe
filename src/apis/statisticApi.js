@@ -29,6 +29,11 @@ const statisticApi = {
             return response;
         }).catch((err) => err.response.data)
     },
+    async getRevenueCategory() {
+        return await axiosClient.get("/statistic/revenue/category").then((response) => {
+            return response;
+        }).catch((err) => err.response.data)
+    },
 }
 
 export default statisticApi;

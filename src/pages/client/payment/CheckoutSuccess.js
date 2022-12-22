@@ -21,7 +21,7 @@ const CheckoutSuccess = () => {
     const message = searchParams.get("message");
 
     useEffect(() => {
-        if (resultCode === 0) dispatch(removeAllCart())
+        if (resultCode == "0" || vnp_ResponseCode == "00") dispatch(removeAllCart())
         const createCapture = setTimeout(async () => {
             const capture = {}
             searchParams.forEach((value, key) => {
