@@ -86,11 +86,18 @@ const publicRoutes = [
         exact: true,
     },
     {
+        path: '/payment/response/:payment',
+        component: CheckoutSuccess,
+        exact: true,
+        layout: HeaderOnly,
+    },
+    {
         path: '*',
         component: NotFoundPage,
         layout: HeaderOnly,
 
-    }, 
+    },
+
 
 
 ];

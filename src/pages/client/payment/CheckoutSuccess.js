@@ -35,7 +35,7 @@ const CheckoutSuccess = () => {
     }, [dispatch])
 
     const handleResponse = () => {
-        if (resultCode === "0" || vnp_ResponseCode === "00") {
+        if (resultCode == "0" || vnp_ResponseCode == "00") {
             return (
                 <Grid item lg={12}>
                     <Typography sx={{
@@ -50,7 +50,7 @@ const CheckoutSuccess = () => {
             );
         }
 
-        if (resultCode === "1006" || vnp_ResponseCode === "24") {
+        if (resultCode == "1006" || vnp_ResponseCode == "24") {
             return (
                 <Grid item lg={12}>
                     <Typography sx={{
@@ -69,7 +69,7 @@ const CheckoutSuccess = () => {
         <Box >
             <Grid sx={{ height: '400px' }} container textAlign={"center"} alignContent={"center"} justifyContent="center" alignItems="center">
                 <Grid item lg={12}>
-                    {resultCode === 0
+                    {(resultCode == "0" || vnp_ResponseCode == "00")
                         ? <CheckCircleOutlineIcon sx={{ fontSize: '14rem', color: '#fccf00' }} />
                         : <HighlightOffSharpIcon sx={{ fontSize: '14rem', color: '#fccf00' }} />}
                 </Grid>

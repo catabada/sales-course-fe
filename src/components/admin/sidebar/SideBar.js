@@ -40,7 +40,7 @@ function SideBar() {
             }
         });
     };
-
+    console.log(user)
     return (
         <div className={cx('sidebar')}>
             <div className={cx('top')}>
@@ -51,7 +51,7 @@ function SideBar() {
                     <Box className={cx('user')}>
                         <Avatar src={user?.imageUrl} alt={user.username} className={cx('avatar')} />
                         <Typography className={cx('text')}>
-                            Xin chào <strong>{user?.username}</strong>!
+                            Xin chào <strong>{user?.fullName}</strong>!
                         </Typography>
                     </Box>
                 )}
